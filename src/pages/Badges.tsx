@@ -5,11 +5,11 @@ import { useGame } from '@/contexts/GameContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const allBadgeDefinitions = [
-  { id: 'first-quiz', name: 'firstQuiz', description: 'Complete your first quiz', icon: Target, tier: 'bronze' as const },
-  { id: 'perfect-score', name: 'perfectScore', description: 'Get 100% on any quiz', icon: Star, tier: 'gold' as const },
-  { id: 'bible-explorer', name: 'bibleExplorer', description: 'Read 10 chapters', icon: Book, tier: 'bronze' as const },
-  { id: 'quiz-master', name: 'quizMaster', description: 'Complete 10 quizzes', icon: Trophy, tier: 'silver' as const },
-  { id: 'dedicated', name: 'dedicated', description: 'Complete 25 quizzes', icon: Gem, tier: 'gold' as const },
+  { id: 'first-quiz', nameKey: 'firstQuiz', descriptionKey: 'firstQuizDesc', icon: Target, tier: 'bronze' as const },
+  { id: 'perfect-score', nameKey: 'perfectScore', descriptionKey: 'perfectScoreDesc', icon: Star, tier: 'gold' as const },
+  { id: 'bible-explorer', nameKey: 'bibleExplorer', descriptionKey: 'bibleExplorerDesc', icon: Book, tier: 'bronze' as const },
+  { id: 'quiz-master', nameKey: 'quizMaster', descriptionKey: 'quizMasterDesc', icon: Trophy, tier: 'silver' as const },
+  { id: 'dedicated', nameKey: 'dedicated', descriptionKey: 'dedicatedDesc', icon: Gem, tier: 'gold' as const },
 ];
 
 const Badges: React.FC = () => {
@@ -41,7 +41,7 @@ const Badges: React.FC = () => {
           {t('badges')}
         </h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          Earn badges by completing quizzes and reading Scripture. Track your progress!
+          {t('badgesDescription')}
         </p>
       </div>
 
@@ -54,7 +54,7 @@ const Badges: React.FC = () => {
               {state.badges.length}
             </span>
             <span className="text-sm text-muted-foreground">
-              / {allBadgeDefinitions.length} Badges
+              / {allBadgeDefinitions.length} {t('badges')}
             </span>
           </CardContent>
         </Card>
@@ -64,7 +64,7 @@ const Badges: React.FC = () => {
             <span className="text-3xl font-bold text-foreground">
               {state.totalQuizzesCompleted}
             </span>
-            <span className="text-sm text-muted-foreground">Quizzes Completed</span>
+            <span className="text-sm text-muted-foreground">{t('quizzesCompleted')}</span>
           </CardContent>
         </Card>
         <Card className="glass-card">
@@ -73,7 +73,7 @@ const Badges: React.FC = () => {
             <span className="text-3xl font-bold text-foreground">
               {state.chaptersRead}
             </span>
-            <span className="text-sm text-muted-foreground">Chapters Read</span>
+            <span className="text-sm text-muted-foreground">{t('chaptersRead')}</span>
           </CardContent>
         </Card>
       </div>
@@ -81,7 +81,7 @@ const Badges: React.FC = () => {
       {/* All Badges */}
       <section>
         <h2 className="mb-4 font-serif text-xl font-semibold text-foreground">
-          All Badges
+          {t('allBadges')}
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {allBadgeDefinitions.map((badge) => {
@@ -104,21 +104,21 @@ const Badges: React.FC = () => {
                     </div>
                     <div>
                       <CardTitle className="font-serif text-lg">
-                        {t(badge.name)}
+                        {t(badge.nameKey)}
                       </CardTitle>
                       <CardDescription>
-                        {badge.tier.charAt(0).toUpperCase() + badge.tier.slice(1)} Badge
+                        {t(badge.tier)} {t('badgeTier')}
                       </CardDescription>
                     </div>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4">
                   <p className="text-sm text-muted-foreground">
-                    {badge.description}
+                    {t(badge.descriptionKey)}
                   </p>
                   {isEarned && (
                     <p className="mt-2 text-xs font-medium text-success">
-                      ✓ Earned
+                      ✓ {t('earned')}
                     </p>
                   )}
                 </CardContent>
@@ -132,7 +132,7 @@ const Badges: React.FC = () => {
       {state.quizResults.length > 0 && (
         <section>
           <h2 className="mb-4 font-serif text-xl font-semibold text-foreground">
-            Recent Quiz Results
+            {t('recentResults')}
           </h2>
           <Card className="glass-card">
             <CardContent className="p-0">
@@ -144,7 +144,7 @@ const Badges: React.FC = () => {
                   >
                     <div>
                       <p className="font-medium capitalize">
-                        {result.quizType.replace(/([A-Z])/g, ' $1').trim()}
+                        {t(result.quizType) || result.quizType.replace(/([A-Z])/g, ' $1').trim()}
                       </p>
                       <p className="text-sm text-muted-foreground">
                         {new Date(result.date).toLocaleDateString()}

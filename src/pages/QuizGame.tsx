@@ -226,7 +226,7 @@ const QuizGame: React.FC = () => {
         <Button asChild variant="ghost" size="sm">
           <Link to="/quiz">
             <ArrowLeft className="h-4 w-4" />
-            Back
+            {t('backToQuizzes')}
           </Link>
         </Button>
         <div className="flex items-center gap-3">
@@ -307,10 +307,14 @@ const QuizGame: React.FC = () => {
               : 'bg-destructive/20 text-destructive'
           }`}>
             {selectedAnswer === currentQuestion.correctIndex ? (
-              <p className="font-semibold">{t('correct')} +5 points</p>
+              <p className="font-semibold">{t('correct')} +5</p>
             ) : (
-              <p className="font-semibold">{t('incorrect')} -1 point</p>
+              <div>
+                <p className="font-semibold">{t('incorrect')} -1</p>
+                <p className="text-sm mt-1">{t('correctAnswer')}: {currentQuestion.options[currentQuestion.correctIndex]}</p>
+              </div>
             )}
+            <p className="text-xs mt-2 opacity-80">{t('reference')}: {currentQuestion.reference}</p>
           </div>
           <Button onClick={handleNext} variant="hero" className="w-full" size="lg">
             {currentIndex + 1 >= Math.min(questions.length, 20) 

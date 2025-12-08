@@ -112,6 +112,7 @@ const BibleReader: React.FC = () => {
               href="https://www.bible.com" 
               target="_blank" 
               rel="noopener noreferrer"
+              className="flex items-center gap-2"
             >
               <ExternalLink className="h-4 w-4" />
               <span className="hidden sm:inline">{t('readOnline')}</span>
@@ -124,7 +125,7 @@ const BibleReader: React.FC = () => {
         <TabsList className="grid w-full grid-cols-2 sm:w-auto sm:grid-cols-none">
           <TabsTrigger value="read" className="gap-2">
             <BookOpen className="h-4 w-4" />
-            Read
+            {t('read')}
           </TabsTrigger>
           <TabsTrigger value="favorites" className="gap-2">
             <Heart className="h-4 w-4" />
@@ -262,8 +263,8 @@ const BibleReader: React.FC = () => {
               {favoriteVerses.length === 0 ? (
                 <div className="py-12 text-center text-muted-foreground">
                   <Heart className="mx-auto mb-4 h-12 w-12 opacity-50" />
-                  <p>No favorite verses yet.</p>
-                  <p className="text-sm">Click the heart icon while reading to save verses.</p>
+                  <p>{t('noFavoritesYet')}</p>
+                  <p className="text-sm">{t('clickHeartToSave')}</p>
                 </div>
               ) : (
                 <div className="space-y-3">

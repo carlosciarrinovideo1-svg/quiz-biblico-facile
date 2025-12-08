@@ -20,6 +20,8 @@ const translations: Translations = {
   subtitle: { en: 'Explore the Bible, test your knowledge, and grow in faith', it: 'Esplora la Bibbia, metti alla prova le tue conoscenze e cresci nella fede', es: 'Explora la Biblia, pon a prueba tu conocimiento y crece en la fe', pt: 'Explore a Bíblia, teste seu conhecimento e cresça na fé', fr: 'Explorez la Bible, testez vos connaissances et grandissez dans la foi' },
   startReading: { en: 'Start Reading', it: 'Inizia a Leggere', es: 'Comenzar a Leer', pt: 'Começar a Ler', fr: 'Commencer à Lire' },
   takeQuiz: { en: 'Take a Quiz', it: 'Fai un Quiz', es: 'Hacer un Quiz', pt: 'Fazer um Quiz', fr: 'Faire un Quiz' },
+  appTitle: { en: 'Scripture Study', it: 'Studio delle Scritture', es: 'Estudio de las Escrituras', pt: 'Estudo das Escrituras', fr: 'Étude des Écritures' },
+  footerText: { en: 'Scripture Study App • Learn, Grow, Believe', it: 'App Studio delle Scritture • Impara, Cresci, Credi', es: 'App Estudio de las Escrituras • Aprende, Crece, Cree', pt: 'App Estudo das Escrituras • Aprenda, Cresça, Creia', fr: 'App Étude des Écritures • Apprendre, Grandir, Croire' },
 
   // Bible Reader
   selectVersion: { en: 'Select Version', it: 'Seleziona Versione', es: 'Seleccionar Versión', pt: 'Selecionar Versão', fr: 'Sélectionner Version' },
@@ -27,9 +29,12 @@ const translations: Translations = {
   favorites: { en: 'Favorites', it: 'Preferiti', es: 'Favoritos', pt: 'Favoritos', fr: 'Favoris' },
   addToFavorites: { en: 'Add to Favorites', it: 'Aggiungi ai Preferiti', es: 'Añadir a Favoritos', pt: 'Adicionar aos Favoritos', fr: 'Ajouter aux Favoris' },
   removeFromFavorites: { en: 'Remove from Favorites', it: 'Rimuovi dai Preferiti', es: 'Quitar de Favoritos', pt: 'Remover dos Favoritos', fr: 'Retirer des Favoris' },
-  readOnline: { en: 'Read the Bible Online', it: 'Leggi la Bibbia Online', es: 'Leer la Biblia en Línea', pt: 'Ler a Bíblia Online', fr: 'Lire la Bible en Ligne' },
+  readOnline: { en: 'Read the Bible', it: 'Leggi la Bibbia', es: 'Leer la Biblia', pt: 'Ler a Bíblia', fr: 'Lire la Bible' },
   chapter: { en: 'Chapter', it: 'Capitolo', es: 'Capítulo', pt: 'Capítulo', fr: 'Chapitre' },
   verse: { en: 'Verse', it: 'Versetto', es: 'Versículo', pt: 'Versículo', fr: 'Verset' },
+  read: { en: 'Read', it: 'Leggi', es: 'Leer', pt: 'Ler', fr: 'Lire' },
+  noFavoritesYet: { en: 'No favorite verses yet.', it: 'Nessun versetto preferito ancora.', es: 'Sin versículos favoritos aún.', pt: 'Sem versículos favoritos ainda.', fr: 'Pas de versets favoris encore.' },
+  clickHeartToSave: { en: 'Click the heart icon while reading to save verses.', it: 'Clicca l\'icona del cuore durante la lettura per salvare i versetti.', es: 'Haz clic en el icono del corazón mientras lees para guardar versículos.', pt: 'Clique no ícone do coração enquanto lê para salvar versículos.', fr: 'Cliquez sur l\'icône du cœur pendant la lecture pour sauvegarder les versets.' },
 
   // Quiz
   selectQuiz: { en: 'Select a Quiz', it: 'Seleziona un Quiz', es: 'Seleccionar un Quiz', pt: 'Selecionar um Quiz', fr: 'Sélectionner un Quiz' },
@@ -42,6 +47,21 @@ const translations: Translations = {
   fullQuiz: { en: 'Complete 100 Questions', it: '100 Domande Complete', es: '100 Preguntas Completas', pt: '100 Perguntas Completas', fr: '100 Questions Complètes' },
   randomQuiz: { en: 'Random 100 Questions', it: '100 Domande Casuali', es: '100 Preguntas Aleatorias', pt: '100 Perguntas Aleatórias', fr: '100 Questions Aléatoires' },
   questionsCount: { en: 'questions', it: 'domande', es: 'preguntas', pt: 'perguntas', fr: 'questions' },
+  thematicQuizzes: { en: 'Thematic Quizzes', it: 'Quiz Tematici', es: 'Cuestionarios Temáticos', pt: 'Quizzes Temáticos', fr: 'Quiz Thématiques' },
+  challengeQuizzes: { en: 'Challenge Quizzes', it: 'Quiz Sfida', es: 'Cuestionarios de Desafío', pt: 'Quizzes Desafio', fr: 'Quiz Défi' },
+  quizDescription: { en: 'Choose a category to test your knowledge. Questions adapt to your level!', it: 'Scegli una categoria per mettere alla prova le tue conoscenze. Le domande si adattano al tuo livello!', es: '¡Elige una categoría para poner a prueba tu conocimiento. Las preguntas se adaptan a tu nivel!', pt: 'Escolha uma categoria para testar seu conhecimento. As perguntas se adaptam ao seu nível!', fr: 'Choisissez une catégorie pour tester vos connaissances. Les questions s\'adaptent à votre niveau!' },
+  pointsCorrect: { en: '+5 points correct', it: '+5 punti corretti', es: '+5 puntos correctos', pt: '+5 pontos corretos', fr: '+5 points corrects' },
+  pointsIncorrect: { en: '-1 point incorrect', it: '-1 punto sbagliato', es: '-1 punto incorrecto', pt: '-1 ponto incorreto', fr: '-1 point incorrect' },
+  
+  // Quiz categories descriptions
+  pentateuchDesc: { en: 'Genesis, Exodus, Leviticus, Numbers, Deuteronomy', it: 'Genesi, Esodo, Levitico, Numeri, Deuteronomio', es: 'Génesis, Éxodo, Levítico, Números, Deuteronomio', pt: 'Gênesis, Êxodo, Levítico, Números, Deuteronômio', fr: 'Genèse, Exode, Lévitique, Nombres, Deutéronome' },
+  minorProphetsDesc: { en: 'Hosea, Joel, Amos, Obadiah, Jonah, Micah...', it: 'Osea, Gioele, Amos, Abdia, Giona, Michea...', es: 'Oseas, Joel, Amós, Abdías, Jonás, Miqueas...', pt: 'Oséias, Joel, Amós, Obadias, Jonas, Miquéias...', fr: 'Osée, Joël, Amos, Abdias, Jonas, Michée...' },
+  oldTestamentDesc: { en: 'General knowledge of the Old Testament', it: 'Conoscenza generale dell\'Antico Testamento', es: 'Conocimiento general del Antiguo Testamento', pt: 'Conhecimento geral do Antigo Testamento', fr: 'Connaissances générales de l\'Ancien Testament' },
+  fourGospelsDesc: { en: 'Matthew, Mark, Luke, John', it: 'Matteo, Marco, Luca, Giovanni', es: 'Mateo, Marcos, Lucas, Juan', pt: 'Mateus, Marcos, Lucas, João', fr: 'Matthieu, Marc, Luc, Jean' },
+  paulineLettersDesc: { en: 'Romans, Corinthians, Galatians, Ephesians...', it: 'Romani, Corinzi, Galati, Efesini...', es: 'Romanos, Corintios, Gálatas, Efesios...', pt: 'Romanos, Coríntios, Gálatas, Efésios...', fr: 'Romains, Corinthiens, Galates, Éphésiens...' },
+  newTestamentDesc: { en: 'General knowledge of the New Testament', it: 'Conoscenza generale del Nuovo Testamento', es: 'Conocimiento general del Nuevo Testamento', pt: 'Conhecimento geral do Novo Testamento', fr: 'Connaissances générales du Nouveau Testament' },
+  fullQuizDesc: { en: 'Complete challenge with all questions', it: 'Sfida completa con tutte le domande', es: 'Desafío completo con todas las preguntas', pt: 'Desafio completo com todas as perguntas', fr: 'Défi complet avec toutes les questions' },
+  randomQuizDesc: { en: 'Random selection from all categories', it: 'Selezione casuale da tutte le categorie', es: 'Selección aleatoria de todas las categorías', pt: 'Seleção aleatória de todas as categorias', fr: 'Sélection aléatoire de toutes les catégories' },
 
   // Quiz Game
   question: { en: 'Question', it: 'Domanda', es: 'Pregunta', pt: 'Pergunta', fr: 'Question' },
@@ -59,6 +79,8 @@ const translations: Translations = {
   percentage: { en: 'Percentage', it: 'Percentuale', es: 'Porcentaje', pt: 'Porcentagem', fr: 'Pourcentage' },
   tryAgain: { en: 'Try Again', it: 'Riprova', es: 'Intentar de Nuevo', pt: 'Tentar Novamente', fr: 'Réessayer' },
   backToQuizzes: { en: 'Back to Quizzes', it: 'Torna ai Quiz', es: 'Volver a Quizzes', pt: 'Voltar aos Quizzes', fr: 'Retour aux Quiz' },
+  correctAnswer: { en: 'Correct answer', it: 'Risposta corretta', es: 'Respuesta correcta', pt: 'Resposta correta', fr: 'Réponse correcte' },
+  reference: { en: 'Reference', it: 'Riferimento', es: 'Referencia', pt: 'Referência', fr: 'Référence' },
 
   // Difficulty explanation
   difficultyExplanation: { 
@@ -76,9 +98,15 @@ const translations: Translations = {
   motivational4: { en: 'Wisdom comes from above!', it: 'La saggezza viene dall\'alto!', es: '¡La sabiduría viene de lo alto!', pt: 'A sabedoria vem do alto!', fr: 'La sagesse vient d\'en haut!' },
   motivational5: { en: 'You are blessed!', it: 'Sei benedetto!', es: '¡Eres bendecido!', pt: 'Você é abençoado!', fr: 'Vous êtes béni!' },
 
-  // Badges
+  // Badges page
   badgeEarned: { en: 'Badge Earned!', it: 'Distintivo Ottenuto!', es: '¡Insignia Ganada!', pt: 'Distintivo Conquistado!', fr: 'Badge Gagné!' },
   noBadges: { en: 'No badges yet. Start learning!', it: 'Nessun distintivo ancora. Inizia ad imparare!', es: 'Sin insignias aún. ¡Empieza a aprender!', pt: 'Sem distintivos ainda. Comece a aprender!', fr: 'Pas encore de badges. Commencez à apprendre!' },
+  badgesDescription: { en: 'Earn badges by completing quizzes and reading Scripture. Track your progress!', it: 'Guadagna distintivi completando quiz e leggendo le Scritture. Monitora i tuoi progressi!', es: '¡Gana insignias completando cuestionarios y leyendo las Escrituras. Sigue tu progreso!', pt: 'Ganhe distintivos completando quizzes e lendo as Escrituras. Acompanhe seu progresso!', fr: 'Gagnez des badges en complétant des quiz et en lisant les Écritures. Suivez vos progrès!' },
+  allBadges: { en: 'All Badges', it: 'Tutti i Distintivi', es: 'Todas las Insignias', pt: 'Todos os Distintivos', fr: 'Tous les Badges' },
+  recentResults: { en: 'Recent Quiz Results', it: 'Risultati Quiz Recenti', es: 'Resultados de Quiz Recientes', pt: 'Resultados de Quiz Recentes', fr: 'Résultats de Quiz Récents' },
+  quizzesCompleted: { en: 'Quizzes Completed', it: 'Quiz Completati', es: 'Cuestionarios Completados', pt: 'Quizzes Completados', fr: 'Quiz Terminés' },
+  chaptersRead: { en: 'Chapters Read', it: 'Capitoli Letti', es: 'Capítulos Leídos', pt: 'Capítulos Lidos', fr: 'Chapitres Lus' },
+  earned: { en: 'Earned', it: 'Ottenuto', es: 'Ganado', pt: 'Conquistado', fr: 'Gagné' },
   
   // Badge names
   firstQuiz: { en: 'First Steps', it: 'Primi Passi', es: 'Primeros Pasos', pt: 'Primeiros Passos', fr: 'Premiers Pas' },
@@ -86,6 +114,19 @@ const translations: Translations = {
   bibleExplorer: { en: 'Bible Explorer', it: 'Esploratore della Bibbia', es: 'Explorador de la Biblia', pt: 'Explorador da Bíblia', fr: 'Explorateur de la Bible' },
   quizMaster: { en: 'Quiz Master', it: 'Maestro del Quiz', es: 'Maestro del Quiz', pt: 'Mestre do Quiz', fr: 'Maître du Quiz' },
   dedicated: { en: 'Dedicated Learner', it: 'Studente Dedicato', es: 'Estudiante Dedicado', pt: 'Estudante Dedicado', fr: 'Apprenant Dévoué' },
+  
+  // Badge descriptions
+  firstQuizDesc: { en: 'Complete your first quiz', it: 'Completa il tuo primo quiz', es: 'Completa tu primer cuestionario', pt: 'Complete seu primeiro quiz', fr: 'Terminez votre premier quiz' },
+  perfectScoreDesc: { en: 'Get 100% on any quiz', it: 'Ottieni il 100% in qualsiasi quiz', es: 'Obtén 100% en cualquier cuestionario', pt: 'Obtenha 100% em qualquer quiz', fr: 'Obtenez 100% à n\'importe quel quiz' },
+  bibleExplorerDesc: { en: 'Read 10 chapters', it: 'Leggi 10 capitoli', es: 'Lee 10 capítulos', pt: 'Leia 10 capítulos', fr: 'Lisez 10 chapitres' },
+  quizMasterDesc: { en: 'Complete 10 quizzes', it: 'Completa 10 quiz', es: 'Completa 10 cuestionarios', pt: 'Complete 10 quizzes', fr: 'Terminez 10 quiz' },
+  dedicatedDesc: { en: 'Complete 25 quizzes', it: 'Completa 25 quiz', es: 'Completa 25 cuestionarios', pt: 'Complete 25 quizzes', fr: 'Terminez 25 quiz' },
+
+  // Badge tiers
+  bronze: { en: 'Bronze', it: 'Bronzo', es: 'Bronce', pt: 'Bronze', fr: 'Bronze' },
+  silver: { en: 'Silver', it: 'Argento', es: 'Plata', pt: 'Prata', fr: 'Argent' },
+  gold: { en: 'Gold', it: 'Oro', es: 'Oro', pt: 'Ouro', fr: 'Or' },
+  badgeTier: { en: 'Badge', it: 'Distintivo', es: 'Insignia', pt: 'Distintivo', fr: 'Badge' },
 };
 
 interface LanguageContextType {
