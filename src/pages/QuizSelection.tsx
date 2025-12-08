@@ -12,44 +12,44 @@ const QuizSelection: React.FC = () => {
     {
       id: 'pentateuch',
       icon: BookOpen,
-      questions: 20,
+      questions: 25,
       color: 'from-primary/20 to-accent/10',
-      description: 'Genesis, Exodus, Leviticus, Numbers, Deuteronomy',
+      descriptionKey: 'pentateuchDesc',
     },
     {
       id: 'minorProphets',
       icon: Users,
-      questions: 20,
+      questions: 25,
       color: 'from-accent/20 to-secondary',
-      description: 'Hosea, Joel, Amos, Obadiah, Jonah, Micah...',
+      descriptionKey: 'minorProphetsDesc',
     },
     {
       id: 'oldTestament',
       icon: Scroll,
-      questions: 20,
+      questions: 25,
       color: 'from-secondary to-muted',
-      description: 'General knowledge of the Old Testament',
+      descriptionKey: 'oldTestamentDesc',
     },
     {
       id: 'fourGospels',
       icon: Cross,
-      questions: 20,
+      questions: 25,
       color: 'from-muted to-accent/20',
-      description: 'Matthew, Mark, Luke, John',
+      descriptionKey: 'fourGospelsDesc',
     },
     {
       id: 'paulineLetters',
       icon: Mail,
-      questions: 20,
+      questions: 25,
       color: 'from-accent/30 to-primary/20',
-      description: 'Romans, Corinthians, Galatians, Ephesians...',
+      descriptionKey: 'paulineLettersDesc',
     },
     {
       id: 'newTestament',
       icon: FileText,
-      questions: 20,
+      questions: 25,
       color: 'from-primary/10 to-secondary',
-      description: 'General knowledge of the New Testament',
+      descriptionKey: 'newTestamentDesc',
     },
   ];
 
@@ -59,14 +59,14 @@ const QuizSelection: React.FC = () => {
       icon: Zap,
       questions: 100,
       color: 'from-warning/20 to-primary/20',
-      description: 'Complete challenge with all questions',
+      descriptionKey: 'fullQuizDesc',
     },
     {
       id: 'randomQuiz',
       icon: Shuffle,
       questions: 100,
       color: 'from-info/20 to-accent/20',
-      description: 'Random selection from all categories',
+      descriptionKey: 'randomQuizDesc',
     },
   ];
 
@@ -77,14 +77,14 @@ const QuizSelection: React.FC = () => {
           {t('selectQuiz')}
         </h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          Choose a category to test your knowledge. Questions adapt to your level!
+          {t('quizDescription')}
         </p>
       </div>
 
       {/* Category Quizzes */}
       <section>
         <h2 className="mb-4 font-serif text-xl font-semibold text-foreground">
-          Thematic Quizzes
+          {t('thematicQuizzes')}
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {quizCategories.map((quiz, index) => (
@@ -110,7 +110,7 @@ const QuizSelection: React.FC = () => {
                     {t(quiz.id)}
                   </CardTitle>
                   <CardDescription>
-                    {quiz.description}
+                    {t(quiz.descriptionKey)}
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -122,7 +122,7 @@ const QuizSelection: React.FC = () => {
       {/* Special Quizzes */}
       <section>
         <h2 className="mb-4 font-serif text-xl font-semibold text-foreground">
-          Challenge Quizzes
+          {t('challengeQuizzes')}
         </h2>
         <div className="grid gap-4 sm:grid-cols-2">
           {specialQuizzes.map((quiz, index) => (
@@ -147,7 +147,7 @@ const QuizSelection: React.FC = () => {
                     {t(quiz.id)}
                   </CardTitle>
                   <CardDescription>
-                    {quiz.description}
+                    {t(quiz.descriptionKey)}
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -162,11 +162,11 @@ const QuizSelection: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-6 text-center text-sm">
             <div className="flex items-center gap-2">
               <div className="h-3 w-3 rounded-full bg-success" />
-              <span>+5 points correct</span>
+              <span>{t('pointsCorrect')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="h-3 w-3 rounded-full bg-destructive" />
-              <span>-1 point incorrect</span>
+              <span>{t('pointsIncorrect')}</span>
             </div>
             <div className="flex items-center gap-2">
               <HelpCircle className="h-4 w-4 text-muted-foreground" />

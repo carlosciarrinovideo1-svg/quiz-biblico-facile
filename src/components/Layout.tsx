@@ -37,7 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Book className="h-5 w-5" />
             </div>
             <span className="hidden font-serif text-xl font-semibold text-foreground sm:inline">
-              Scripture Study
+              {t('appTitle')}
             </span>
           </Link>
 
@@ -88,7 +88,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Footer */}
       <footer className="border-t border-border/50 bg-muted/30 py-6">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>Scripture Study App • Learn, Grow, Believe</p>
+          <p>{t('footerText')}</p>
         </div>
       </footer>
     </div>
