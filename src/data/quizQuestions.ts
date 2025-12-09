@@ -6,6 +6,7 @@ export interface QuizQuestion {
   category: string;
   difficulty: 'easy' | 'medium' | 'hard';
   reference: string; // Bible reference
+  explanation?: string; // Biblical explanation for study mode
 }
 
 export const quizCategories = [
