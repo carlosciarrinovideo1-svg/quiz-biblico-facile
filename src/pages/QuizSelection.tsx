@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HelpCircle, BookOpen, Users, Scroll, Cross, Mail, FileText, Shuffle, Zap } from 'lucide-react';
+import { HelpCircle, BookOpen, Users, Scroll, Cross, Mail, FileText, Shuffle, Zap, Flame, Globe, Star } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,44 +12,65 @@ const QuizSelection: React.FC = () => {
     {
       id: 'pentateuch',
       icon: BookOpen,
-      questions: 25,
+      questions: 100,
       color: 'from-primary/20 to-accent/10',
       descriptionKey: 'pentateuchDesc',
     },
     {
       id: 'minorProphets',
       icon: Users,
-      questions: 25,
+      questions: 100,
       color: 'from-accent/20 to-secondary',
       descriptionKey: 'minorProphetsDesc',
     },
     {
       id: 'oldTestament',
       icon: Scroll,
-      questions: 25,
+      questions: 100,
       color: 'from-secondary to-muted',
       descriptionKey: 'oldTestamentDesc',
     },
     {
       id: 'fourGospels',
       icon: Cross,
-      questions: 25,
+      questions: 100,
       color: 'from-muted to-accent/20',
       descriptionKey: 'fourGospelsDesc',
     },
     {
       id: 'paulineLetters',
       icon: Mail,
-      questions: 25,
+      questions: 100,
       color: 'from-accent/30 to-primary/20',
       descriptionKey: 'paulineLettersDesc',
     },
     {
       id: 'newTestament',
       icon: FileText,
-      questions: 25,
+      questions: 100,
       color: 'from-primary/10 to-secondary',
       descriptionKey: 'newTestamentDesc',
+    },
+    {
+      id: 'apocalypse',
+      icon: Flame,
+      questions: 100,
+      color: 'from-destructive/20 to-warning/20',
+      descriptionKey: 'apocalypseDesc',
+    },
+    {
+      id: 'actsApostles',
+      icon: Globe,
+      questions: 100,
+      color: 'from-info/20 to-primary/20',
+      descriptionKey: 'actsApostlesDesc',
+    },
+    {
+      id: 'biblicalCharacters',
+      icon: Star,
+      questions: 100,
+      color: 'from-warning/20 to-accent/20',
+      descriptionKey: 'biblicalCharactersDesc',
     },
   ];
 
