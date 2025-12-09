@@ -13,22 +13,22 @@ const Index: React.FC = () => {
   const features = [
     {
       icon: Book,
-      title: t('bible'),
-      description: 'Read and explore Scripture with multiple versions',
+      titleKey: 'bible',
+      descriptionKey: 'readBibleDescription',
       link: '/bible',
       color: 'from-primary/20 to-accent/20',
     },
     {
       icon: HelpCircle,
-      title: t('quiz'),
-      description: 'Test your knowledge with adaptive quizzes',
+      titleKey: 'quiz',
+      descriptionKey: 'quizDescription2',
       link: '/quiz',
       color: 'from-accent/20 to-secondary',
     },
     {
       icon: Award,
-      title: t('badges'),
-      description: 'Earn badges and track your progress',
+      titleKey: 'badges',
+      descriptionKey: 'badgesDescription2',
       link: '/badges',
       color: 'from-secondary to-muted',
     },
@@ -42,7 +42,7 @@ const Index: React.FC = () => {
         <div className="relative z-10 mx-auto max-w-3xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm text-primary">
             <Sparkles className="h-4 w-4" />
-            <span>Welcome to your spiritual journey</span>
+            <span>{t('welcomeJourney')}</span>
           </div>
           
           <h1 className="mb-6 font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl">
@@ -76,19 +76,19 @@ const Index: React.FC = () => {
           <Card className="glass-card">
             <CardContent className="flex flex-col items-center p-6 text-center">
               <span className="text-3xl font-bold text-primary">{state.totalQuizzesCompleted}</span>
-              <span className="text-sm text-muted-foreground">Quizzes Completed</span>
+              <span className="text-sm text-muted-foreground">{t('quizzesCompletedStat')}</span>
             </CardContent>
           </Card>
           <Card className="glass-card">
             <CardContent className="flex flex-col items-center p-6 text-center">
               <span className="text-3xl font-bold text-primary">{state.badges.length}</span>
-              <span className="text-sm text-muted-foreground">Badges Earned</span>
+              <span className="text-sm text-muted-foreground">{t('badgesEarnedStat')}</span>
             </CardContent>
           </Card>
           <Card className="glass-card">
             <CardContent className="flex flex-col items-center p-6 text-center">
               <span className="text-3xl font-bold text-primary">{state.favoriteVerses.length}</span>
-              <span className="text-sm text-muted-foreground">Favorite Verses</span>
+              <span className="text-sm text-muted-foreground">{t('favoriteVersesStat')}</span>
             </CardContent>
           </Card>
         </section>
@@ -98,7 +98,7 @@ const Index: React.FC = () => {
       <section className="grid gap-6 md:grid-cols-3">
         {features.map((feature, index) => (
           <Link
-            key={feature.title}
+            key={feature.titleKey}
             to={feature.link}
             className="group"
             style={{ animationDelay: `${index * 100}ms` }}
@@ -109,10 +109,10 @@ const Index: React.FC = () => {
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="mb-2 font-serif text-xl font-semibold text-foreground">
-                  {feature.title}
+                  {t(feature.titleKey)}
                 </h3>
                 <p className="text-muted-foreground">
-                  {feature.description}
+                  {t(feature.descriptionKey)}
                 </p>
               </CardContent>
             </Card>
@@ -125,7 +125,7 @@ const Index: React.FC = () => {
         <Card className="inline-block glass-card">
           <CardContent className="p-6">
             <p className="mb-4 text-muted-foreground">
-              Want to read the full Bible online?
+              {t('readBibleOnline')}
             </p>
             <Button asChild variant="outline">
               <a 

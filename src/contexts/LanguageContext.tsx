@@ -22,6 +22,14 @@ const translations: Translations = {
   takeQuiz: { en: 'Take a Quiz', it: 'Fai un Quiz', es: 'Hacer un Quiz', pt: 'Fazer um Quiz', fr: 'Faire un Quiz' },
   appTitle: { en: 'Scripture Study', it: 'Studio delle Scritture', es: 'Estudio de las Escrituras', pt: 'Estudo das Escrituras', fr: 'Étude des Écritures' },
   footerText: { en: 'Scripture Study App • Learn, Grow, Believe', it: 'App Studio delle Scritture • Impara, Cresci, Credi', es: 'App Estudio de las Escrituras • Aprende, Crece, Cree', pt: 'App Estudo das Escrituras • Aprenda, Cresça, Creia', fr: 'App Étude des Écritures • Apprendre, Grandir, Croire' },
+  welcomeJourney: { en: 'Welcome to your spiritual journey', it: 'Benvenuto nel tuo viaggio spirituale', es: 'Bienvenido a tu viaje espiritual', pt: 'Bem-vindo à sua jornada espiritual', fr: 'Bienvenue dans votre voyage spirituel' },
+  quizzesCompletedStat: { en: 'Quizzes Completed', it: 'Quiz Completati', es: 'Cuestionarios Completados', pt: 'Quizzes Completados', fr: 'Quiz Terminés' },
+  badgesEarnedStat: { en: 'Badges Earned', it: 'Distintivi Ottenuti', es: 'Insignias Ganadas', pt: 'Distintivos Conquistados', fr: 'Badges Gagnés' },
+  favoriteVersesStat: { en: 'Favorite Verses', it: 'Versetti Preferiti', es: 'Versículos Favoritos', pt: 'Versículos Favoritos', fr: 'Versets Favoris' },
+  readBibleDescription: { en: 'Read and explore Scripture with multiple versions', it: 'Leggi ed esplora le Scritture con più versioni', es: 'Lee y explora las Escrituras con múltiples versiones', pt: 'Leia e explore as Escrituras com múltiplas versões', fr: 'Lisez et explorez les Écritures avec plusieurs versions' },
+  quizDescription2: { en: 'Test your knowledge with adaptive quizzes', it: 'Metti alla prova le tue conoscenze con quiz adattivi', es: 'Pon a prueba tu conocimiento con cuestionarios adaptativos', pt: 'Teste seu conhecimento com quizzes adaptativos', fr: 'Testez vos connaissances avec des quiz adaptatifs' },
+  badgesDescription2: { en: 'Earn badges and track your progress', it: 'Guadagna distintivi e monitora i tuoi progressi', es: 'Gana insignias y rastrea tu progreso', pt: 'Ganhe distintivos e acompanhe seu progresso', fr: 'Gagnez des badges et suivez vos progrès' },
+  readBibleOnline: { en: 'Want to read the full Bible online?', it: 'Vuoi leggere la Bibbia completa online?', es: '¿Quieres leer la Biblia completa en línea?', pt: 'Quer ler a Bíblia completa online?', fr: 'Voulez-vous lire la Bible complète en ligne?' },
 
   // Bible Reader
   selectVersion: { en: 'Select Version', it: 'Seleziona Versione', es: 'Seleccionar Versión', pt: 'Selecionar Versão', fr: 'Sélectionner Version' },
@@ -36,7 +44,7 @@ const translations: Translations = {
   noFavoritesYet: { en: 'No favorite verses yet.', it: 'Nessun versetto preferito ancora.', es: 'Sin versículos favoritos aún.', pt: 'Sem versículos favoritos ainda.', fr: 'Pas de versets favoris encore.' },
   clickHeartToSave: { en: 'Click the heart icon while reading to save verses.', it: 'Clicca l\'icona del cuore durante la lettura per salvare i versetti.', es: 'Haz clic en el icono del corazón mientras lees para guardar versículos.', pt: 'Clique no ícone do coração enquanto lê para salvar versículos.', fr: 'Cliquez sur l\'icône du cœur pendant la lecture pour sauvegarder les versets.' },
 
-  // Quiz
+  // Quiz Categories
   selectQuiz: { en: 'Select a Quiz', it: 'Seleziona un Quiz', es: 'Seleccionar un Quiz', pt: 'Selecionar um Quiz', fr: 'Sélectionner un Quiz' },
   pentateuch: { en: 'Pentateuch', it: 'Pentateuco', es: 'Pentateuco', pt: 'Pentateuco', fr: 'Pentateuque' },
   minorProphets: { en: 'Minor Prophets', it: 'Profeti Minori', es: 'Profetas Menores', pt: 'Profetas Menores', fr: 'Petits Prophètes' },
@@ -44,6 +52,9 @@ const translations: Translations = {
   fourGospels: { en: 'Four Gospels', it: 'Quattro Vangeli', es: 'Cuatro Evangelios', pt: 'Quatro Evangelhos', fr: 'Quatre Évangiles' },
   paulineLetters: { en: 'Pauline Letters', it: 'Lettere Paoline', es: 'Cartas Paulinas', pt: 'Cartas Paulinas', fr: 'Lettres Pauliniennes' },
   newTestament: { en: 'New Testament', it: 'Nuovo Testamento', es: 'Nuevo Testamento', pt: 'Novo Testamento', fr: 'Nouveau Testament' },
+  apocalypse: { en: 'Revelation', it: 'Apocalisse', es: 'Apocalipsis', pt: 'Apocalipse', fr: 'Apocalypse' },
+  actsApostles: { en: 'Acts of the Apostles', it: 'Atti degli Apostoli', es: 'Hechos de los Apóstoles', pt: 'Atos dos Apóstolos', fr: 'Actes des Apôtres' },
+  biblicalCharacters: { en: 'Biblical Characters', it: 'Personaggi Biblici', es: 'Personajes Bíblicos', pt: 'Personagens Bíblicos', fr: 'Personnages Bibliques' },
   fullQuiz: { en: 'Complete 100 Questions', it: '100 Domande Complete', es: '100 Preguntas Completas', pt: '100 Perguntas Completas', fr: '100 Questions Complètes' },
   randomQuiz: { en: 'Random 100 Questions', it: '100 Domande Casuali', es: '100 Preguntas Aleatorias', pt: '100 Perguntas Aleatórias', fr: '100 Questions Aléatoires' },
   questionsCount: { en: 'questions', it: 'domande', es: 'preguntas', pt: 'perguntas', fr: 'questions' },
@@ -60,6 +71,9 @@ const translations: Translations = {
   fourGospelsDesc: { en: 'Matthew, Mark, Luke, John', it: 'Matteo, Marco, Luca, Giovanni', es: 'Mateo, Marcos, Lucas, Juan', pt: 'Mateus, Marcos, Lucas, João', fr: 'Matthieu, Marc, Luc, Jean' },
   paulineLettersDesc: { en: 'Romans, Corinthians, Galatians, Ephesians...', it: 'Romani, Corinzi, Galati, Efesini...', es: 'Romanos, Corintios, Gálatas, Efesios...', pt: 'Romanos, Coríntios, Gálatas, Efésios...', fr: 'Romains, Corinthiens, Galates, Éphésiens...' },
   newTestamentDesc: { en: 'General knowledge of the New Testament', it: 'Conoscenza generale del Nuovo Testamento', es: 'Conocimiento general del Nuevo Testamento', pt: 'Conhecimento geral do Novo Testamento', fr: 'Connaissances générales du Nouveau Testament' },
+  apocalypseDesc: { en: 'The Book of Revelation by John', it: 'Il Libro dell\'Apocalisse di Giovanni', es: 'El Libro del Apocalipsis de Juan', pt: 'O Livro do Apocalipse de João', fr: 'Le Livre de l\'Apocalypse de Jean' },
+  actsApostlesDesc: { en: 'The early church and apostolic journeys', it: 'La chiesa primitiva e i viaggi apostolici', es: 'La iglesia primitiva y los viajes apostólicos', pt: 'A igreja primitiva e as viagens apostólicas', fr: 'L\'église primitive et les voyages apostoliques' },
+  biblicalCharactersDesc: { en: 'Famous people from the Bible', it: 'Personaggi famosi della Bibbia', es: 'Personajes famosos de la Biblia', pt: 'Personagens famosos da Bíblia', fr: 'Personnages célèbres de la Bible' },
   fullQuizDesc: { en: 'Complete challenge with all questions', it: 'Sfida completa con tutte le domande', es: 'Desafío completo con todas las preguntas', pt: 'Desafio completo com todas as perguntas', fr: 'Défi complet avec toutes les questions' },
   randomQuizDesc: { en: 'Random selection from all categories', it: 'Selezione casuale da tutte le categorie', es: 'Selección aleatoria de todas las categorías', pt: 'Seleção aleatória de todas as categorias', fr: 'Sélection aléatoire de toutes les catégories' },
 
@@ -81,6 +95,14 @@ const translations: Translations = {
   backToQuizzes: { en: 'Back to Quizzes', it: 'Torna ai Quiz', es: 'Volver a Quizzes', pt: 'Voltar aos Quizzes', fr: 'Retour aux Quiz' },
   correctAnswer: { en: 'Correct answer', it: 'Risposta corretta', es: 'Respuesta correcta', pt: 'Resposta correta', fr: 'Réponse correcte' },
   reference: { en: 'Reference', it: 'Riferimento', es: 'Referencia', pt: 'Referência', fr: 'Référence' },
+  noQuestionsAvailable: { en: 'No questions available for this category.', it: 'Nessuna domanda disponibile per questa categoria.', es: 'No hay preguntas disponibles para esta categoría.', pt: 'Nenhuma pergunta disponível para esta categoria.', fr: 'Aucune question disponible pour cette catégorie.' },
+
+  // Study Mode
+  studyMode: { en: 'Study Mode', it: 'Modalità Studio', es: 'Modo Estudio', pt: 'Modo Estudo', fr: 'Mode Étude' },
+  studyModeOn: { en: 'Study Mode ON', it: 'Modalità Studio ON', es: 'Modo Estudio ON', pt: 'Modo Estudo ON', fr: 'Mode Étude ON' },
+  studyModeOff: { en: 'Study Mode OFF', it: 'Modalità Studio OFF', es: 'Modo Estudio OFF', pt: 'Modo Estudo OFF', fr: 'Mode Étude OFF' },
+  biblicalExplanation: { en: 'Biblical Explanation', it: 'Spiegazione Biblica', es: 'Explicación Bíblica', pt: 'Explicação Bíblica', fr: 'Explication Biblique' },
+  learnMore: { en: 'Learn More', it: 'Approfondisci', es: 'Aprende Más', pt: 'Saiba Mais', fr: 'En Savoir Plus' },
 
   // Difficulty explanation
   difficultyExplanation: { 
@@ -127,6 +149,18 @@ const translations: Translations = {
   silver: { en: 'Silver', it: 'Argento', es: 'Plata', pt: 'Prata', fr: 'Argent' },
   gold: { en: 'Gold', it: 'Oro', es: 'Oro', pt: 'Ouro', fr: 'Or' },
   badgeTier: { en: 'Badge', it: 'Distintivo', es: 'Insignia', pt: 'Distintivo', fr: 'Badge' },
+
+  // Share
+  share: { en: 'Share', it: 'Condividi', es: 'Compartir', pt: 'Compartilhar', fr: 'Partager' },
+  shareNative: { en: 'Share...', it: 'Condividi...', es: 'Compartir...', pt: 'Compartilhar...', fr: 'Partager...' },
+  copyLink: { en: 'Copy Link', it: 'Copia Link', es: 'Copiar Enlace', pt: 'Copiar Link', fr: 'Copier le Lien' },
+  linkCopied: { en: 'Link copied!', it: 'Link copiato!', es: '¡Enlace copiado!', pt: 'Link copiado!', fr: 'Lien copié!' },
+  shareScore: { en: 'I scored {score}% on the Bible Quiz!', it: 'Ho ottenuto {score}% al Quiz Biblico!', es: '¡Obtuve {score}% en el Quiz Bíblico!', pt: 'Obtive {score}% no Quiz Bíblico!', fr: 'J\'ai obtenu {score}% au Quiz Biblique!' },
+
+  // Theme
+  theme: { en: 'Theme', it: 'Tema', es: 'Tema', pt: 'Tema', fr: 'Thème' },
+  lightMode: { en: 'Light Mode', it: 'Modalità Chiara', es: 'Modo Claro', pt: 'Modo Claro', fr: 'Mode Clair' },
+  darkMode: { en: 'Dark Mode', it: 'Modalità Scura', es: 'Modo Oscuro', pt: 'Modo Escuro', fr: 'Mode Sombre' },
 };
 
 interface LanguageContextType {
