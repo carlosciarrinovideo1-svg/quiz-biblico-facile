@@ -4,6 +4,7 @@ import { ArrowLeft, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, BookOpen
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGame } from '@/contexts/GameContext';
 import { getQuestionsByCategory } from '@/data/quizQuestions';
+import { getTranslatedQuestion } from '@/data/quizQuestionsTranslations';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -19,7 +20,7 @@ const motivationalMessages = ['motivational1', 'motivational2', 'motivational3',
 const QuizGame: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const navigate = useNavigate();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { addQuizResult, checkAndAwardBadges } = useGame();
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -43,7 +44,18 @@ const QuizGame: React.FC = () => {
     return filtered.sort(() => Math.random() - 0.5);
   }, [allQuestions, difficulty]);
 
-  const currentQuestion = questions[currentIndex % questions.length];
+  const currentQuestionData = questions[currentIndex % questions.length];
+  const translatedQ = currentQuestionData ? getTranslatedQuestion(
+    currentQuestionData.id,
+    language,
+    { question: currentQuestionData.question, options: currentQuestionData.options, explanation: currentQuestionData.explanation }
+  ) : null;
+  const currentQuestion = currentQuestionData ? {
+    ...currentQuestionData,
+    question: translatedQ?.question || currentQuestionData.question,
+    options: translatedQ?.options || currentQuestionData.options,
+    explanation: translatedQ?.explanation || currentQuestionData.explanation
+  } : null;
   const progress = ((currentIndex + 1) / Math.min(questions.length, 20)) * 100;
   const maxPossibleScore = Math.min(questions.length, 20) * 5;
 
