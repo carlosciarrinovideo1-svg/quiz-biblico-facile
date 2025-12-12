@@ -1,3 +1,7 @@
+import { apocalypseQuestions } from './questions/apocalypseQuestions';
+import { actsQuestions } from './questions/actsQuestions';
+import { biblicalCharactersQuestions } from './questions/biblicalCharactersQuestions';
+
 export interface QuizQuestion {
   id: string;
   question: string;
@@ -5,17 +9,20 @@ export interface QuizQuestion {
   correctIndex: number;
   category: string;
   difficulty: 'easy' | 'medium' | 'hard';
-  reference: string; // Bible reference
-  explanation?: string; // Biblical explanation for study mode
+  reference: string;
+  explanation?: string;
 }
 
 export const quizCategories = [
-  { id: 'pentateuch', questions: 25 },
-  { id: 'minorProphets', questions: 25 },
-  { id: 'oldTestament', questions: 25 },
-  { id: 'fourGospels', questions: 25 },
-  { id: 'paulineLetters', questions: 25 },
-  { id: 'newTestament', questions: 25 },
+  { id: 'pentateuch', questions: 100 },
+  { id: 'minorProphets', questions: 100 },
+  { id: 'oldTestament', questions: 100 },
+  { id: 'fourGospels', questions: 100 },
+  { id: 'paulineLetters', questions: 100 },
+  { id: 'newTestament', questions: 100 },
+  { id: 'apocalypse', questions: 100 },
+  { id: 'actsApostles', questions: 100 },
+  { id: 'biblicalCharacters', questions: 100 },
   { id: 'fullQuiz', questions: 100 },
   { id: 'randomQuiz', questions: 100 },
 ];
