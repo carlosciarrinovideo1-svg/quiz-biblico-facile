@@ -1,5 +1,7 @@
+import { QuizQuestion } from '../types';
+
 // Acts of the Apostles Questions - 100 questions
-export const actsQuestions = [
+export const actsQuestions: QuizQuestion[] = [
   { id: 'ac1', question: 'Who wrote the book of Acts?', options: ['Paul', 'Luke', 'Peter', 'John'], correctIndex: 1, category: 'actsApostles', difficulty: 'easy', reference: 'Acts 1:1' },
   { id: 'ac2', question: 'How many days after resurrection did Jesus ascend?', options: ['3', '7', '40', '50'], correctIndex: 2, category: 'actsApostles', difficulty: 'medium', reference: 'Acts 1:3' },
   { id: 'ac3', question: 'What did the disciples receive at Pentecost?', options: ['Money', 'Holy Spirit', 'Scrolls', 'Crowns'], correctIndex: 1, category: 'actsApostles', difficulty: 'easy', reference: 'Acts 2:4' },

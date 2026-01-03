@@ -1,5 +1,7 @@
+import { QuizQuestion } from '../types';
+
 // Apocalypse (Revelation) Questions - 100 questions
-export const apocalypseQuestions = [
+export const apocalypseQuestions: QuizQuestion[] = [
   { id: 'a1', question: 'Who wrote the book of Revelation?', options: ['Paul', 'Peter', 'John', 'James'], correctIndex: 2, category: 'apocalypse', difficulty: 'easy', reference: 'Revelation 1:1' },
   { id: 'a2', question: 'Where was John when he received the vision?', options: ['Jerusalem', 'Rome', 'Patmos', 'Ephesus'], correctIndex: 2, category: 'apocalypse', difficulty: 'easy', reference: 'Revelation 1:9' },
   { id: 'a3', question: 'How many churches did Jesus address?', options: ['5', '7', '10', '12'], correctIndex: 1, category: 'apocalypse', difficulty: 'easy', reference: 'Revelation 2-3' },

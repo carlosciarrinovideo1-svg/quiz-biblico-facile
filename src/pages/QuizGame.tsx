@@ -13,9 +13,32 @@ import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
 import ShareButton from '@/components/ShareButton';
 
+// Import background images
+import bgDefault from '@/assets/bg-quiz-default.jpg';
+import bgApocalypse from '@/assets/bg-apocalypse.jpg';
+import bgActs from '@/assets/bg-acts.jpg';
+import bgCharacters from '@/assets/bg-characters.jpg';
+import bgPentateuch from '@/assets/bg-pentateuch.jpg';
+import bgGospels from '@/assets/bg-gospels.jpg';
+
 type Difficulty = 'easy' | 'medium' | 'hard';
 
 const motivationalMessages = ['motivational1', 'motivational2', 'motivational3', 'motivational4', 'motivational5'];
+
+// Map categories to background images
+const categoryBackgrounds: Record<string, string> = {
+  pentateuch: bgPentateuch,
+  minorProphets: bgDefault,
+  oldTestament: bgDefault,
+  fourGospels: bgGospels,
+  paulineLetters: bgGospels,
+  newTestament: bgGospels,
+  apocalypse: bgApocalypse,
+  actsApostles: bgActs,
+  biblicalCharacters: bgCharacters,
+  fullQuiz: bgDefault,
+  randomQuiz: bgDefault,
+};
 
 const QuizGame: React.FC = () => {
   const { category } = useParams<{ category: string }>();
@@ -32,6 +55,8 @@ const QuizGame: React.FC = () => {
   const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [studyMode, setStudyMode] = useState(false);
+
+  const backgroundImage = category ? categoryBackgrounds[category] || bgDefault : bgDefault;
 
   const allQuestions = useMemo(() => {
     if (!category) return [];
@@ -146,113 +171,123 @@ const QuizGame: React.FC = () => {
   if (isComplete) {
     const percentage = Math.round((score / maxPossibleScore) * 100);
     return (
-      <div className="animate-fade-in mx-auto max-w-2xl">
-        <Card className="glass-card overflow-hidden">
-          <CardHeader className="bg-gradient-to-br from-primary/20 to-accent/20 text-center">
-            <Trophy className="mx-auto mb-4 h-16 w-16 text-warning animate-bounce-gentle" />
-            <CardTitle className="font-serif text-3xl">{t('quizComplete')}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6 p-8">
-            <div className="grid gap-4 text-center sm:grid-cols-2">
-              <div className="rounded-xl bg-muted/50 p-6">
-                <p className="text-sm text-muted-foreground">{t('yourScore')}</p>
-                <p className="text-4xl font-bold text-primary">{score}</p>
-                <p className="text-sm text-muted-foreground">/ {maxPossibleScore}</p>
+      <div 
+        className="min-h-screen -m-4 p-4 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.85), hsl(var(--background) / 0.95)), url(${backgroundImage})` }}
+      >
+        <div className="animate-fade-in mx-auto max-w-2xl pt-8">
+          <Card className="glass-card overflow-hidden border-2 border-border/50">
+            <CardHeader className="bg-gradient-to-br from-primary/20 to-accent/20 text-center">
+              <Trophy className="mx-auto mb-4 h-16 w-16 text-warning animate-bounce-gentle" />
+              <CardTitle className="font-serif text-3xl">{t('quizComplete')}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6 p-8">
+              <div className="grid gap-4 text-center sm:grid-cols-2">
+                <div className="rounded-xl bg-muted/50 p-6 border border-border">
+                  <p className="text-sm text-muted-foreground font-medium">{t('yourScore')}</p>
+                  <p className="text-4xl font-bold text-primary">{score}</p>
+                  <p className="text-sm text-muted-foreground">/ {maxPossibleScore}</p>
+                </div>
+                <div className="rounded-xl bg-muted/50 p-6 border border-border">
+                  <p className="text-sm text-muted-foreground font-medium">{t('percentage')}</p>
+                  <p className={`text-4xl font-bold ${percentage >= 80 ? 'text-success' : percentage >= 50 ? 'text-warning' : 'text-destructive'}`}>{percentage}%</p>
+                </div>
               </div>
-              <div className="rounded-xl bg-muted/50 p-6">
-                <p className="text-sm text-muted-foreground">{t('percentage')}</p>
-                <p className={`text-4xl font-bold ${percentage >= 80 ? 'text-success' : percentage >= 50 ? 'text-warning' : 'text-destructive'}`}>{percentage}%</p>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button onClick={handleRestart} variant="hero" className="flex-1">
+                  <RotateCcw className="h-4 w-4" />{t('tryAgain')}
+                </Button>
+                <ShareButton title={t('appTitle')} text={`${t('shareScore').replace('{score}', String(percentage))}`} />
+                <Button asChild variant="outline" className="flex-1 border-2">
+                  <Link to="/quiz"><ArrowLeft className="h-4 w-4" />{t('backToQuizzes')}</Link>
+                </Button>
               </div>
-            </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button onClick={handleRestart} variant="hero" className="flex-1">
-                <RotateCcw className="h-4 w-4" />{t('tryAgain')}
-              </Button>
-              <ShareButton title={t('appTitle')} text={`${t('shareScore').replace('{score}', String(percentage))}`} />
-              <Button asChild variant="outline" className="flex-1">
-                <Link to="/quiz"><ArrowLeft className="h-4 w-4" />{t('backToQuizzes')}</Link>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="animate-fade-in mx-auto max-w-3xl space-y-6">
-      <div className="flex items-center justify-between">
-        <Button asChild variant="ghost" size="sm">
-          <Link to="/quiz"><ArrowLeft className="h-4 w-4" />{t('backToQuizzes')}</Link>
-        </Button>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2">
-            <BookOpen className="h-4 w-4 text-muted-foreground" />
-            <Switch checked={studyMode} onCheckedChange={setStudyMode} />
-          </div>
-          <Badge className={getDifficultyColor(difficulty)}>{t(difficulty)}</Badge>
-          <Badge variant="secondary">{t('score')}: {score}</Badge>
-        </div>
-      </div>
-
-      <div className="space-y-2">
-        <div className="flex justify-between text-sm text-muted-foreground">
-          <span>{t('question')} {currentIndex + 1} / {Math.min(questions.length, 20)}</span>
-          <span>{Math.round(progress)}%</span>
-        </div>
-        <Progress value={progress} className="h-2" />
-      </div>
-
-      <Card className="glass-card animate-scale-in">
-        <CardHeader>
-          <CardTitle className="font-serif text-xl leading-relaxed">{currentQuestion.question}</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          {currentQuestion.options.map((option, index) => {
-            let variant: 'quiz' | 'quizSelected' | 'quizCorrect' | 'quizIncorrect' = 'quiz';
-            if (isAnswered) {
-              if (index === currentQuestion.correctIndex) variant = 'quizCorrect';
-              else if (index === selectedAnswer) variant = 'quizIncorrect';
-            } else if (selectedAnswer === index) variant = 'quizSelected';
-
-            return (
-              <Button key={index} variant={variant} onClick={() => handleAnswer(index)} disabled={isAnswered} className="w-full justify-start text-left h-auto py-4 px-5">
-                <span className="mr-3 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border border-current text-sm font-medium">{String.fromCharCode(65 + index)}</span>
-                <span className="flex-1">{option}</span>
-                {isAnswered && index === currentQuestion.correctIndex && <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-success-foreground" />}
-                {isAnswered && index === selectedAnswer && index !== currentQuestion.correctIndex && <XCircle className="h-5 w-5 flex-shrink-0 text-destructive-foreground" />}
-              </Button>
-            );
-          })}
-        </CardContent>
-      </Card>
-
-      {isAnswered && (
-        <div className="animate-slide-up space-y-4">
-          <div className={`rounded-xl p-4 text-center ${selectedAnswer === currentQuestion.correctIndex ? 'bg-success/20 text-success' : 'bg-destructive/20 text-destructive'}`}>
-            {selectedAnswer === currentQuestion.correctIndex ? <p className="font-semibold">{t('correct')} +5</p> : (
-              <div><p className="font-semibold">{t('incorrect')} -1</p><p className="text-sm mt-1">{t('correctAnswer')}: {currentQuestion.options[currentQuestion.correctIndex]}</p></div>
-            )}
-            <p className="text-xs mt-2 opacity-80">{t('reference')}: {currentQuestion.reference}</p>
-          </div>
-          
-          {studyMode && currentQuestion.explanation && (
-            <Card className="bg-accent/10 border-accent">
-              <CardContent className="p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <BookOpen className="h-4 w-4 text-accent-foreground" />
-                  <span className="font-semibold text-accent-foreground">{t('biblicalExplanation')}</span>
-                </div>
-                <p className="text-sm text-muted-foreground">{currentQuestion.explanation}</p>
-              </CardContent>
-            </Card>
-          )}
-
-          <Button onClick={handleNext} variant="hero" className="w-full" size="lg">
-            {currentIndex + 1 >= Math.min(questions.length, 20) ? t('finishQuiz') : t('nextQuestion')}
+    <div 
+      className="min-h-screen -m-4 p-4 bg-cover bg-center bg-fixed"
+      style={{ backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.88), hsl(var(--background) / 0.95)), url(${backgroundImage})` }}
+    >
+      <div className="animate-fade-in mx-auto max-w-3xl space-y-6 pt-4">
+        <div className="flex items-center justify-between">
+          <Button asChild variant="ghost" size="sm" className="bg-background/50 backdrop-blur-sm">
+            <Link to="/quiz"><ArrowLeft className="h-4 w-4" />{t('backToQuizzes')}</Link>
           </Button>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm rounded-lg px-3 py-1">
+              <BookOpen className="h-4 w-4 text-muted-foreground" />
+              <Switch checked={studyMode} onCheckedChange={setStudyMode} />
+            </div>
+            <Badge className={`${getDifficultyColor(difficulty)} font-semibold`}>{t(difficulty)}</Badge>
+            <Badge variant="secondary" className="bg-background/80 font-semibold">{t('score')}: {score}</Badge>
+          </div>
         </div>
-      )}
+
+        <div className="space-y-2 bg-background/60 backdrop-blur-sm rounded-xl p-4">
+          <div className="flex justify-between text-sm font-medium text-foreground">
+            <span>{t('question')} {currentIndex + 1} / {Math.min(questions.length, 20)}</span>
+            <span>{Math.round(progress)}%</span>
+          </div>
+          <Progress value={progress} className="h-3" />
+        </div>
+
+        <Card className="glass-card animate-scale-in border-2 border-border/50">
+          <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
+            <CardTitle className="font-serif text-xl leading-relaxed">{currentQuestion.question}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3 pt-4">
+            {currentQuestion.options.map((option, index) => {
+              let variant: 'quiz' | 'quizSelected' | 'quizCorrect' | 'quizIncorrect' = 'quiz';
+              if (isAnswered) {
+                if (index === currentQuestion.correctIndex) variant = 'quizCorrect';
+                else if (index === selectedAnswer) variant = 'quizIncorrect';
+              } else if (selectedAnswer === index) variant = 'quizSelected';
+
+              return (
+                <Button key={index} variant={variant} onClick={() => handleAnswer(index)} disabled={isAnswered} className="w-full justify-start text-left h-auto py-4 px-5 font-medium">
+                  <span className="mr-3 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border-2 border-current text-sm font-bold">{String.fromCharCode(65 + index)}</span>
+                  <span className="flex-1">{option}</span>
+                  {isAnswered && index === currentQuestion.correctIndex && <CheckCircle2 className="h-5 w-5 flex-shrink-0 text-success-foreground" />}
+                  {isAnswered && index === selectedAnswer && index !== currentQuestion.correctIndex && <XCircle className="h-5 w-5 flex-shrink-0 text-destructive-foreground" />}
+                </Button>
+              );
+            })}
+          </CardContent>
+        </Card>
+
+        {isAnswered && (
+          <div className="animate-slide-up space-y-4">
+            <div className={`rounded-xl p-4 text-center border-2 ${selectedAnswer === currentQuestion.correctIndex ? 'bg-success/20 text-success border-success/30' : 'bg-destructive/20 text-destructive border-destructive/30'}`}>
+              {selectedAnswer === currentQuestion.correctIndex ? <p className="font-bold text-lg">{t('correct')} +5</p> : (
+                <div><p className="font-bold text-lg">{t('incorrect')} -1</p><p className="text-sm mt-1 font-medium">{t('correctAnswer')}: {currentQuestion.options[currentQuestion.correctIndex]}</p></div>
+              )}
+              <p className="text-xs mt-2 opacity-80 font-medium">{t('reference')}: {currentQuestion.reference}</p>
+            </div>
+            
+            {studyMode && currentQuestion.explanation && (
+              <Card className="bg-accent/20 border-2 border-accent">
+                <CardContent className="p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <BookOpen className="h-4 w-4 text-accent-foreground" />
+                    <span className="font-bold text-accent-foreground">{t('biblicalExplanation')}</span>
+                  </div>
+                  <p className="text-sm text-foreground/90">{currentQuestion.explanation}</p>
+                </CardContent>
+              </Card>
+            )}
+
+            <Button onClick={handleNext} variant="hero" className="w-full" size="lg">
+              {currentIndex + 1 >= Math.min(questions.length, 20) ? t('finishQuiz') : t('nextQuestion')}
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

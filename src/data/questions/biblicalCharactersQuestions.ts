@@ -1,5 +1,7 @@
+import { QuizQuestion } from '../types';
+
 // Biblical Characters Questions - 100 questions
-export const biblicalCharactersQuestions = [
+export const biblicalCharactersQuestions: QuizQuestion[] = [
   { id: 'bc1', question: 'Who was the first man?', options: ['Noah', 'Abraham', 'Adam', 'Moses'], correctIndex: 2, category: 'biblicalCharacters', difficulty: 'easy', reference: 'Genesis 2:7' },
   { id: 'bc2', question: 'Who was the first woman?', options: ['Sarah', 'Eve', 'Rachel', 'Ruth'], correctIndex: 1, category: 'biblicalCharacters', difficulty: 'easy', reference: 'Genesis 3:20' },
   { id: 'bc3', question: 'Who built the ark?', options: ['Abraham', 'Moses', 'Noah', 'David'], correctIndex: 2, category: 'biblicalCharacters', difficulty: 'easy', reference: 'Genesis 6:14' },
