@@ -1,17 +1,9 @@
 import { apocalypseQuestions } from './questions/apocalypseQuestions';
 import { actsQuestions } from './questions/actsQuestions';
 import { biblicalCharactersQuestions } from './questions/biblicalCharactersQuestions';
+import { QuizQuestion } from './types';
 
-export interface QuizQuestion {
-  id: string;
-  question: string;
-  options: string[];
-  correctIndex: number;
-  category: string;
-  difficulty: 'easy' | 'medium' | 'hard';
-  reference: string;
-  explanation?: string;
-}
+export type { QuizQuestion } from './types';
 
 export const quizCategories = [
   { id: 'pentateuch', questions: 100 },
@@ -191,14 +183,31 @@ export const allQuestions: QuizQuestion[] = [
   { id: 'n25', question: 'What number represents the beast in Revelation?', options: ['555', '616', '666', '777'], correctIndex: 2, category: 'newTestament', difficulty: 'easy', reference: 'Revelation 13:18' },
 ];
 
+// Merge all questions including new categories
+const allMergedQuestions: QuizQuestion[] = [
+  ...allQuestions,
+  ...apocalypseQuestions,
+  ...actsQuestions,
+  ...biblicalCharactersQuestions
+];
+
 export function getQuestionsByCategory(category: string): QuizQuestion[] {
   if (category === 'fullQuiz') {
-    return [...allQuestions];
+    return [...allMergedQuestions];
   }
   if (category === 'randomQuiz') {
-    return shuffleArray([...allQuestions]).slice(0, 100);
+    return shuffleArray([...allMergedQuestions]).slice(0, 100);
   }
-  return allQuestions.filter(q => q.category === category);
+  if (category === 'apocalypse') {
+    return apocalypseQuestions;
+  }
+  if (category === 'actsApostles') {
+    return actsQuestions;
+  }
+  if (category === 'biblicalCharacters') {
+    return biblicalCharactersQuestions;
+  }
+  return allMergedQuestions.filter(q => q.category === category);
 }
 
 export function getQuestionsByDifficulty(questions: QuizQuestion[], difficulty: 'easy' | 'medium' | 'hard'): QuizQuestion[] {

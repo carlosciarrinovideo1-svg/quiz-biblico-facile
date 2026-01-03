@@ -6,120 +6,131 @@
 
 @layer base {
   :root {
-    /* Pastel Spiritual Theme */
-    --background: 40 33% 98%;
-    --foreground: 220 25% 20%;
+    /* Light Spiritual Theme - High Contrast */
+    --background: 45 30% 97%;
+    --foreground: 220 35% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 25% 20%;
+    --card-foreground: 220 35% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 20%;
+    --popover-foreground: 220 35% 12%;
 
-    /* Sage green primary */
-    --primary: 150 25% 45%;
+    /* Deep sage green primary */
+    --primary: 150 40% 35%;
     --primary-foreground: 0 0% 100%;
 
     /* Warm cream secondary */
-    --secondary: 35 40% 92%;
-    --secondary-foreground: 220 25% 25%;
+    --secondary: 38 45% 90%;
+    --secondary-foreground: 220 35% 18%;
 
     /* Soft lavender muted */
-    --muted: 260 20% 95%;
-    --muted-foreground: 220 15% 50%;
+    --muted: 260 15% 92%;
+    --muted-foreground: 220 25% 40%;
 
     /* Gentle sky accent */
-    --accent: 200 45% 88%;
-    --accent-foreground: 200 50% 25%;
+    --accent: 200 50% 85%;
+    --accent-foreground: 200 60% 20%;
 
     /* Coral for errors/destructive */
-    --destructive: 0 60% 65%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
     /* Success green */
-    --success: 145 45% 50%;
+    --success: 145 55% 42%;
     --success-foreground: 0 0% 100%;
 
     /* Warning amber */
-    --warning: 38 92% 65%;
-    --warning-foreground: 38 60% 20%;
+    --warning: 38 95% 55%;
+    --warning-foreground: 38 70% 15%;
 
     /* Info blue */
-    --info: 200 80% 55%;
+    --info: 200 85% 48%;
     --info-foreground: 0 0% 100%;
 
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 150 25% 45%;
+    --border: 220 20% 82%;
+    --input: 220 20% 82%;
+    --ring: 150 40% 35%;
 
     --radius: 0.75rem;
 
-    /* Quiz specific */
-    --quiz-easy: 145 50% 65%;
-    --quiz-medium: 38 80% 60%;
-    --quiz-hard: 0 55% 60%;
+    /* Quiz specific - Higher Contrast */
+    --quiz-easy: 145 60% 42%;
+    --quiz-medium: 38 90% 50%;
+    --quiz-hard: 0 65% 50%;
 
     /* Badge colors */
-    --badge-bronze: 30 50% 50%;
-    --badge-silver: 220 10% 65%;
-    --badge-gold: 45 90% 55%;
+    --badge-bronze: 30 60% 45%;
+    --badge-silver: 220 15% 60%;
+    --badge-gold: 45 95% 50%;
 
-    --sidebar-background: 40 30% 96%;
-    --sidebar-foreground: 220 25% 30%;
-    --sidebar-primary: 150 25% 45%;
+    --sidebar-background: 45 28% 95%;
+    --sidebar-foreground: 220 35% 20%;
+    --sidebar-primary: 150 40% 35%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 200 45% 92%;
-    --sidebar-accent-foreground: 200 50% 25%;
-    --sidebar-border: 220 15% 90%;
-    --sidebar-ring: 150 25% 45%;
+    --sidebar-accent: 200 50% 90%;
+    --sidebar-accent-foreground: 200 60% 20%;
+    --sidebar-border: 220 20% 85%;
+    --sidebar-ring: 150 40% 35%;
   }
 
   .dark {
-    --background: 220 25% 12%;
-    --foreground: 40 20% 95%;
+    /* Dark Theme - High Contrast */
+    --background: 220 30% 8%;
+    --foreground: 40 25% 95%;
 
-    --card: 220 25% 16%;
-    --card-foreground: 40 20% 95%;
+    --card: 220 28% 12%;
+    --card-foreground: 40 25% 95%;
 
-    --popover: 220 25% 16%;
-    --popover-foreground: 40 20% 95%;
+    --popover: 220 28% 12%;
+    --popover-foreground: 40 25% 95%;
 
-    --primary: 150 35% 55%;
-    --primary-foreground: 220 25% 10%;
+    --primary: 150 50% 50%;
+    --primary-foreground: 220 30% 8%;
 
-    --secondary: 220 20% 22%;
-    --secondary-foreground: 40 20% 90%;
+    --secondary: 220 25% 18%;
+    --secondary-foreground: 40 25% 92%;
 
-    --muted: 220 20% 20%;
-    --muted-foreground: 220 15% 60%;
+    --muted: 220 25% 15%;
+    --muted-foreground: 220 15% 70%;
 
-    --accent: 200 40% 25%;
-    --accent-foreground: 200 45% 90%;
+    --accent: 200 45% 30%;
+    --accent-foreground: 200 50% 92%;
 
-    --destructive: 0 55% 50%;
+    --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 145 40% 45%;
+    --success: 145 50% 50%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 38 80% 50%;
+    --warning: 38 85% 55%;
     --warning-foreground: 0 0% 100%;
 
-    --info: 200 70% 50%;
+    --info: 200 75% 55%;
     --info-foreground: 0 0% 100%;
 
-    --border: 220 20% 25%;
-    --input: 220 20% 25%;
-    --ring: 150 35% 55%;
+    --border: 220 25% 22%;
+    --input: 220 25% 22%;
+    --ring: 150 50% 50%;
 
-    --sidebar-background: 220 25% 14%;
-    --sidebar-foreground: 40 20% 90%;
-    --sidebar-primary: 150 35% 55%;
-    --sidebar-primary-foreground: 220 25% 10%;
-    --sidebar-accent: 220 20% 20%;
-    --sidebar-accent-foreground: 200 45% 85%;
-    --sidebar-border: 220 20% 22%;
-    --sidebar-ring: 150 35% 55%;
+    /* Quiz specific - Dark mode */
+    --quiz-easy: 145 55% 48%;
+    --quiz-medium: 38 85% 55%;
+    --quiz-hard: 0 60% 55%;
+
+    /* Badge colors - Dark mode */
+    --badge-bronze: 30 55% 50%;
+    --badge-silver: 220 12% 68%;
+    --badge-gold: 45 92% 55%;
+
+    --sidebar-background: 220 28% 10%;
+    --sidebar-foreground: 40 25% 92%;
+    --sidebar-primary: 150 50% 50%;
+    --sidebar-primary-foreground: 220 30% 8%;
+    --sidebar-accent: 220 25% 18%;
+    --sidebar-accent-foreground: 200 50% 88%;
+    --sidebar-border: 220 25% 18%;
+    --sidebar-ring: 150 50% 50%;
   }
 }
 
