@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, BookOpen, Timer, Zap } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, BookOpen, Timer, Zap, Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGame } from '@/contexts/GameContext';
 import { getQuestionsByCategory } from '@/data/quizQuestions';
@@ -12,6 +12,8 @@ import { Progress } from '@/components/ui/progress';
 import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
 import ShareButton from '@/components/ShareButton';
+import Leaderboard from '@/components/Leaderboard';
+import { useSoundEffects } from '@/hooks/useSoundEffects';
 
 // Import background images
 import bgDefault from '@/assets/bg-quiz-default.jpg';
@@ -50,7 +52,8 @@ const QuizGame: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const navigate = useNavigate();
   const { t, language } = useLanguage();
-  const { addQuizResult, checkAndAwardBadges } = useGame();
+  const { addQuizResult, addChallengeScore, checkAndAwardBadges } = useGame();
+  const { playSound } = useSoundEffects();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -62,7 +65,12 @@ const QuizGame: React.FC = () => {
   const [isComplete, setIsComplete] = useState(false);
   const [studyMode, setStudyMode] = useState(false);
   const [challengeMode, setChallengeMode] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    const saved = localStorage.getItem('bible-app-sound-enabled');
+    return saved !== 'false';
+  });
   const [timeLeft, setTimeLeft] = useState(TIMER_DURATION);
+  const [totalTimeUsed, setTotalTimeUsed] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const backgroundImage = category ? categoryBackgrounds[category] || bgDefault : bgDefault;
@@ -105,6 +113,8 @@ const QuizGame: React.FC = () => {
             setIsAnswered(true);
             setScore(s => Math.max(0, s - 2));
             updateDifficulty(false);
+            setTotalTimeUsed(t => t + TIMER_DURATION);
+            if (soundEnabled) playSound('timeout');
             toast.error(t('timeUp') || "Time's up!", { icon: <Timer className="h-4 w-4" /> });
             return 0;
           }
@@ -116,7 +126,19 @@ const QuizGame: React.FC = () => {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [currentIndex, challengeMode, isComplete]);
+  }, [currentIndex, challengeMode, isComplete, soundEnabled, playSound]);
+
+  // Stop timer when answered
+  useEffect(() => {
+    if (isAnswered && timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  }, [isAnswered]);
+
+  // Save sound preference
+  useEffect(() => {
+    localStorage.setItem('bible-app-sound-enabled', String(soundEnabled));
+  }, [soundEnabled]);
 
   // Stop timer when answered
   useEffect(() => {
@@ -151,8 +173,19 @@ const QuizGame: React.FC = () => {
     setSelectedAnswer(answerIndex);
     setIsAnswered(true);
     const isCorrect = answerIndex === currentQuestion.correctIndex;
-    if (isCorrect) setScore(prev => prev + 5);
-    else setScore(prev => Math.max(0, prev - 1));
+    
+    // Track time used in challenge mode
+    if (challengeMode) {
+      setTotalTimeUsed(t => t + (TIMER_DURATION - timeLeft));
+    }
+    
+    if (isCorrect) {
+      setScore(prev => prev + 5);
+      if (soundEnabled) playSound('correct');
+    } else {
+      setScore(prev => Math.max(0, prev - 1));
+      if (soundEnabled) playSound('incorrect');
+    }
     updateDifficulty(isCorrect);
     if ((currentIndex + 1) % 3 === 0) {
       const randomMessage = motivationalMessages[Math.floor(Math.random() * motivationalMessages.length)];
@@ -165,6 +198,18 @@ const QuizGame: React.FC = () => {
     if (currentIndex + 1 >= questionsLimit) {
       const percentage = Math.round((score / maxPossibleScore) * 100);
       addQuizResult({ quizType: category || 'unknown', score, maxScore: maxPossibleScore, percentage });
+      
+      // Save challenge score if in challenge mode
+      if (challengeMode) {
+        addChallengeScore({
+          category: category || 'unknown',
+          score,
+          maxScore: maxPossibleScore,
+          percentage,
+          timeUsed: totalTimeUsed
+        });
+      }
+      
       setTimeout(() => {
         const newBadge = checkAndAwardBadges();
         if (newBadge) toast.success(`${t('badgeEarned')} ${newBadge.icon} ${t(newBadge.name)}`);
@@ -187,6 +232,7 @@ const QuizGame: React.FC = () => {
     setConsecutiveCorrect(0);
     setIsComplete(false);
     setTimeLeft(TIMER_DURATION);
+    setTotalTimeUsed(0);
   };
 
   const getTimerColor = () => {
@@ -218,19 +264,25 @@ const QuizGame: React.FC = () => {
 
   if (isComplete) {
     const percentage = Math.round((score / maxPossibleScore) * 100);
+    const formatTime = (seconds: number) => {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+    };
+    
     return (
       <div 
         className="min-h-screen -m-4 p-4 bg-cover bg-center bg-fixed"
         style={{ backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.85), hsl(var(--background) / 0.95)), url(${backgroundImage})` }}
       >
-        <div className="animate-fade-in mx-auto max-w-2xl pt-8">
+        <div className="animate-fade-in mx-auto max-w-2xl pt-8 space-y-6">
           <Card className="glass-card overflow-hidden border-2 border-border/50">
             <CardHeader className="bg-gradient-to-br from-primary/20 to-accent/20 text-center">
               <Trophy className="mx-auto mb-4 h-16 w-16 text-warning animate-bounce-gentle" />
               <CardTitle className="font-serif text-3xl">{t('quizComplete')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6 p-8">
-              <div className="grid gap-4 text-center sm:grid-cols-2">
+              <div className={`grid gap-4 text-center ${challengeMode ? 'sm:grid-cols-3' : 'sm:grid-cols-2'}`}>
                 <div className="rounded-xl bg-muted/50 p-6 border border-border">
                   <p className="text-sm text-muted-foreground font-medium">{t('yourScore')}</p>
                   <p className="text-4xl font-bold text-primary">{score}</p>
@@ -240,6 +292,12 @@ const QuizGame: React.FC = () => {
                   <p className="text-sm text-muted-foreground font-medium">{t('percentage')}</p>
                   <p className={`text-4xl font-bold ${percentage >= 80 ? 'text-success' : percentage >= 50 ? 'text-warning' : 'text-destructive'}`}>{percentage}%</p>
                 </div>
+                {challengeMode && (
+                  <div className="rounded-xl bg-muted/50 p-6 border border-border">
+                    <p className="text-sm text-muted-foreground font-medium">{t('bestTime')}</p>
+                    <p className="text-4xl font-bold text-primary">{formatTime(totalTimeUsed)}</p>
+                  </div>
+                )}
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button onClick={handleRestart} variant="hero" className="flex-1">
@@ -252,6 +310,8 @@ const QuizGame: React.FC = () => {
               </div>
             </CardContent>
           </Card>
+          
+          {challengeMode && <Leaderboard />}
         </div>
       </div>
     );
@@ -268,6 +328,13 @@ const QuizGame: React.FC = () => {
             <Link to="/quiz"><ArrowLeft className="h-4 w-4" />{t('backToQuizzes')}</Link>
           </Button>
           <div className="flex items-center gap-3 flex-wrap">
+            <button 
+              onClick={() => setSoundEnabled(!soundEnabled)}
+              className="flex items-center gap-2 bg-background/50 backdrop-blur-sm rounded-lg px-3 py-2 hover:bg-background/70 transition-colors"
+              title={t('soundEffects') || 'Sound Effects'}
+            >
+              {soundEnabled ? <Volume2 className="h-4 w-4 text-primary" /> : <VolumeX className="h-4 w-4 text-muted-foreground" />}
+            </button>
             <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm rounded-lg px-3 py-1" title={t('studyMode') || 'Study Mode'}>
               <BookOpen className="h-4 w-4 text-muted-foreground" />
               <Switch checked={studyMode} onCheckedChange={setStudyMode} />
