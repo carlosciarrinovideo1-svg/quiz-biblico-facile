@@ -17,9 +17,19 @@ export interface QuizResult {
   date: Date;
 }
 
+export interface ChallengeScore {
+  category: string;
+  score: number;
+  maxScore: number;
+  percentage: number;
+  timeUsed: number; // seconds
+  date: Date;
+}
+
 export interface GameState {
   badges: Badge[];
   quizResults: QuizResult[];
+  challengeScores: ChallengeScore[];
   totalQuizzesCompleted: number;
   totalCorrectAnswers: number;
   favoriteVerses: string[];
@@ -30,6 +40,7 @@ interface GameContextType {
   state: GameState;
   addBadge: (badge: Badge) => void;
   addQuizResult: (result: Omit<QuizResult, 'date'>) => void;
+  addChallengeScore: (result: Omit<ChallengeScore, 'date'>) => void;
   addFavoriteVerse: (verseId: string) => void;
   removeFavoriteVerse: (verseId: string) => void;
   incrementChaptersRead: () => void;
@@ -60,6 +71,10 @@ const loadState = (): GameState => {
         quizResults: parsed.quizResults.map((r: QuizResult) => ({
           ...r,
           date: new Date(r.date)
+        })),
+        challengeScores: (parsed.challengeScores || []).map((s: ChallengeScore) => ({
+          ...s,
+          date: new Date(s.date)
         }))
       };
     }
@@ -69,6 +84,7 @@ const loadState = (): GameState => {
   return {
     badges: [],
     quizResults: [],
+    challengeScores: [],
     totalQuizzesCompleted: 0,
     totalCorrectAnswers: 0,
     favoriteVerses: [],
@@ -99,6 +115,13 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       quizResults: [...prev.quizResults, { ...result, date: new Date() }],
       totalQuizzesCompleted: prev.totalQuizzesCompleted + 1,
       totalCorrectAnswers: prev.totalCorrectAnswers + Math.floor(result.score / 5)
+    }));
+  }, []);
+
+  const addChallengeScore = useCallback((result: Omit<ChallengeScore, 'date'>) => {
+    setState(prev => ({
+      ...prev,
+      challengeScores: [...prev.challengeScores, { ...result, date: new Date() }]
     }));
   }, []);
 
@@ -173,6 +196,7 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       state,
       addBadge,
       addQuizResult,
+      addChallengeScore,
       addFavoriteVerse,
       removeFavoriteVerse,
       incrementChaptersRead,

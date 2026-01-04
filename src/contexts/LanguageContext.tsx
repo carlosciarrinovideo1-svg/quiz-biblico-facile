@@ -108,6 +108,14 @@ const translations: Translations = {
   challengeMode: { en: 'Challenge Mode', it: 'Modalità Sfida', es: 'Modo Desafío', pt: 'Modo Desafio', fr: 'Mode Défi' },
   timeUp: { en: "Time's up!", it: 'Tempo scaduto!', es: '¡Se acabó el tiempo!', pt: 'Tempo esgotado!', fr: 'Temps écoulé!' },
   timerSeconds: { en: 'seconds', it: 'secondi', es: 'segundos', pt: 'segundos', fr: 'secondes' },
+  
+  // Leaderboard
+  leaderboard: { en: 'Challenge Leaderboard', it: 'Classifica Sfide', es: 'Tabla de Clasificación', pt: 'Classificação de Desafios', fr: 'Classement Défis' },
+  noLeaderboardScores: { en: 'Complete a challenge mode quiz to see your scores!', it: 'Completa un quiz in modalità sfida per vedere i tuoi punteggi!', es: '¡Completa un quiz en modo desafío para ver tus puntuaciones!', pt: 'Complete um quiz no modo desafio para ver suas pontuações!', fr: 'Complétez un quiz en mode défi pour voir vos scores!' },
+  bestTime: { en: 'Best Time', it: 'Miglior Tempo', es: 'Mejor Tiempo', pt: 'Melhor Tempo', fr: 'Meilleur Temps' },
+  
+  // Sound effects
+  soundEffects: { en: 'Sound Effects', it: 'Effetti Sonori', es: 'Efectos de Sonido', pt: 'Efeitos Sonoros', fr: 'Effets Sonores' },
 
   // Difficulty explanation
   difficultyExplanation: { 
