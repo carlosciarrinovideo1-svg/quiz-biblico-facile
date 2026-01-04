@@ -1,4 +1,7 @@
 import { Language } from '@/contexts/LanguageContext';
+import { apocalypseTranslations } from './translations/apocalypseTranslations';
+import { actsTranslations } from './translations/actsTranslations';
+import { biblicalCharactersTranslations } from './translations/biblicalCharactersTranslations';
 
 interface QuestionTranslation {
   question: string;
@@ -8,7 +11,7 @@ interface QuestionTranslation {
 
 type QuestionTranslations = {
   [id: string]: {
-    [lang in Language]: QuestionTranslation;
+    [lang in Language]?: QuestionTranslation;
   };
 };
 
@@ -1078,12 +1081,20 @@ export const questionTranslations: QuestionTranslations = {
   }
 };
 
+// Merged translations including all categories
+const allTranslations: QuestionTranslations = {
+  ...questionTranslations,
+  ...apocalypseTranslations,
+  ...actsTranslations,
+  ...biblicalCharactersTranslations
+};
+
 export function getTranslatedQuestion(
   id: string,
   language: Language,
   fallback: { question: string; options: string[]; explanation?: string }
 ): { question: string; options: string[]; explanation?: string } {
-  const translation = questionTranslations[id];
+  const translation = allTranslations[id];
   if (translation && translation[language]) {
     return translation[language];
   }
