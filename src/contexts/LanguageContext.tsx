@@ -104,6 +104,11 @@ const translations: Translations = {
   biblicalExplanation: { en: 'Biblical Explanation', it: 'Spiegazione Biblica', es: 'Explicación Bíblica', pt: 'Explicação Bíblica', fr: 'Explication Biblique' },
   learnMore: { en: 'Learn More', it: 'Approfondisci', es: 'Aprende Más', pt: 'Saiba Mais', fr: 'En Savoir Plus' },
 
+  // Challenge Mode
+  challengeMode: { en: 'Challenge Mode', it: 'Modalità Sfida', es: 'Modo Desafío', pt: 'Modo Desafio', fr: 'Mode Défi' },
+  timeUp: { en: "Time's up!", it: 'Tempo scaduto!', es: '¡Se acabó el tiempo!', pt: 'Tempo esgotado!', fr: 'Temps écoulé!' },
+  timerSeconds: { en: 'seconds', it: 'secondi', es: 'segundos', pt: 'segundos', fr: 'secondes' },
+
   // Difficulty explanation
   difficultyExplanation: { 
     en: 'Difficulty adapts: +3 correct in a row → harder, 2 errors in last 5 → easier', 

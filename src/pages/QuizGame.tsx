@@ -1,6 +1,6 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, BookOpen } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, BookOpen, Timer, Zap } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGame } from '@/contexts/GameContext';
 import { getQuestionsByCategory } from '@/data/quizQuestions';
@@ -20,19 +20,25 @@ import bgActs from '@/assets/bg-acts.jpg';
 import bgCharacters from '@/assets/bg-characters.jpg';
 import bgPentateuch from '@/assets/bg-pentateuch.jpg';
 import bgGospels from '@/assets/bg-gospels.jpg';
+import bgProphets from '@/assets/bg-prophets.jpg';
+import bgPauline from '@/assets/bg-pauline.jpg';
+import bgOldTestament from '@/assets/bg-oldtestament.jpg';
+import bgNewTestament from '@/assets/bg-newtestament.jpg';
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 
 const motivationalMessages = ['motivational1', 'motivational2', 'motivational3', 'motivational4', 'motivational5'];
 
+const TIMER_DURATION = 30; // seconds per question in challenge mode
+
 // Map categories to background images
 const categoryBackgrounds: Record<string, string> = {
   pentateuch: bgPentateuch,
-  minorProphets: bgDefault,
-  oldTestament: bgDefault,
+  minorProphets: bgProphets,
+  oldTestament: bgOldTestament,
   fourGospels: bgGospels,
-  paulineLetters: bgGospels,
-  newTestament: bgGospels,
+  paulineLetters: bgPauline,
+  newTestament: bgNewTestament,
   apocalypse: bgApocalypse,
   actsApostles: bgActs,
   biblicalCharacters: bgCharacters,
@@ -55,6 +61,9 @@ const QuizGame: React.FC = () => {
   const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [studyMode, setStudyMode] = useState(false);
+  const [challengeMode, setChallengeMode] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(TIMER_DURATION);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const backgroundImage = category ? categoryBackgrounds[category] || bgDefault : bgDefault;
 
@@ -83,6 +92,38 @@ const QuizGame: React.FC = () => {
   } : null;
   const progress = ((currentIndex + 1) / Math.min(questions.length, 20)) * 100;
   const maxPossibleScore = Math.min(questions.length, 20) * 5;
+
+  // Timer effect for challenge mode
+  useEffect(() => {
+    if (challengeMode && !isAnswered && !isComplete && currentQuestion) {
+      setTimeLeft(TIMER_DURATION);
+      timerRef.current = setInterval(() => {
+        setTimeLeft(prev => {
+          if (prev <= 1) {
+            // Time's up - auto-submit wrong answer
+            clearInterval(timerRef.current!);
+            setIsAnswered(true);
+            setScore(s => Math.max(0, s - 2));
+            updateDifficulty(false);
+            toast.error(t('timeUp') || "Time's up!", { icon: <Timer className="h-4 w-4" /> });
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [currentIndex, challengeMode, isComplete]);
+
+  // Stop timer when answered
+  useEffect(() => {
+    if (isAnswered && timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  }, [isAnswered]);
 
   const updateDifficulty = useCallback((wasCorrect: boolean) => {
     const newHistory = [...answerHistory, wasCorrect].slice(-5);
@@ -145,6 +186,13 @@ const QuizGame: React.FC = () => {
     setAnswerHistory([]);
     setConsecutiveCorrect(0);
     setIsComplete(false);
+    setTimeLeft(TIMER_DURATION);
+  };
+
+  const getTimerColor = () => {
+    if (timeLeft > 20) return 'text-success';
+    if (timeLeft > 10) return 'text-warning';
+    return 'text-destructive animate-pulse';
   };
 
   const getDifficultyColor = (diff: Difficulty) => {
@@ -219,10 +267,14 @@ const QuizGame: React.FC = () => {
           <Button asChild variant="ghost" size="sm" className="bg-background/50 backdrop-blur-sm">
             <Link to="/quiz"><ArrowLeft className="h-4 w-4" />{t('backToQuizzes')}</Link>
           </Button>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm rounded-lg px-3 py-1">
+          <div className="flex items-center gap-3 flex-wrap">
+            <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm rounded-lg px-3 py-1" title={t('studyMode') || 'Study Mode'}>
               <BookOpen className="h-4 w-4 text-muted-foreground" />
               <Switch checked={studyMode} onCheckedChange={setStudyMode} />
+            </div>
+            <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm rounded-lg px-3 py-1" title={t('challengeMode') || 'Challenge Mode'}>
+              <Zap className={`h-4 w-4 ${challengeMode ? 'text-warning' : 'text-muted-foreground'}`} />
+              <Switch checked={challengeMode} onCheckedChange={setChallengeMode} />
             </div>
             <Badge className={`${getDifficultyColor(difficulty)} font-semibold`}>{t(difficulty)}</Badge>
             <Badge variant="secondary" className="bg-background/80 font-semibold">{t('score')}: {score}</Badge>
@@ -232,9 +284,21 @@ const QuizGame: React.FC = () => {
         <div className="space-y-2 bg-background/60 backdrop-blur-sm rounded-xl p-4">
           <div className="flex justify-between text-sm font-medium text-foreground">
             <span>{t('question')} {currentIndex + 1} / {Math.min(questions.length, 20)}</span>
-            <span>{Math.round(progress)}%</span>
+            <div className="flex items-center gap-4">
+              {challengeMode && !isAnswered && (
+                <span className={`flex items-center gap-1 font-bold ${getTimerColor()}`}>
+                  <Timer className="h-4 w-4" />
+                  {timeLeft}s
+                </span>
+              )}
+              <span>{Math.round(progress)}%</span>
+            </div>
           </div>
-          <Progress value={progress} className="h-3" />
+          {challengeMode && !isAnswered ? (
+            <Progress value={(timeLeft / TIMER_DURATION) * 100} className={`h-3 ${timeLeft <= 10 ? '[&>div]:bg-destructive' : timeLeft <= 20 ? '[&>div]:bg-warning' : ''}`} />
+          ) : (
+            <Progress value={progress} className="h-3" />
+          )}
         </div>
 
         <Card className="glass-card animate-scale-in border-2 border-border/50">
@@ -264,7 +328,11 @@ const QuizGame: React.FC = () => {
         {isAnswered && (
           <div className="animate-slide-up space-y-4">
             <div className={`rounded-xl p-4 text-center border-2 ${selectedAnswer === currentQuestion.correctIndex ? 'bg-success/20 text-success border-success/30' : 'bg-destructive/20 text-destructive border-destructive/30'}`}>
-              {selectedAnswer === currentQuestion.correctIndex ? <p className="font-bold text-lg">{t('correct')} +5</p> : (
+              {selectedAnswer === currentQuestion.correctIndex ? (
+                <p className="font-bold text-lg">{t('correct')} +5</p>
+              ) : selectedAnswer === null ? (
+                <div><p className="font-bold text-lg">{t('timeUp') || "Time's up!"} -2</p><p className="text-sm mt-1 font-medium">{t('correctAnswer')}: {currentQuestion.options[currentQuestion.correctIndex]}</p></div>
+              ) : (
                 <div><p className="font-bold text-lg">{t('incorrect')} -1</p><p className="text-sm mt-1 font-medium">{t('correctAnswer')}: {currentQuestion.options[currentQuestion.correctIndex]}</p></div>
               )}
               <p className="text-xs mt-2 opacity-80 font-medium">{t('reference')}: {currentQuestion.reference}</p>
