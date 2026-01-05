@@ -108,9 +108,9 @@ const Index: React.FC = () => {
                 <div className="mb-4 inline-flex rounded-xl bg-background/80 p-3 shadow-sm">
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
-                <h3 className="mb-2 font-serif text-xl font-semibold text-foreground">
+                <h2 className="mb-2 font-serif text-xl font-semibold text-foreground">
                   {t(feature.titleKey)}
-                </h3>
+                </h2>
                 <p className="text-muted-foreground">
                   {t(feature.descriptionKey)}
                 </p>
