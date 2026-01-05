@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react';
+import { z } from 'zod';
 
 export interface Badge {
   id: string;
@@ -36,6 +37,43 @@ export interface GameState {
   chaptersRead: number;
 }
 
+// Zod schemas for validating localStorage data
+const BadgeSchema = z.object({
+  id: z.string().max(100),
+  name: z.string().max(100),
+  description: z.string().max(500),
+  icon: z.string().max(10),
+  tier: z.enum(['bronze', 'silver', 'gold']),
+  earnedAt: z.string().optional(),
+});
+
+const QuizResultSchema = z.object({
+  quizType: z.string().max(100),
+  score: z.number().int().min(0).max(10000),
+  maxScore: z.number().int().min(1).max(10000),
+  percentage: z.number().min(0).max(100),
+  date: z.string(),
+});
+
+const ChallengeScoreSchema = z.object({
+  category: z.string().max(100),
+  score: z.number().int().min(0).max(10000),
+  maxScore: z.number().int().min(1).max(10000),
+  percentage: z.number().min(0).max(100),
+  timeUsed: z.number().min(0).max(86400), // max 24 hours
+  date: z.string(),
+});
+
+const GameStateSchema = z.object({
+  badges: z.array(BadgeSchema).max(100),
+  quizResults: z.array(QuizResultSchema).max(1000),
+  challengeScores: z.array(ChallengeScoreSchema).max(1000).optional().default([]),
+  totalQuizzesCompleted: z.number().int().min(0).max(100000),
+  totalCorrectAnswers: z.number().int().min(0).max(1000000),
+  favoriteVerses: z.array(z.string().max(200)).max(1000),
+  chaptersRead: z.number().int().min(0).max(100000),
+});
+
 interface GameContextType {
   state: GameState;
   addBadge: (badge: Badge) => void;
@@ -55,41 +93,80 @@ const defaultBadges: Omit<Badge, 'earnedAt'>[] = [
   { id: 'dedicated', name: 'dedicated', description: 'Complete 25 quizzes', icon: '💎', tier: 'gold' },
 ];
 
+const defaultState: GameState = {
+  badges: [],
+  quizResults: [],
+  challengeScores: [],
+  totalQuizzesCompleted: 0,
+  totalCorrectAnswers: 0,
+  favoriteVerses: [],
+  chaptersRead: 0,
+};
+
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
 const loadState = (): GameState => {
   try {
     const saved = localStorage.getItem('bible-app-game-state');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      return {
-        ...parsed,
-        badges: parsed.badges.map((b: Badge) => ({
-          ...b,
-          earnedAt: b.earnedAt ? new Date(b.earnedAt) : undefined
-        })),
-        quizResults: parsed.quizResults.map((r: QuizResult) => ({
-          ...r,
-          date: new Date(r.date)
-        })),
-        challengeScores: (parsed.challengeScores || []).map((s: ChallengeScore) => ({
-          ...s,
-          date: new Date(s.date)
-        }))
-      };
+    if (!saved) {
+      return defaultState;
     }
+    
+    // Parse JSON safely
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(saved);
+    } catch {
+      console.error('Invalid JSON in localStorage, resetting state');
+      localStorage.removeItem('bible-app-game-state');
+      return defaultState;
+    }
+    
+    // Validate with Zod schema
+    const validationResult = GameStateSchema.safeParse(parsed);
+    if (!validationResult.success) {
+      console.error('Invalid game state structure in localStorage:', validationResult.error.message);
+      localStorage.removeItem('bible-app-game-state');
+      return defaultState;
+    }
+    
+    const validatedData = validationResult.data;
+    
+    // Transform validated data - convert date strings to Date objects
+    const result: GameState = {
+      totalQuizzesCompleted: validatedData.totalQuizzesCompleted,
+      totalCorrectAnswers: validatedData.totalCorrectAnswers,
+      favoriteVerses: validatedData.favoriteVerses,
+      chaptersRead: validatedData.chaptersRead,
+      badges: validatedData.badges.map((b) => ({
+        id: b.id,
+        name: b.name,
+        description: b.description,
+        icon: b.icon,
+        tier: b.tier,
+        earnedAt: b.earnedAt ? new Date(b.earnedAt) : undefined
+      })),
+      quizResults: validatedData.quizResults.map((r) => ({
+        quizType: r.quizType,
+        score: r.score,
+        maxScore: r.maxScore,
+        percentage: r.percentage,
+        date: new Date(r.date)
+      })),
+      challengeScores: validatedData.challengeScores.map((s) => ({
+        category: s.category,
+        score: s.score,
+        maxScore: s.maxScore,
+        percentage: s.percentage,
+        timeUsed: s.timeUsed,
+        date: new Date(s.date)
+      }))
+    };
+    return result;
   } catch (e) {
     console.error('Error loading game state:', e);
+    return defaultState;
   }
-  return {
-    badges: [],
-    quizResults: [],
-    challengeScores: [],
-    totalQuizzesCompleted: 0,
-    totalCorrectAnswers: 0,
-    favoriteVerses: [],
-    chaptersRead: 0,
-  };
 };
 
 export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
