@@ -34,7 +34,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-lg">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2" aria-label={t('appTitle')}>
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground">
               <Book className="h-5 w-5" />
             </div>
@@ -48,6 +48,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Link
                 key={item.path}
                 to={item.path}
+                aria-label={t(item.label)}
                 className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   isActive(item.path)
                     ? 'bg-primary text-primary-foreground'
@@ -65,7 +66,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               size="icon" 
               onClick={toggleTheme}
               className="ml-1"
-              title={theme === 'light' ? t('darkMode') : t('lightMode')}
+              aria-label={theme === 'light' ? t('darkMode') : t('lightMode')}
             >
               {theme === 'light' ? (
                 <Moon className="h-4 w-4" />
