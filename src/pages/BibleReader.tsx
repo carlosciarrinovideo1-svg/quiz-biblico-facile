@@ -17,6 +17,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from 'sonner';
 
+import bgOldTestament from '@/assets/bg-oldtestament.jpg';
+
 const BibleReader: React.FC = () => {
   const { t } = useLanguage();
   const { state, addFavoriteVerse, removeFavoriteVerse, incrementChaptersRead } = useGame();
@@ -89,7 +91,16 @@ const BibleReader: React.FC = () => {
   };
 
   return (
-    <div className="animate-fade-in space-y-6">
+    <div 
+      className="animate-fade-in -mx-4 -mt-8 px-4 py-8 min-h-screen"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.88), hsl(var(--background) / 0.95)), url(${bgOldTestament})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-serif text-3xl font-bold text-foreground">
           {t('bible')}
@@ -291,6 +302,7 @@ const BibleReader: React.FC = () => {
           </Card>
         </TabsContent>
       </Tabs>
+      </div>
     </div>
   );
 };

@@ -6,6 +6,11 @@ import { useGame } from '@/contexts/GameContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
+import bgQuizDefault from '@/assets/bg-quiz-default.jpg';
+import bgOldTestament from '@/assets/bg-oldtestament.jpg';
+import bgNewTestament from '@/assets/bg-newtestament.jpg';
+import bgCharacters from '@/assets/bg-characters.jpg';
+
 const Index: React.FC = () => {
   const { t } = useLanguage();
   const { state } = useGame();
@@ -16,26 +21,35 @@ const Index: React.FC = () => {
       titleKey: 'bible',
       descriptionKey: 'readBibleDescription',
       link: '/bible',
-      color: 'from-primary/20 to-accent/20',
+      bgImage: bgOldTestament,
     },
     {
       icon: HelpCircle,
       titleKey: 'quiz',
       descriptionKey: 'quizDescription2',
       link: '/quiz',
-      color: 'from-accent/20 to-secondary',
+      bgImage: bgNewTestament,
     },
     {
       icon: Award,
       titleKey: 'badges',
       descriptionKey: 'badgesDescription2',
       link: '/badges',
-      color: 'from-secondary to-muted',
+      bgImage: bgCharacters,
     },
   ];
 
   return (
-    <div className="animate-fade-in space-y-12">
+    <div 
+      className="animate-fade-in -mx-4 -mt-8 px-4 py-8 min-h-screen"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.85), hsl(var(--background) / 0.95)), url(${bgQuizDefault})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div className="space-y-12">
       {/* Hero Section */}
       <section className="relative overflow-hidden rounded-3xl gradient-hero p-8 md:p-12 lg:p-16">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/10" />
@@ -94,53 +108,63 @@ const Index: React.FC = () => {
         </section>
       )}
 
-      {/* Features Grid */}
-      <section className="grid gap-6 md:grid-cols-3">
-        {features.map((feature, index) => (
-          <Link
-            key={feature.titleKey}
-            to={feature.link}
-            className="group"
-            style={{ animationDelay: `${index * 100}ms` }}
-          >
-            <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-              <CardContent className={`p-6 bg-gradient-to-br ${feature.color}`}>
-                <div className="mb-4 inline-flex rounded-xl bg-background/80 p-3 shadow-sm">
-                  <feature.icon className="h-6 w-6 text-primary" />
-                </div>
-                <h2 className="mb-2 font-serif text-xl font-semibold text-foreground">
-                  {t(feature.titleKey)}
-                </h2>
-                <p className="text-muted-foreground">
-                  {t(feature.descriptionKey)}
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
-      </section>
+        {/* Features Grid */}
+        <section className="grid gap-6 md:grid-cols-3">
+          {features.map((feature, index) => (
+            <Link
+              key={feature.titleKey}
+              to={feature.link}
+              className="group"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <CardContent 
+                  className="p-0 relative h-48"
+                  style={{
+                    backgroundImage: `linear-gradient(to top, hsl(var(--background)), hsl(var(--background) / 0.3)), url(${feature.bgImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                    <div className="mb-4 inline-flex w-fit rounded-xl bg-background/90 p-3 shadow-sm backdrop-blur-sm">
+                      <feature.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h2 className="mb-2 font-serif text-xl font-semibold text-foreground">
+                      {t(feature.titleKey)}
+                    </h2>
+                    <p className="text-muted-foreground">
+                      {t(feature.descriptionKey)}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </section>
 
-      {/* External Link */}
-      <section className="text-center">
-        <Card className="inline-block glass-card">
-          <CardContent className="p-6">
-            <p className="mb-4 text-muted-foreground">
-              {t('readBibleOnline')}
-            </p>
-            <Button asChild variant="outline">
-              <a 
-                href="https://www.bible.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2"
-              >
-                <ExternalLink className="h-4 w-4" />
-                {t('readOnline')}
-              </a>
-            </Button>
-          </CardContent>
-        </Card>
-      </section>
+        {/* External Link */}
+        <section className="text-center">
+          <Card className="inline-block glass-card">
+            <CardContent className="p-6">
+              <p className="mb-4 text-muted-foreground">
+                {t('readBibleOnline')}
+              </p>
+              <Button asChild variant="outline">
+                <a 
+                  href="https://www.bible.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                  {t('readOnline')}
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+        </section>
+      </div>
     </div>
   );
 };
