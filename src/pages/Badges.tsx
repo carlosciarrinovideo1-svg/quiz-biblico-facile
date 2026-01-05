@@ -4,6 +4,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useGame } from '@/contexts/GameContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
+import bgCharacters from '@/assets/bg-characters.jpg';
+
 const allBadgeDefinitions = [
   { id: 'first-quiz', nameKey: 'firstQuiz', descriptionKey: 'firstQuizDesc', icon: Target, tier: 'bronze' as const },
   { id: 'perfect-score', nameKey: 'perfectScore', descriptionKey: 'perfectScoreDesc', icon: Star, tier: 'gold' as const },
@@ -35,7 +37,16 @@ const Badges: React.FC = () => {
   const earnedBadgeIds = state.badges.map(b => b.id);
 
   return (
-    <div className="animate-fade-in space-y-8">
+    <div 
+      className="animate-fade-in -mx-4 -mt-8 px-4 py-8 min-h-screen"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, hsl(var(--background) / 0.85), hsl(var(--background) / 0.95)), url(${bgCharacters})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div className="space-y-8">
       <div className="text-center">
         <h1 className="mb-4 font-serif text-3xl font-bold text-foreground md:text-4xl">
           {t('badges')}
@@ -169,16 +180,17 @@ const Badges: React.FC = () => {
         </section>
       )}
 
-      {state.badges.length === 0 && (
-        <Card className="glass-card">
-          <CardContent className="py-12 text-center">
-            <Award className="mx-auto mb-4 h-16 w-16 text-muted-foreground opacity-50" />
-            <p className="text-lg text-muted-foreground">
-              {t('noBadges')}
-            </p>
-          </CardContent>
-        </Card>
-      )}
+        {state.badges.length === 0 && (
+          <Card className="glass-card">
+            <CardContent className="py-12 text-center">
+              <Award className="mx-auto mb-4 h-16 w-16 text-muted-foreground opacity-50" />
+              <p className="text-lg text-muted-foreground">
+                {t('noBadges')}
+              </p>
+            </CardContent>
+          </Card>
+        )}
+      </div>
     </div>
   );
 };
