@@ -116,6 +116,9 @@ const translations: Translations = {
   
   // Sound effects
   soundEffects: { en: 'Sound Effects', it: 'Effetti Sonori', es: 'Efectos de Sonido', pt: 'Efeitos Sonoros', fr: 'Effets Sonores' },
+  
+  // Accessibility
+  selectLanguage: { en: 'Select language', it: 'Seleziona lingua', es: 'Seleccionar idioma', pt: 'Selecionar idioma', fr: 'Sélectionner la langue' },
 
   // Difficulty explanation
   difficultyExplanation: { 
