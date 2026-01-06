@@ -301,11 +301,11 @@ export const biblicalCharactersTranslations: BiblicalCharactersTranslations = {
     fr: { question: 'Qui était le serviteur souffrant dans le livre de Job?', options: ['Jérémie', 'Job', 'David', 'Moïse'] }
   },
   'bc42': {
-    en: { question: 'Who was swallowed by a great fish?', options: ['Elijah', 'Jonah', 'Amos', 'Hosea'] },
-    it: { question: 'Chi fu inghiottito da un grande pesce?', options: ['Elia', 'Giona', 'Amos', 'Osea'] },
-    es: { question: '¿Quién fue tragado por un gran pez?', options: ['Elías', 'Jonás', 'Amós', 'Oseas'] },
-    pt: { question: 'Quem foi engolido por um grande peixe?', options: ['Elias', 'Jonas', 'Amós', 'Oséias'] },
-    fr: { question: 'Qui a été avalé par un grand poisson?', options: ['Élie', 'Jonas', 'Amos', 'Osée'] }
+    en: { question: 'Who endured great suffering as a test of faith?', options: ['Moses', 'David', 'Job', 'Jonah'] },
+    it: { question: 'Chi sopportò grandi sofferenze come prova di fede?', options: ['Mosè', 'Davide', 'Giobbe', 'Giona'] },
+    es: { question: '¿Quién soportó grandes sufrimientos como prueba de fe?', options: ['Moisés', 'David', 'Job', 'Jonás'] },
+    pt: { question: 'Quem suportou grandes sofrimentos como prova de fé?', options: ['Moisés', 'Davi', 'Jó', 'Jonas'] },
+    fr: { question: 'Qui a enduré de grandes souffrances comme épreuve de foi?', options: ['Moïse', 'David', 'Job', 'Jonas'] }
   },
   'bc43': {
     en: { question: 'Who was the weeping prophet?', options: ['Isaiah', 'Jeremiah', 'Ezekiel', 'Daniel'] },
@@ -581,11 +581,11 @@ export const biblicalCharactersTranslations: BiblicalCharactersTranslations = {
     fr: { question: 'Qui était le frère de même père et mère de Joseph?', options: ['Juda', 'Ruben', 'Benjamin', 'Dan'] }
   },
   'bc82': {
-    en: { question: 'Who was the wife of Moses?', options: ['Miriam', 'Zipporah', 'Jochebed', 'Elisheba'] },
-    it: { question: 'Chi era la moglie di Mosè?', options: ['Miriam', 'Sefora', 'Iochebed', 'Eliseba'] },
-    es: { question: '¿Quién era la esposa de Moisés?', options: ['Miriam', 'Séfora', 'Jocabed', 'Elisabet'] },
-    pt: { question: 'Quem era a esposa de Moisés?', options: ['Miriã', 'Zípora', 'Joquebede', 'Eliseba'] },
-    fr: { question: 'Qui était l\'épouse de Moïse?', options: ['Myriam', 'Séphora', 'Jokébed', 'Élischéba'] }
+    en: { question: 'Which disciples were from Bethsaida?', options: ['Only Peter', 'Only Philip', 'Peter, Andrew and Philip', 'All twelve'] },
+    it: { question: 'Quali discepoli erano di Betsaida?', options: ['Solo Pietro', 'Solo Filippo', 'Pietro, Andrea e Filippo', 'Tutti e dodici'] },
+    es: { question: '¿Qué discípulos eran de Betsaida?', options: ['Solo Pedro', 'Solo Felipe', 'Pedro, Andrés y Felipe', 'Los doce'] },
+    pt: { question: 'Quais discípulos eram de Betsaida?', options: ['Apenas Pedro', 'Apenas Filipe', 'Pedro, André e Filipe', 'Os doze'] },
+    fr: { question: 'Quels disciples étaient de Bethsaïda?', options: ['Seulement Pierre', 'Seulement Philippe', 'Pierre, André et Philippe', 'Les douze'] }
   },
   'bc83': {
     en: { question: 'Who was David\'s mighty warrior commander?', options: ['Nathan', 'Joab', 'Uriah', 'Benaiah'] },
