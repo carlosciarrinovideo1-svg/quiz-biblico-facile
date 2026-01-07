@@ -2,6 +2,7 @@ import { Language } from '@/contexts/LanguageContext';
 import { apocalypseTranslations } from './translations/apocalypseTranslations';
 import { actsTranslations } from './translations/actsTranslations';
 import { biblicalCharactersTranslations } from './translations/biblicalCharactersTranslations';
+import { gospelsTranslations } from './translations/gospelsTranslations';
 
 interface QuestionTranslation {
   question: string;
