@@ -105,7 +105,7 @@ export const allQuestions: QuizQuestion[] = [
   { id: 'g1', question: 'Where was Jesus born?', options: ['Nazareth', 'Jerusalem', 'Bethlehem', 'Capernaum'], correctIndex: 2, category: 'fourGospels', difficulty: 'easy', reference: 'Matthew 2:1' },
   { id: 'g2', question: 'How many disciples did Jesus have?', options: ['10', '12', '14', '7'], correctIndex: 1, category: 'fourGospels', difficulty: 'easy', reference: 'Matthew 10:1-4' },
   { id: 'g3', question: 'Who baptized Jesus?', options: ['Peter', 'John the Baptist', 'John the Apostle', 'James'], correctIndex: 1, category: 'fourGospels', difficulty: 'easy', reference: 'Matthew 3:13' },
-  { id: 'g4', question: 'What was Jesus\' first miracle?', options: ['Healing a blind man', 'Walking on water', 'Turning water into wine', 'Feeding 5000'], correctIndex: 2, category: 'fourGospels', difficulty: 'medium', reference: 'John 2:1-11' },
+  { id: 'g4', question: 'What was Jesus\' first sign in John\'s Gospel?', options: ['Healing a blind man', 'Walking on water', 'Turning water into wine', 'Feeding 5000'], correctIndex: 2, category: 'fourGospels', difficulty: 'medium', reference: 'John 2:1-11' },
   { id: 'g5', question: 'Who betrayed Jesus?', options: ['Peter', 'Thomas', 'Judas', 'John'], correctIndex: 2, category: 'fourGospels', difficulty: 'easy', reference: 'Matthew 26:14-16' },
   { id: 'g6', question: 'How many loaves fed 5000 people?', options: ['3', '5', '7', '12'], correctIndex: 1, category: 'fourGospels', difficulty: 'medium', reference: 'John 6:9' },
   { id: 'g7', question: 'Who denied Jesus three times?', options: ['Judas', 'Peter', 'Thomas', 'James'], correctIndex: 1, category: 'fourGospels', difficulty: 'easy', reference: 'Matthew 26:69-75' },
@@ -153,7 +153,7 @@ export const allQuestions: QuizQuestion[] = [
   { id: 'l22', question: '"All Scripture is God-breathed" is from which letter?', options: ['Romans', '1 Corinthians', '2 Timothy', 'Titus'], correctIndex: 2, category: 'paulineLetters', difficulty: 'hard', reference: '2 Timothy 3:16' },
   { id: 'l23', question: 'Who delivered the letter to the Romans?', options: ['Phoebe', 'Timothy', 'Silas', 'Titus'], correctIndex: 0, category: 'paulineLetters', difficulty: 'hard', reference: 'Romans 16:1' },
   { id: 'l24', question: 'Which letter mentions the rapture?', options: ['Romans', 'Galatians', '1 Thessalonians', 'Colossians'], correctIndex: 2, category: 'paulineLetters', difficulty: 'hard', reference: '1 Thessalonians 4:17' },
-  { id: 'l25', question: '"Christ is the head of the church" is from?', options: ['Romans', 'Ephesians', 'Philippians', 'Colossians'], correctIndex: 3, category: 'paulineLetters', difficulty: 'medium', reference: 'Colossians 1:18' },
+  { id: 'l25', question: '"Christ is the head of the church" is found in which letter?', options: ['Romans', 'Ephesians', 'Philippians', 'Both B and D (Ephesians and Colossians)'], correctIndex: 3, category: 'paulineLetters', difficulty: 'medium', reference: 'Ephesians 5:23, Colossians 1:18' },
 
   // New Testament General - 25 questions
   { id: 'n1', question: 'Who wrote the book of Revelation?', options: ['Paul', 'Peter', 'John', 'James'], correctIndex: 2, category: 'newTestament', difficulty: 'easy', reference: 'Revelation 1:1' },
@@ -173,7 +173,7 @@ export const allQuestions: QuizQuestion[] = [
   { id: 'n15', question: 'What is the last word in the Bible?', options: ['Amen', 'Forever', 'Jesus', 'Glory'], correctIndex: 0, category: 'newTestament', difficulty: 'medium', reference: 'Revelation 22:21' },
   { id: 'n16', question: 'Who wrote three letters in the New Testament?', options: ['Peter', 'John', 'Paul', 'James'], correctIndex: 1, category: 'newTestament', difficulty: 'hard', reference: '1, 2, 3 John' },
   { id: 'n17', question: 'Where was the first church established?', options: ['Jerusalem', 'Antioch', 'Rome', 'Ephesus'], correctIndex: 0, category: 'newTestament', difficulty: 'medium', reference: 'Acts 2:41-47' },
-  { id: 'n18', question: 'Who wrote the shortest letter in the New Testament?', options: ['Paul', 'John', 'Peter', 'Jude'], correctIndex: 1, category: 'newTestament', difficulty: 'hard', reference: '2 John (13 verses)' },
+  { id: 'n18', question: 'Which is the shortest letter in the New Testament?', options: ['Philemon', '2 John', '3 John', 'Jude'], correctIndex: 2, category: 'newTestament', difficulty: 'hard', reference: '3 John (14 verses in Greek, shortest by word count)' },
   { id: 'n19', question: 'What was the first Gentile church?', options: ['Rome', 'Corinth', 'Antioch', 'Ephesus'], correctIndex: 2, category: 'newTestament', difficulty: 'hard', reference: 'Acts 11:20-26' },
   { id: 'n20', question: 'Who was the brother of Jesus who wrote a letter?', options: ['John', 'James', 'Jude', 'Both James and Jude'], correctIndex: 3, category: 'newTestament', difficulty: 'medium', reference: 'James 1:1, Jude 1:1' },
   { id: 'n21', question: 'Where did Paul spend two years under house arrest?', options: ['Jerusalem', 'Caesarea', 'Rome', 'Ephesus'], correctIndex: 2, category: 'newTestament', difficulty: 'hard', reference: 'Acts 28:30' },
