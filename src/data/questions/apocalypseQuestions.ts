@@ -13,7 +13,7 @@ export const apocalypseQuestions: QuizQuestion[] = [
   { id: 'a9', question: 'How many elders surround the throne?', options: ['12', '24', '70', '144'], correctIndex: 1, category: 'apocalypse', difficulty: 'medium', reference: 'Revelation 4:4' },
   { id: 'a10', question: 'What comes down from heaven at the end?', options: ['Fire', 'New Jerusalem', 'Angels', 'Stars'], correctIndex: 1, category: 'apocalypse', difficulty: 'easy', reference: 'Revelation 21:2' },
   { id: 'a11', question: 'How many living creatures are around the throne?', options: ['2', '4', '7', '12'], correctIndex: 1, category: 'apocalypse', difficulty: 'medium', reference: 'Revelation 4:6' },
-  { id: 'a12', question: 'What is thrown into the lake of fire first?', options: ['Satan', 'Death', 'The beast', 'False prophet'], correctIndex: 2, category: 'apocalypse', difficulty: 'hard', reference: 'Revelation 19:20' },
+  { id: 'a12', question: 'Who is thrown into the lake of fire first?', options: ['Satan', 'Death', 'The beast and false prophet', 'Babylon'], correctIndex: 2, category: 'apocalypse', difficulty: 'hard', reference: 'Revelation 19:20' },
   { id: 'a13', question: 'How many years is Satan bound?', options: ['100', '500', '1000', '7000'], correctIndex: 2, category: 'apocalypse', difficulty: 'easy', reference: 'Revelation 20:2' },
   { id: 'a14', question: 'How many gates does the New Jerusalem have?', options: ['4', '7', '12', '24'], correctIndex: 2, category: 'apocalypse', difficulty: 'medium', reference: 'Revelation 21:12' },
   { id: 'a15', question: 'What is the river in the New Jerusalem called?', options: ['Jordan', 'Euphrates', 'Water of Life', 'Crystal River'], correctIndex: 2, category: 'apocalypse', difficulty: 'medium', reference: 'Revelation 22:1' },

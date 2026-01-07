@@ -10,7 +10,7 @@ export const actsQuestions: QuizQuestion[] = [
   { id: 'ac6', question: 'What was Paul\'s name before conversion?', options: ['Simon', 'Saul', 'Silas', 'Silvanus'], correctIndex: 1, category: 'actsApostles', difficulty: 'easy', reference: 'Acts 7:58' },
   { id: 'ac7', question: 'Where was Paul going when he was converted?', options: ['Jerusalem', 'Damascus', 'Antioch', 'Rome'], correctIndex: 1, category: 'actsApostles', difficulty: 'easy', reference: 'Acts 9:3' },
   { id: 'ac8', question: 'Who baptized Paul?', options: ['Peter', 'Barnabas', 'Ananias', 'Philip'], correctIndex: 2, category: 'actsApostles', difficulty: 'medium', reference: 'Acts 9:18' },
-  { id: 'ac9', question: 'Who was the first Gentile convert?', options: ['Cornelius', 'Lydia', 'Ethiopian', 'Timothy'], correctIndex: 0, category: 'actsApostles', difficulty: 'medium', reference: 'Acts 10:44-48' },
+  { id: 'ac9', question: 'Who was the first Gentile household baptized by Peter?', options: ['Cornelius', 'Lydia', 'Ethiopian eunuch', 'Timothy'], correctIndex: 0, category: 'actsApostles', difficulty: 'medium', reference: 'Acts 10:44-48' },
   { id: 'ac10', question: 'Who had a vision of a sheet with animals?', options: ['Paul', 'Peter', 'John', 'James'], correctIndex: 1, category: 'actsApostles', difficulty: 'medium', reference: 'Acts 10:11-12' },
   { id: 'ac11', question: 'Where were believers first called Christians?', options: ['Jerusalem', 'Rome', 'Antioch', 'Ephesus'], correctIndex: 2, category: 'actsApostles', difficulty: 'medium', reference: 'Acts 11:26' },
   { id: 'ac12', question: 'Which apostle was killed by Herod?', options: ['Peter', 'John', 'James', 'Andrew'], correctIndex: 2, category: 'actsApostles', difficulty: 'medium', reference: 'Acts 12:2' },
