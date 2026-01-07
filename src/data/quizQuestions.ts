@@ -1,6 +1,7 @@
 import { apocalypseQuestions } from './questions/apocalypseQuestions';
 import { actsQuestions } from './questions/actsQuestions';
 import { biblicalCharactersQuestions } from './questions/biblicalCharactersQuestions';
+import { gospelsQuestions } from './questions/gospelsQuestions';
 import { QuizQuestion } from './types';
 
 export type { QuizQuestion } from './types';
@@ -188,7 +189,8 @@ const allMergedQuestions: QuizQuestion[] = [
   ...allQuestions,
   ...apocalypseQuestions,
   ...actsQuestions,
-  ...biblicalCharactersQuestions
+  ...biblicalCharactersQuestions,
+  ...gospelsQuestions
 ];
 
 export function getQuestionsByCategory(category: string): QuizQuestion[] {
