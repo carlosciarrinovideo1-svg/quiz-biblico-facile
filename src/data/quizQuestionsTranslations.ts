@@ -1087,7 +1087,8 @@ const allTranslations: QuestionTranslations = {
   ...questionTranslations,
   ...apocalypseTranslations,
   ...actsTranslations,
-  ...biblicalCharactersTranslations
+  ...biblicalCharactersTranslations,
+  ...gospelsTranslations
 };
 
 export function getTranslatedQuestion(
