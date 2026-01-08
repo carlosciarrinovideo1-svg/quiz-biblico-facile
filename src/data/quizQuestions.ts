@@ -2,6 +2,7 @@ import { apocalypseQuestions } from './questions/apocalypseQuestions';
 import { actsQuestions } from './questions/actsQuestions';
 import { biblicalCharactersQuestions } from './questions/biblicalCharactersQuestions';
 import { gospelsQuestions } from './questions/gospelsQuestions';
+import { prophetsQuestions } from './questions/prophetsQuestions';
 import { QuizQuestion } from './types';
 
 export type { QuizQuestion } from './types';

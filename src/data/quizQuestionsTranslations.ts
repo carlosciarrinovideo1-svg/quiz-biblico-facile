@@ -3,6 +3,7 @@ import { apocalypseTranslations } from './translations/apocalypseTranslations';
 import { actsTranslations } from './translations/actsTranslations';
 import { biblicalCharactersTranslations } from './translations/biblicalCharactersTranslations';
 import { gospelsTranslations } from './translations/gospelsTranslations';
+import { prophetsTranslations } from './translations/prophetsTranslations';
 
 interface QuestionTranslation {
   question: string;
