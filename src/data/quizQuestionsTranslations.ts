@@ -4,6 +4,7 @@ import { actsTranslations } from './translations/actsTranslations';
 import { biblicalCharactersTranslations } from './translations/biblicalCharactersTranslations';
 import { gospelsTranslations } from './translations/gospelsTranslations';
 import { prophetsTranslations } from './translations/prophetsTranslations';
+import { pentateuchTranslations } from './translations/pentateuchTranslations';
 
 interface QuestionTranslation {
   question: string;
@@ -1089,7 +1090,9 @@ const allTranslations: QuestionTranslations = {
   ...apocalypseTranslations,
   ...actsTranslations,
   ...biblicalCharactersTranslations,
-  ...gospelsTranslations
+  ...gospelsTranslations,
+  ...prophetsTranslations,
+  ...pentateuchTranslations
 };
 
 export function getTranslatedQuestion(
