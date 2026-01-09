@@ -3,6 +3,7 @@ import { actsQuestions } from './questions/actsQuestions';
 import { biblicalCharactersQuestions } from './questions/biblicalCharactersQuestions';
 import { gospelsQuestions } from './questions/gospelsQuestions';
 import { prophetsQuestions } from './questions/prophetsQuestions';
+import { pentateuchQuestions } from './questions/pentateuchQuestions';
 import { QuizQuestion } from './types';
 
 export type { QuizQuestion } from './types';
@@ -209,6 +210,12 @@ export function getQuestionsByCategory(category: string): QuizQuestion[] {
   }
   if (category === 'biblicalCharacters') {
     return biblicalCharactersQuestions;
+  }
+  if (category === 'minorProphets') {
+    return prophetsQuestions;
+  }
+  if (category === 'pentateuch') {
+    return [...allMergedQuestions.filter(q => q.category === 'pentateuch'), ...pentateuchQuestions];
   }
   return allMergedQuestions.filter(q => q.category === category);
 }
