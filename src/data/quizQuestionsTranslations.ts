@@ -5,6 +5,7 @@ import { biblicalCharactersTranslations } from './translations/biblicalCharacter
 import { gospelsTranslations } from './translations/gospelsTranslations';
 import { prophetsTranslations } from './translations/prophetsTranslations';
 import { pentateuchTranslations } from './translations/pentateuchTranslations';
+import { paulineTranslations } from './translations/paulineTranslations';
 
 interface QuestionTranslation {
   question: string;
