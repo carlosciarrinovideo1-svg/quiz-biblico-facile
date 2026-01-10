@@ -4,6 +4,7 @@ import { biblicalCharactersQuestions } from './questions/biblicalCharactersQuest
 import { gospelsQuestions } from './questions/gospelsQuestions';
 import { prophetsQuestions } from './questions/prophetsQuestions';
 import { pentateuchQuestions } from './questions/pentateuchQuestions';
+import { paulineQuestions } from './questions/paulineQuestions';
 import { QuizQuestion } from './types';
 
 export type { QuizQuestion } from './types';
