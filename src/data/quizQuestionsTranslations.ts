@@ -6,6 +6,7 @@ import { gospelsTranslations } from './translations/gospelsTranslations';
 import { prophetsTranslations } from './translations/prophetsTranslations';
 import { pentateuchTranslations } from './translations/pentateuchTranslations';
 import { paulineTranslations } from './translations/paulineTranslations';
+import { historicalBooksTranslations } from './translations/historicalBooksTranslations';
 
 interface QuestionTranslation {
   question: string;

@@ -5,12 +5,14 @@ import { gospelsQuestions } from './questions/gospelsQuestions';
 import { prophetsQuestions } from './questions/prophetsQuestions';
 import { pentateuchQuestions } from './questions/pentateuchQuestions';
 import { paulineQuestions } from './questions/paulineQuestions';
+import { historicalBooksQuestions } from './questions/historicalBooksQuestions';
 import { QuizQuestion } from './types';
 
 export type { QuizQuestion } from './types';
 
 export const quizCategories = [
   { id: 'pentateuch', questions: 100 },
+  { id: 'historicalBooks', questions: 100 },
   { id: 'minorProphets', questions: 100 },
   { id: 'oldTestament', questions: 100 },
   { id: 'fourGospels', questions: 100 },
@@ -217,6 +219,12 @@ export function getQuestionsByCategory(category: string): QuizQuestion[] {
   }
   if (category === 'pentateuch') {
     return [...allMergedQuestions.filter(q => q.category === 'pentateuch'), ...pentateuchQuestions];
+  }
+  if (category === 'historicalBooks') {
+    return historicalBooksQuestions;
+  }
+  if (category === 'paulineLetters') {
+    return paulineQuestions;
   }
   return allMergedQuestions.filter(q => q.category === category);
 }
