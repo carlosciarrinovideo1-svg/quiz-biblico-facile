@@ -6,8 +6,9 @@ export interface Badge {
   name: string;
   description: string;
   icon: string;
-  tier: 'bronze' | 'silver' | 'gold';
+  tier: 'bronze' | 'silver' | 'gold' | 'platinum' | 'diamond';
   earnedAt?: Date;
+  category?: 'general' | 'speed' | 'streak' | 'mastery';
 }
 
 export interface QuizResult {
@@ -27,6 +28,12 @@ export interface ChallengeScore {
   date: Date;
 }
 
+export interface DailyStreak {
+  currentStreak: number;
+  longestStreak: number;
+  lastActivityDate: string;
+}
+
 export interface GameState {
   badges: Badge[];
   quizResults: QuizResult[];
@@ -35,6 +42,10 @@ export interface GameState {
   totalCorrectAnswers: number;
   favoriteVerses: string[];
   chaptersRead: number;
+  dailyStreak: DailyStreak;
+  totalTimeSpent: number; // seconds
+  fastestQuizTime: number; // seconds
+  perfectScoreCount: number;
 }
 
 // Zod schemas for validating localStorage data
@@ -43,8 +54,9 @@ const BadgeSchema = z.object({
   name: z.string().max(100),
   description: z.string().max(500),
   icon: z.string().max(10),
-  tier: z.enum(['bronze', 'silver', 'gold']),
+  tier: z.enum(['bronze', 'silver', 'gold', 'platinum', 'diamond']),
   earnedAt: z.string().optional(),
+  category: z.enum(['general', 'speed', 'streak', 'mastery']).optional(),
 });
 
 const QuizResultSchema = z.object({
@@ -64,6 +76,12 @@ const ChallengeScoreSchema = z.object({
   date: z.string(),
 });
 
+const DailyStreakSchema = z.object({
+  currentStreak: z.number().int().min(0).max(10000),
+  longestStreak: z.number().int().min(0).max(10000),
+  lastActivityDate: z.string(),
+});
+
 const GameStateSchema = z.object({
   badges: z.array(BadgeSchema).max(100),
   quizResults: z.array(QuizResultSchema).max(1000),
@@ -72,6 +90,10 @@ const GameStateSchema = z.object({
   totalCorrectAnswers: z.number().int().min(0).max(1000000),
   favoriteVerses: z.array(z.string().max(200)).max(1000),
   chaptersRead: z.number().int().min(0).max(100000),
+  dailyStreak: DailyStreakSchema.optional().default({ currentStreak: 0, longestStreak: 0, lastActivityDate: '' }),
+  totalTimeSpent: z.number().int().min(0).max(100000000).optional().default(0),
+  fastestQuizTime: z.number().int().min(0).max(86400).optional().default(0),
+  perfectScoreCount: z.number().int().min(0).max(100000).optional().default(0),
 });
 
 interface GameContextType {
@@ -83,14 +105,34 @@ interface GameContextType {
   removeFavoriteVerse: (verseId: string) => void;
   incrementChaptersRead: () => void;
   checkAndAwardBadges: () => Badge | null;
+  updateDailyStreak: () => void;
+  addTimeSpent: (seconds: number) => void;
 }
 
 const defaultBadges: Omit<Badge, 'earnedAt'>[] = [
-  { id: 'first-quiz', name: 'firstQuiz', description: 'Complete your first quiz', icon: '🎯', tier: 'bronze' },
-  { id: 'perfect-score', name: 'perfectScore', description: 'Get 100% on any quiz', icon: '⭐', tier: 'gold' },
-  { id: 'bible-explorer', name: 'bibleExplorer', description: 'Read 10 chapters', icon: '📖', tier: 'bronze' },
-  { id: 'quiz-master', name: 'quizMaster', description: 'Complete 10 quizzes', icon: '🏆', tier: 'silver' },
-  { id: 'dedicated', name: 'dedicated', description: 'Complete 25 quizzes', icon: '💎', tier: 'gold' },
+  // General badges
+  { id: 'first-quiz', name: 'firstQuiz', description: 'Complete your first quiz', icon: '🎯', tier: 'bronze', category: 'general' },
+  { id: 'perfect-score', name: 'perfectScore', description: 'Get 100% on any quiz', icon: '⭐', tier: 'gold', category: 'general' },
+  { id: 'bible-explorer', name: 'bibleExplorer', description: 'Read 10 chapters', icon: '📖', tier: 'bronze', category: 'general' },
+  { id: 'quiz-master', name: 'quizMaster', description: 'Complete 10 quizzes', icon: '🏆', tier: 'silver', category: 'general' },
+  { id: 'dedicated', name: 'dedicated', description: 'Complete 25 quizzes', icon: '💎', tier: 'gold', category: 'general' },
+  
+  // Speed badges
+  { id: 'speed-demon', name: 'speedDemon', description: 'Complete a quiz in under 60 seconds', icon: '⚡', tier: 'silver', category: 'speed' },
+  { id: 'lightning-fast', name: 'lightningFast', description: 'Complete a quiz in under 30 seconds', icon: '🌩️', tier: 'gold', category: 'speed' },
+  { id: 'time-master', name: 'timeMaster', description: 'Complete 10 challenge mode quizzes', icon: '⏱️', tier: 'platinum', category: 'speed' },
+  
+  // Streak badges
+  { id: 'streak-3', name: 'streak3', description: 'Maintain a 3-day streak', icon: '🔥', tier: 'bronze', category: 'streak' },
+  { id: 'streak-7', name: 'streak7', description: 'Maintain a 7-day streak', icon: '🔥', tier: 'silver', category: 'streak' },
+  { id: 'streak-30', name: 'streak30', description: 'Maintain a 30-day streak', icon: '🔥', tier: 'gold', category: 'streak' },
+  { id: 'streak-100', name: 'streak100', description: 'Maintain a 100-day streak', icon: '🔥', tier: 'diamond', category: 'streak' },
+  
+  // Mastery badges
+  { id: 'perfect-5', name: 'perfect5', description: 'Get 5 perfect scores', icon: '🌟', tier: 'silver', category: 'mastery' },
+  { id: 'perfect-10', name: 'perfect10', description: 'Get 10 perfect scores', icon: '🌟', tier: 'gold', category: 'mastery' },
+  { id: 'perfect-25', name: 'perfect25', description: 'Get 25 perfect scores', icon: '🌟', tier: 'platinum', category: 'mastery' },
+  { id: 'scripture-scholar', name: 'scriptureScholar', description: 'Complete 100 quizzes', icon: '📚', tier: 'diamond', category: 'mastery' },
 ];
 
 const defaultState: GameState = {
@@ -101,6 +143,10 @@ const defaultState: GameState = {
   totalCorrectAnswers: 0,
   favoriteVerses: [],
   chaptersRead: 0,
+  dailyStreak: { currentStreak: 0, longestStreak: 0, lastActivityDate: '' },
+  totalTimeSpent: 0,
+  fastestQuizTime: 0,
+  perfectScoreCount: 0,
 };
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -138,12 +184,21 @@ const loadState = (): GameState => {
       totalCorrectAnswers: validatedData.totalCorrectAnswers,
       favoriteVerses: validatedData.favoriteVerses,
       chaptersRead: validatedData.chaptersRead,
+      dailyStreak: {
+        currentStreak: validatedData.dailyStreak.currentStreak ?? 0,
+        longestStreak: validatedData.dailyStreak.longestStreak ?? 0,
+        lastActivityDate: validatedData.dailyStreak.lastActivityDate ?? '',
+      },
+      totalTimeSpent: validatedData.totalTimeSpent ?? 0,
+      fastestQuizTime: validatedData.fastestQuizTime ?? 0,
+      perfectScoreCount: validatedData.perfectScoreCount ?? 0,
       badges: validatedData.badges.map((b) => ({
         id: b.id,
         name: b.name,
         description: b.description,
         icon: b.icon,
         tier: b.tier,
+        category: b.category,
         earnedAt: b.earnedAt ? new Date(b.earnedAt) : undefined
       })),
       quizResults: validatedData.quizResults.map((r) => ({
@@ -226,6 +281,45 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }));
   }, []);
 
+  const updateDailyStreak = useCallback(() => {
+    setState(prev => {
+      const today = new Date().toISOString().split('T')[0];
+      const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+      
+      let newStreak = prev.dailyStreak.currentStreak;
+      
+      if (prev.dailyStreak.lastActivityDate === today) {
+        // Already updated today
+        return prev;
+      } else if (prev.dailyStreak.lastActivityDate === yesterday) {
+        // Consecutive day
+        newStreak += 1;
+      } else {
+        // Streak broken
+        newStreak = 1;
+      }
+      
+      return {
+        ...prev,
+        dailyStreak: {
+          currentStreak: newStreak,
+          longestStreak: Math.max(prev.dailyStreak.longestStreak, newStreak),
+          lastActivityDate: today,
+        }
+      };
+    });
+  }, []);
+
+  const addTimeSpent = useCallback((seconds: number) => {
+    setState(prev => ({
+      ...prev,
+      totalTimeSpent: prev.totalTimeSpent + seconds,
+      fastestQuizTime: prev.fastestQuizTime === 0 
+        ? seconds 
+        : Math.min(prev.fastestQuizTime, seconds)
+    }));
+  }, []);
+
   const checkAndAwardBadges = useCallback((): Badge | null => {
     let newBadge: Badge | null = null;
 
@@ -265,6 +359,64 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       newBadge = badge;
     }
 
+    // Speed badges
+    if (state.fastestQuizTime > 0 && state.fastestQuizTime <= 60 && !state.badges.some(b => b.id === 'speed-demon')) {
+      const badge = { ...defaultBadges.find(b => b.id === 'speed-demon')!, earnedAt: new Date() };
+      addBadge(badge);
+      newBadge = badge;
+    }
+
+    if (state.fastestQuizTime > 0 && state.fastestQuizTime <= 30 && !state.badges.some(b => b.id === 'lightning-fast')) {
+      const badge = { ...defaultBadges.find(b => b.id === 'lightning-fast')!, earnedAt: new Date() };
+      addBadge(badge);
+      newBadge = badge;
+    }
+
+    if (state.challengeScores.length >= 10 && !state.badges.some(b => b.id === 'time-master')) {
+      const badge = { ...defaultBadges.find(b => b.id === 'time-master')!, earnedAt: new Date() };
+      addBadge(badge);
+      newBadge = badge;
+    }
+
+    // Streak badges
+    const streakBadges = [
+      { id: 'streak-3', threshold: 3 },
+      { id: 'streak-7', threshold: 7 },
+      { id: 'streak-30', threshold: 30 },
+      { id: 'streak-100', threshold: 100 },
+    ];
+    
+    for (const sb of streakBadges) {
+      if (state.dailyStreak.longestStreak >= sb.threshold && !state.badges.some(b => b.id === sb.id)) {
+        const badge = { ...defaultBadges.find(b => b.id === sb.id)!, earnedAt: new Date() };
+        addBadge(badge);
+        newBadge = badge;
+      }
+    }
+
+    // Perfect score count badges
+    const perfectCount = state.quizResults.filter(r => r.percentage === 100).length;
+    const perfectBadges = [
+      { id: 'perfect-5', threshold: 5 },
+      { id: 'perfect-10', threshold: 10 },
+      { id: 'perfect-25', threshold: 25 },
+    ];
+    
+    for (const pb of perfectBadges) {
+      if (perfectCount >= pb.threshold && !state.badges.some(b => b.id === pb.id)) {
+        const badge = { ...defaultBadges.find(b => b.id === pb.id)!, earnedAt: new Date() };
+        addBadge(badge);
+        newBadge = badge;
+      }
+    }
+
+    // Scripture scholar badge
+    if (state.totalQuizzesCompleted >= 100 && !state.badges.some(b => b.id === 'scripture-scholar')) {
+      const badge = { ...defaultBadges.find(b => b.id === 'scripture-scholar')!, earnedAt: new Date() };
+      addBadge(badge);
+      newBadge = badge;
+    }
+
     return newBadge;
   }, [state, addBadge]);
 
@@ -277,7 +429,9 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       addFavoriteVerse,
       removeFavoriteVerse,
       incrementChaptersRead,
-      checkAndAwardBadges
+      checkAndAwardBadges,
+      updateDailyStreak,
+      addTimeSpent
     }}>
       {children}
     </GameContext.Provider>
