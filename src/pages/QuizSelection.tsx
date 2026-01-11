@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HelpCircle, BookOpen, Users, Scroll, Cross, Mail, FileText, Shuffle, Zap, Flame, Globe, Star } from 'lucide-react';
+import { HelpCircle, BookOpen, Users, Scroll, Cross, Mail, FileText, Shuffle, Zap, Flame, Globe, Star, Crown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +16,7 @@ import bgApocalypse from '@/assets/bg-apocalypse.jpg';
 import bgActs from '@/assets/bg-acts.jpg';
 import bgCharacters from '@/assets/bg-characters.jpg';
 import bgQuizDefault from '@/assets/bg-quiz-default.jpg';
+import bgHistorical from '@/assets/bg-historical.jpg';
 
 const QuizSelection: React.FC = () => {
   const { t } = useLanguage();
@@ -27,6 +28,13 @@ const QuizSelection: React.FC = () => {
       questions: 100,
       descriptionKey: 'pentateuchDesc',
       bgImage: bgPentateuch,
+    },
+    {
+      id: 'historicalBooks',
+      icon: Crown,
+      questions: 50,
+      descriptionKey: 'historicalBooksDesc',
+      bgImage: bgHistorical,
     },
     {
       id: 'minorProphets',
