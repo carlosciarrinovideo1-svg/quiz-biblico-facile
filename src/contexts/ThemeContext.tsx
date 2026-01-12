@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { z } from 'zod';
 
 type Theme = 'light' | 'dark';
+
+const ThemeSchema = z.enum(['light', 'dark']);
 
 interface ThemeContextType {
   theme: Theme;
@@ -9,12 +12,24 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
+const loadTheme = (): Theme => {
+  try {
     const saved = localStorage.getItem('bible-app-theme');
-    if (saved === 'dark' || saved === 'light') return saved;
+    const result = ThemeSchema.safeParse(saved);
+    
+    if (result.success) {
+      return result.data;
+    }
+    
+    // Fallback to system preference
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
+  } catch {
+    return 'light';
+  }
+};
+
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [theme, setTheme] = useState<Theme>(loadTheme);
 
   useEffect(() => {
     const root = window.document.documentElement;

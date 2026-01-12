@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bell, BellOff, Clock, BookOpen, Zap } from 'lucide-react';
+import { z } from 'zod';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { usePushNotifications } from '@/hooks/usePushNotifications';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,11 +12,42 @@ import { toast } from 'sonner';
 
 const STORAGE_KEY = 'bible-app-notifications';
 
-interface NotificationSettings {
-  dailyChallengeEnabled: boolean;
-  bibleStudyEnabled: boolean;
-  bibleStudyTime: { hour: number; minute: number };
-}
+// Zod schema for validation
+const NotificationSettingsSchema = z.object({
+  dailyChallengeEnabled: z.boolean(),
+  bibleStudyEnabled: z.boolean(),
+  bibleStudyTime: z.object({
+    hour: z.number().int().min(0).max(23),
+    minute: z.number().int().min(0).max(59),
+  }),
+});
+
+type NotificationSettingsType = z.infer<typeof NotificationSettingsSchema>;
+
+const defaultSettings: NotificationSettingsType = {
+  dailyChallengeEnabled: false,
+  bibleStudyEnabled: false,
+  bibleStudyTime: { hour: 9, minute: 0 },
+};
+
+const loadSettings = (): NotificationSettingsType => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return defaultSettings;
+    
+    const parsed = JSON.parse(saved);
+    const result = NotificationSettingsSchema.safeParse(parsed);
+    
+    if (result.success) {
+      return result.data;
+    }
+    
+    console.warn('Invalid notification settings in localStorage, using defaults');
+    return defaultSettings;
+  } catch {
+    return defaultSettings;
+  }
+};
 
 const NotificationSettings: React.FC = () => {
   const { t } = useLanguage();
@@ -25,25 +57,20 @@ const NotificationSettings: React.FC = () => {
     requestPermission, 
     scheduleDailyChallenge,
     scheduleBibleStudyReminder,
-    cancelAllNotifications 
   } = usePushNotifications();
 
-  const [settings, setSettings] = useState<NotificationSettings>({
-    dailyChallengeEnabled: false,
-    bibleStudyEnabled: false,
-    bibleStudyTime: { hour: 9, minute: 0 },
-  });
+  const [settings, setSettings] = useState<NotificationSettingsType>(loadSettings);
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        setSettings(prev => ({ ...prev, ...JSON.parse(saved) }));
-      }
-    } catch {
-      // ignore
-    }
+    setSettings(loadSettings());
   }, []);
+
+  const saveSettings = (newSettings: NotificationSettingsType) => {
+    const result = NotificationSettingsSchema.safeParse(newSettings);
+    if (result.success) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(result.data));
+    }
+  };
 
   const handleEnableNotifications = async () => {
     const granted = await requestPermission();
@@ -57,7 +84,7 @@ const NotificationSettings: React.FC = () => {
   const handleDailyChallengeToggle = (enabled: boolean) => {
     const newSettings = { ...settings, dailyChallengeEnabled: enabled };
     setSettings(newSettings);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newSettings));
+    saveSettings(newSettings);
     
     if (enabled) {
       scheduleDailyChallenge();
@@ -70,7 +97,7 @@ const NotificationSettings: React.FC = () => {
   const handleBibleStudyToggle = (enabled: boolean) => {
     const newSettings = { ...settings, bibleStudyEnabled: enabled };
     setSettings(newSettings);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newSettings));
+    saveSettings(newSettings);
     
     if (enabled) {
       scheduleBibleStudyReminder(settings.bibleStudyTime.hour, settings.bibleStudyTime.minute);
@@ -82,12 +109,14 @@ const NotificationSettings: React.FC = () => {
 
   const handleTimeChange = (value: string) => {
     const [hour, minute] = value.split(':').map(Number);
+    if (isNaN(hour) || isNaN(minute)) return;
+    
     const newSettings = { 
       ...settings, 
       bibleStudyTime: { hour, minute } 
     };
     setSettings(newSettings);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newSettings));
+    saveSettings(newSettings);
     
     if (settings.bibleStudyEnabled) {
       scheduleBibleStudyReminder(hour, minute);

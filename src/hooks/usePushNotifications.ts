@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { z } from 'zod';
 
 interface NotificationOptions {
   title: string;
@@ -20,17 +21,49 @@ interface UsePushNotificationsReturn {
 
 const STORAGE_KEY = 'bible-app-notifications';
 
-interface NotificationSettings {
-  dailyChallengeEnabled: boolean;
-  bibleStudyEnabled: boolean;
-  bibleStudyTime: { hour: number; minute: number };
-  lastDailyChallengeDate?: string;
-}
+// Zod schema for validation
+const NotificationSettingsSchema = z.object({
+  dailyChallengeEnabled: z.boolean(),
+  bibleStudyEnabled: z.boolean(),
+  bibleStudyTime: z.object({
+    hour: z.number().int().min(0).max(23),
+    minute: z.number().int().min(0).max(59),
+  }),
+  lastDailyChallengeDate: z.string().optional(),
+});
+
+type NotificationSettings = z.infer<typeof NotificationSettingsSchema>;
 
 const defaultSettings: NotificationSettings = {
   dailyChallengeEnabled: false,
   bibleStudyEnabled: false,
   bibleStudyTime: { hour: 9, minute: 0 },
+};
+
+const getSettings = (): NotificationSettings => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return defaultSettings;
+    
+    const parsed = JSON.parse(saved);
+    const result = NotificationSettingsSchema.safeParse(parsed);
+    
+    if (result.success) {
+      return result.data;
+    }
+    
+    console.warn('Invalid notification settings in localStorage, using defaults');
+    return defaultSettings;
+  } catch {
+    return defaultSettings;
+  }
+};
+
+const saveSettings = (settings: NotificationSettings) => {
+  const result = NotificationSettingsSchema.safeParse(settings);
+  if (result.success) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(result.data));
+  }
 };
 
 export const usePushNotifications = (): UsePushNotificationsReturn => {
@@ -42,6 +75,21 @@ export const usePushNotifications = (): UsePushNotificationsReturn => {
       setPermission(Notification.permission);
     } else {
       setPermission('unsupported');
+    }
+  }, [isSupported]);
+
+  const showNotificationInternal = useCallback((options: NotificationOptions) => {
+    if (!isSupported || Notification.permission !== 'granted') return;
+
+    try {
+      new Notification(options.title, {
+        body: options.body,
+        icon: options.icon || '/favicon.ico',
+        tag: options.tag,
+        requireInteraction: options.requireInteraction || false,
+      });
+    } catch (error) {
+      console.error('Error showing notification:', error);
     }
   }, [isSupported]);
 
@@ -86,20 +134,7 @@ export const usePushNotifications = (): UsePushNotificationsReturn => {
     const interval = setInterval(checkScheduledNotifications, 60000);
 
     return () => clearInterval(interval);
-  }, [isSupported, permission]);
-
-  const getSettings = (): NotificationSettings => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? { ...defaultSettings, ...JSON.parse(saved) } : defaultSettings;
-    } catch {
-      return defaultSettings;
-    }
-  };
-
-  const saveSettings = (settings: NotificationSettings) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-  };
+  }, [isSupported, permission, showNotificationInternal]);
 
   const requestPermission = useCallback(async (): Promise<boolean> => {
     if (!isSupported) return false;
@@ -114,24 +149,9 @@ export const usePushNotifications = (): UsePushNotificationsReturn => {
     }
   }, [isSupported]);
 
-  const showNotificationInternal = (options: NotificationOptions) => {
-    if (!isSupported || permission !== 'granted') return;
-
-    try {
-      new Notification(options.title, {
-        body: options.body,
-        icon: options.icon || '/favicon.ico',
-        tag: options.tag,
-        requireInteraction: options.requireInteraction || false,
-      });
-    } catch (error) {
-      console.error('Error showing notification:', error);
-    }
-  };
-
   const showNotification = useCallback((options: NotificationOptions) => {
     showNotificationInternal(options);
-  }, [isSupported, permission]);
+  }, [showNotificationInternal]);
 
   const scheduleDailyChallenge = useCallback(() => {
     const settings = getSettings();
@@ -139,6 +159,9 @@ export const usePushNotifications = (): UsePushNotificationsReturn => {
   }, []);
 
   const scheduleBibleStudyReminder = useCallback((hour: number, minute: number) => {
+    // Validate hour and minute
+    if (hour < 0 || hour > 23 || minute < 0 || minute > 59) return;
+    
     const settings = getSettings();
     saveSettings({
       ...settings,
