@@ -6,6 +6,7 @@ import { prophetsQuestions } from './questions/prophetsQuestions';
 import { pentateuchQuestions } from './questions/pentateuchQuestions';
 import { paulineQuestions } from './questions/paulineQuestions';
 import { historicalBooksQuestions } from './questions/historicalBooksQuestions';
+import { wisdomBooksQuestions } from './questions/wisdomBooksQuestions';
 import { QuizQuestion } from './types';
 
 export type { QuizQuestion } from './types';
@@ -222,6 +223,9 @@ export function getQuestionsByCategory(category: string): QuizQuestion[] {
   }
   if (category === 'historicalBooks') {
     return historicalBooksQuestions;
+  }
+  if (category === 'wisdomBooks') {
+    return wisdomBooksQuestions;
   }
   if (category === 'paulineLetters') {
     return paulineQuestions;

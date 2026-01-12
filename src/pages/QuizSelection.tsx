@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { HelpCircle, BookOpen, Users, Scroll, Cross, Mail, FileText, Shuffle, Zap, Flame, Globe, Star, Crown } from 'lucide-react';
+import { HelpCircle, BookOpen, Users, Scroll, Cross, Mail, FileText, Shuffle, Zap, Flame, Globe, Star, Crown, Feather } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -17,6 +17,7 @@ import bgActs from '@/assets/bg-acts.jpg';
 import bgCharacters from '@/assets/bg-characters.jpg';
 import bgQuizDefault from '@/assets/bg-quiz-default.jpg';
 import bgHistorical from '@/assets/bg-historical.jpg';
+import bgWisdom from '@/assets/bg-wisdom.jpg';
 
 const QuizSelection: React.FC = () => {
   const { t } = useLanguage();
@@ -35,6 +36,13 @@ const QuizSelection: React.FC = () => {
       questions: 50,
       descriptionKey: 'historicalBooksDesc',
       bgImage: bgHistorical,
+    },
+    {
+      id: 'wisdomBooks',
+      icon: Feather,
+      questions: 50,
+      descriptionKey: 'wisdomBooksDesc',
+      bgImage: bgWisdom,
     },
     {
       id: 'minorProphets',

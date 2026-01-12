@@ -1,0 +1,63 @@
+import { QuizQuestion } from '../types';
+
+export const wisdomBooksQuestions: QuizQuestion[] = [
+  // Giobbe (Job)
+  { id: 'wis1', question: 'In quale terra viveva Giobbe?', options: ['Canaan', 'Uz', 'Edom', 'Moab'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Giobbe 1:1' },
+  { id: 'wis2', question: 'Quanti figli aveva Giobbe all\'inizio?', options: ['Sette figli e tre figlie', 'Dieci figli', 'Tre figli e sette figlie', 'Dodici figli'], correctIndex: 0, category: 'wisdomBooks', difficulty: 'medium', reference: 'Giobbe 1:2' },
+  { id: 'wis3', question: 'Chi colpì Giobbe con ulcere maligne?', options: ['Dio', 'Satana', 'Un angelo', 'I suoi nemici'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Giobbe 2:7' },
+  { id: 'wis4', question: 'Cosa disse la moglie di Giobbe quando lui fu colpito?', options: ['Rimani fedele a Dio', 'Maledici Dio e muori', 'Prega per guarire', 'Cerca aiuto medico'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Giobbe 2:9' },
+  { id: 'wis5', question: 'Quanti amici vennero a consolare Giobbe?', options: ['Due', 'Tre', 'Quattro', 'Cinque'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Giobbe 2:11' },
+  { id: 'wis6', question: 'Chi fu il giovane che parlò dopo i tre amici di Giobbe?', options: ['Elifaz', 'Bildad', 'Sofar', 'Eliu'], correctIndex: 3, category: 'wisdomBooks', difficulty: 'hard', reference: 'Giobbe 32:2-6' },
+  { id: 'wis7', question: 'Da dove parlò Dio a Giobbe?', options: ['Dal cielo', 'Da un roveto ardente', 'Dal turbine', 'Dalla nuvola'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'medium', reference: 'Giobbe 38:1' },
+  { id: 'wis8', question: 'Cosa ricevette Giobbe alla fine della prova?', options: ['La stessa quantità di prima', 'Il doppio di quello che aveva', 'La metà di prima', 'Nulla'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Giobbe 42:10' },
+  { id: 'wis9', question: 'Quanti anni visse Giobbe dopo la prova?', options: ['70 anni', '100 anni', '140 anni', '120 anni'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'hard', reference: 'Giobbe 42:16' },
+  { id: 'wis10', question: 'Come si chiamava uno degli amici di Giobbe proveniente da Teman?', options: ['Bildad', 'Sofar', 'Elifaz', 'Eliu'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'hard', reference: 'Giobbe 2:11' },
+
+  // Salmi (Psalms)
+  { id: 'wis11', question: 'Chi scrisse la maggior parte dei Salmi?', options: ['Mosè', 'Salomone', 'Davide', 'Asaf'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'easy', reference: 'Titoli dei Salmi' },
+  { id: 'wis12', question: 'Quanti Salmi ci sono nel libro dei Salmi?', options: ['100', '119', '150', '200'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'easy', reference: 'Salmo 150' },
+  { id: 'wis13', question: 'Quale Salmo inizia con "Il SIGNORE è il mio pastore"?', options: ['Salmo 1', 'Salmo 23', 'Salmo 51', 'Salmo 100'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Salmo 23:1' },
+  { id: 'wis14', question: 'Quale Salmo è il più lungo della Bibbia?', options: ['Salmo 23', 'Salmo 100', 'Salmo 119', 'Salmo 150'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'medium', reference: 'Salmo 119' },
+  { id: 'wis15', question: 'Quale Salmo inizia con "Beato l\'uomo che non cammina secondo il consiglio degli empi"?', options: ['Salmo 1', 'Salmo 23', 'Salmo 51', 'Salmo 91'], correctIndex: 0, category: 'wisdomBooks', difficulty: 'medium', reference: 'Salmo 1:1' },
+  { id: 'wis16', question: 'Quale Salmo è noto come il Salmo di pentimento di Davide?', options: ['Salmo 23', 'Salmo 32', 'Salmo 51', 'Salmo 100'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'medium', reference: 'Salmo 51 (titolo)' },
+  { id: 'wis17', question: 'Nel Salmo 23, cosa prepara Dio davanti a noi?', options: ['Un altare', 'Una tavola', 'Un trono', 'Un letto'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Salmo 23:5' },
+  { id: 'wis18', question: 'Quale Salmo dice "Questo è il giorno che il SIGNORE ha fatto"?', options: ['Salmo 100', 'Salmo 118', 'Salmo 121', 'Salmo 150'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Salmo 118:24' },
+  { id: 'wis19', question: 'Nel Salmo 91, dove si dice che il credente abita?', options: ['Nel tempio', 'Nel rifugio dell\'Altissimo', 'Nel deserto', 'Nella città santa'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Salmo 91:1' },
+  { id: 'wis20', question: 'Quale Salmo inizia con "Perché le nazioni si agitano"?', options: ['Salmo 1', 'Salmo 2', 'Salmo 22', 'Salmo 110'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'hard', reference: 'Salmo 2:1' },
+
+  // Proverbi (Proverbs)
+  { id: 'wis21', question: 'Chi scrisse la maggior parte dei Proverbi?', options: ['Davide', 'Salomone', 'Mosè', 'Samuele'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Proverbi 1:1' },
+  { id: 'wis22', question: 'Secondo Proverbi 1:7, qual è il principio della conoscenza?', options: ['Lo studio', 'La sapienza', 'Il timore del SIGNORE', 'L\'esperienza'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'easy', reference: 'Proverbi 1:7' },
+  { id: 'wis23', question: 'In Proverbi, quale animale viene lodato per la sua operosità?', options: ['L\'ape', 'La formica', 'L\'aquila', 'Il leone'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Proverbi 6:6' },
+  { id: 'wis24', question: 'Secondo Proverbi 31, chi è più preziosa delle perle?', options: ['La sapienza', 'La donna virtuosa', 'La pace', 'La fede'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Proverbi 31:10' },
+  { id: 'wis25', question: 'Che cosa, secondo Proverbi 15:1, calma il furore?', options: ['Il silenzio', 'La risposta dolce', 'La preghiera', 'La pazienza'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Proverbi 15:1' },
+  { id: 'wis26', question: 'Secondo Proverbi 22:6, cosa bisogna fare con il fanciullo?', options: ['Lasciarlo libero', 'Insegnargli la via', 'Proteggerlo sempre', 'Dargli ricchezze'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Proverbi 22:6' },
+  { id: 'wis27', question: 'Cosa non bisogna fare, secondo Proverbi 3:5?', options: ['Fidarsi di Dio', 'Appoggiarsi al proprio discernimento', 'Cercare la sapienza', 'Temere il SIGNORE'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Proverbi 3:5' },
+  { id: 'wis28', question: 'Secondo Proverbi, cosa fa chi trova una moglie?', options: ['Trova problemi', 'Trova un bene', 'Trova saggezza', 'Trova ricchezza'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Proverbi 18:22' },
+  { id: 'wis29', question: 'Chi sono gli autori citati negli ultimi capitoli di Proverbi oltre a Salomone?', options: ['Davide e Asaf', 'Agur e Lemuel', 'Mosè e Aronne', 'Ietro e Giobbe'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'hard', reference: 'Proverbi 30:1, 31:1' },
+  { id: 'wis30', question: 'Secondo Proverbi 16:18, cosa precede la rovina?', options: ['L\'ignoranza', 'L\'orgoglio', 'La pigrizia', 'L\'ira'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Proverbi 16:18' },
+
+  // Ecclesiaste (Ecclesiastes)
+  { id: 'wis31', question: 'Chi è tradizionalmente considerato l\'autore dell\'Ecclesiaste?', options: ['Davide', 'Salomone', 'Mosè', 'Isaia'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Ecclesiaste 1:1' },
+  { id: 'wis32', question: 'Qual è la famosa frase di apertura dell\'Ecclesiaste?', options: ['In principio', 'Beato l\'uomo', 'Vanità delle vanità', 'Il SIGNORE è il mio pastore'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'easy', reference: 'Ecclesiaste 1:2' },
+  { id: 'wis33', question: 'Secondo Ecclesiaste 3, per ogni cosa c\'è...?', options: ['Un prezzo', 'Un tempo', 'Una ragione', 'Una fine'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Ecclesiaste 3:1' },
+  { id: 'wis34', question: 'Cosa dice l\'Ecclesiaste riguardo a un cordone a tre capi?', options: ['È debole', 'Non si rompe facilmente', 'È inutile', 'È troppo forte'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Ecclesiaste 4:12' },
+  { id: 'wis35', question: 'Secondo Ecclesiaste, cosa bisogna ricordare nei giorni della gioventù?', options: ['I genitori', 'Il Creatore', 'I comandamenti', 'La legge'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Ecclesiaste 12:1' },
+  { id: 'wis36', question: 'Qual è la conclusione finale dell\'Ecclesiaste?', options: ['Cerca la ricchezza', 'Temi Dio e osserva i suoi comandamenti', 'Goditi la vita', 'Evita il male'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Ecclesiaste 12:13' },
+  { id: 'wis37', question: 'Cosa dice l\'Ecclesiaste riguardo al denaro?', options: ['È la radice di ogni male', 'Chi ama il denaro non è mai sazio', 'È una benedizione', 'Non è importante'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Ecclesiaste 5:10' },
+  { id: 'wis38', question: 'Secondo Ecclesiaste 7:1, cosa è meglio di un olio profumato?', options: ['L\'oro', 'La saggezza', 'Un buon nome', 'La forza'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'hard', reference: 'Ecclesiaste 7:1' },
+  { id: 'wis39', question: 'Cosa paragona l\'Ecclesiaste alla polvere che torna alla terra?', options: ['Il corpo', 'La ricchezza', 'La fama', 'La gioventù'], correctIndex: 0, category: 'wisdomBooks', difficulty: 'medium', reference: 'Ecclesiaste 12:7' },
+  { id: 'wis40', question: 'Come viene chiamato l\'autore dell\'Ecclesiaste in ebraico?', options: ['Hakham', 'Qoelet', 'Rabbi', 'Nabi'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'hard', reference: 'Ecclesiaste 1:1' },
+
+  // Cantico dei Cantici (Song of Solomon)
+  { id: 'wis41', question: 'Chi è l\'autore tradizionale del Cantico dei Cantici?', options: ['Davide', 'Salomone', 'Asaf', 'Ethan'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'easy', reference: 'Cantico 1:1' },
+  { id: 'wis42', question: 'Come viene chiamata la donna amata nel Cantico?', options: ['Principessa', 'Sulamita', 'Regina', 'Sposa'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Cantico 6:13' },
+  { id: 'wis43', question: 'A cosa viene paragonato l\'amore nel Cantico 8:6?', options: ['All\'acqua', 'Alla morte', 'Al fuoco', 'Al vento'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Cantico 8:6' },
+  { id: 'wis44', question: 'Quale fiore viene menzionato spesso nel Cantico dei Cantici?', options: ['La rosa', 'Il giglio', 'Il tulipano', 'L\'orchidea'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Cantico 2:1-2' },
+  { id: 'wis45', question: 'Secondo il Cantico, cosa bisogna catturare nelle vigne?', options: ['Le uve', 'Le volpi', 'Gli uccelli', 'I ladri'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'hard', reference: 'Cantico 2:15' },
+  { id: 'wis46', question: 'Come viene descritto il giardino dell\'amata nel Cantico?', options: ['Arido', 'Recintato', 'Aperto', 'Abbandonato'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'hard', reference: 'Cantico 4:12' },
+  { id: 'wis47', question: 'Quale albero da frutto viene menzionato frequentemente nel Cantico?', options: ['L\'ulivo', 'La vite', 'Il melo', 'Il fico'], correctIndex: 2, category: 'wisdomBooks', difficulty: 'medium', reference: 'Cantico 2:3' },
+  { id: 'wis48', question: 'Cosa dice il Cantico riguardo all\'amore e le acque?', options: ['Le acque spengono l\'amore', 'Le grandi acque non possono spegnere l\'amore', 'L\'amore è come le acque', 'Le acque purificano l\'amore'], correctIndex: 1, category: 'wisdomBooks', difficulty: 'medium', reference: 'Cantico 8:7' },
+  { id: 'wis49', question: 'A quale città viene paragonata la bellezza dell\'amata?', options: ['Gerusalemme', 'Babilonia', 'Damasco', 'Tirza'], correctIndex: 3, category: 'wisdomBooks', difficulty: 'hard', reference: 'Cantico 6:4' },
+  { id: 'wis50', question: 'Quale stagione viene celebrata nel Cantico 2:11-12?', options: ['L\'estate', 'L\'autunno', 'L\'inverno finito', 'La primavera'], correctIndex: 3, category: 'wisdomBooks', difficulty: 'medium', reference: 'Cantico 2:11-12' },
+];

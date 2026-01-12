@@ -1,0 +1,373 @@
+import { Language } from '@/contexts/LanguageContext';
+
+type QuestionTranslation = {
+  question: string;
+  options: string[];
+  explanation?: string;
+};
+
+type TranslationMap = {
+  [lang in Language]?: QuestionTranslation;
+};
+
+export const wisdomBooksTranslations: Record<string, TranslationMap> = {
+  // Giobbe
+  wis1: {
+    en: { question: 'In which land did Job live?', options: ['Canaan', 'Uz', 'Edom', 'Moab'] },
+    it: { question: 'In quale terra viveva Giobbe?', options: ['Canaan', 'Uz', 'Edom', 'Moab'] },
+    es: { question: '¿En qué tierra vivía Job?', options: ['Canaán', 'Uz', 'Edom', 'Moab'] },
+    pt: { question: 'Em que terra vivia Jó?', options: ['Canaã', 'Uz', 'Edom', 'Moabe'] },
+    fr: { question: 'Dans quel pays vivait Job?', options: ['Canaan', 'Uts', 'Édom', 'Moab'] },
+  },
+  wis2: {
+    en: { question: 'How many children did Job have at the beginning?', options: ['Seven sons and three daughters', 'Ten sons', 'Three sons and seven daughters', 'Twelve sons'] },
+    it: { question: 'Quanti figli aveva Giobbe all\'inizio?', options: ['Sette figli e tre figlie', 'Dieci figli', 'Tre figli e sette figlie', 'Dodici figli'] },
+    es: { question: '¿Cuántos hijos tenía Job al principio?', options: ['Siete hijos y tres hijas', 'Diez hijos', 'Tres hijos y siete hijas', 'Doce hijos'] },
+    pt: { question: 'Quantos filhos Jó tinha no início?', options: ['Sete filhos e três filhas', 'Dez filhos', 'Três filhos e sete filhas', 'Doze filhos'] },
+    fr: { question: 'Combien d\'enfants Job avait-il au début?', options: ['Sept fils et trois filles', 'Dix fils', 'Trois fils et sept filles', 'Douze fils'] },
+  },
+  wis3: {
+    en: { question: 'Who struck Job with painful sores?', options: ['God', 'Satan', 'An angel', 'His enemies'] },
+    it: { question: 'Chi colpì Giobbe con ulcere maligne?', options: ['Dio', 'Satana', 'Un angelo', 'I suoi nemici'] },
+    es: { question: '¿Quién hirió a Job con llagas malignas?', options: ['Dios', 'Satanás', 'Un ángel', 'Sus enemigos'] },
+    pt: { question: 'Quem feriu Jó com úlceras malignas?', options: ['Deus', 'Satanás', 'Um anjo', 'Seus inimigos'] },
+    fr: { question: 'Qui a frappé Job d\'ulcères malins?', options: ['Dieu', 'Satan', 'Un ange', 'Ses ennemis'] },
+  },
+  wis4: {
+    en: { question: 'What did Job\'s wife say when he was struck?', options: ['Stay faithful to God', 'Curse God and die', 'Pray to be healed', 'Seek medical help'] },
+    it: { question: 'Cosa disse la moglie di Giobbe quando lui fu colpito?', options: ['Rimani fedele a Dio', 'Maledici Dio e muori', 'Prega per guarire', 'Cerca aiuto medico'] },
+    es: { question: '¿Qué dijo la esposa de Job cuando él fue herido?', options: ['Permanece fiel a Dios', 'Maldice a Dios y muere', 'Ora para sanar', 'Busca ayuda médica'] },
+    pt: { question: 'O que a esposa de Jó disse quando ele foi ferido?', options: ['Permaneça fiel a Deus', 'Amaldiçoa a Deus e morre', 'Ore para ser curado', 'Procure ajuda médica'] },
+    fr: { question: 'Que dit la femme de Job quand il fut frappé?', options: ['Reste fidèle à Dieu', 'Maudis Dieu et meurs', 'Prie pour guérir', 'Cherche une aide médicale'] },
+  },
+  wis5: {
+    en: { question: 'How many friends came to comfort Job?', options: ['Two', 'Three', 'Four', 'Five'] },
+    it: { question: 'Quanti amici vennero a consolare Giobbe?', options: ['Due', 'Tre', 'Quattro', 'Cinque'] },
+    es: { question: '¿Cuántos amigos vinieron a consolar a Job?', options: ['Dos', 'Tres', 'Cuatro', 'Cinco'] },
+    pt: { question: 'Quantos amigos vieram consolar Jó?', options: ['Dois', 'Três', 'Quatro', 'Cinco'] },
+    fr: { question: 'Combien d\'amis sont venus consoler Job?', options: ['Deux', 'Trois', 'Quatre', 'Cinq'] },
+  },
+  wis6: {
+    en: { question: 'Who was the young man who spoke after Job\'s three friends?', options: ['Eliphaz', 'Bildad', 'Zophar', 'Elihu'] },
+    it: { question: 'Chi fu il giovane che parlò dopo i tre amici di Giobbe?', options: ['Elifaz', 'Bildad', 'Sofar', 'Eliu'] },
+    es: { question: '¿Quién fue el joven que habló después de los tres amigos de Job?', options: ['Elifaz', 'Bildad', 'Zofar', 'Eliú'] },
+    pt: { question: 'Quem foi o jovem que falou depois dos três amigos de Jó?', options: ['Elifaz', 'Bildade', 'Zofar', 'Eliú'] },
+    fr: { question: 'Qui était le jeune homme qui a parlé après les trois amis de Job?', options: ['Éliphaz', 'Bildad', 'Tsophar', 'Élihu'] },
+  },
+  wis7: {
+    en: { question: 'From where did God speak to Job?', options: ['From heaven', 'From a burning bush', 'From the whirlwind', 'From the cloud'] },
+    it: { question: 'Da dove parlò Dio a Giobbe?', options: ['Dal cielo', 'Da un roveto ardente', 'Dal turbine', 'Dalla nuvola'] },
+    es: { question: '¿Desde dónde habló Dios a Job?', options: ['Desde el cielo', 'Desde una zarza ardiente', 'Desde el torbellino', 'Desde la nube'] },
+    pt: { question: 'De onde Deus falou com Jó?', options: ['Do céu', 'De uma sarça ardente', 'Do redemoinho', 'Da nuvem'] },
+    fr: { question: 'D\'où Dieu a-t-il parlé à Job?', options: ['Du ciel', 'D\'un buisson ardent', 'Du tourbillon', 'Du nuage'] },
+  },
+  wis8: {
+    en: { question: 'What did Job receive at the end of his trial?', options: ['The same amount as before', 'Double what he had', 'Half of what he had', 'Nothing'] },
+    it: { question: 'Cosa ricevette Giobbe alla fine della prova?', options: ['La stessa quantità di prima', 'Il doppio di quello che aveva', 'La metà di prima', 'Nulla'] },
+    es: { question: '¿Qué recibió Job al final de su prueba?', options: ['La misma cantidad que antes', 'El doble de lo que tenía', 'La mitad de antes', 'Nada'] },
+    pt: { question: 'O que Jó recebeu no final de sua provação?', options: ['A mesma quantidade de antes', 'O dobro do que tinha', 'Metade do que tinha', 'Nada'] },
+    fr: { question: 'Que reçut Job à la fin de son épreuve?', options: ['La même quantité qu\'avant', 'Le double de ce qu\'il avait', 'La moitié de ce qu\'il avait', 'Rien'] },
+  },
+  wis9: {
+    en: { question: 'How many years did Job live after his trial?', options: ['70 years', '100 years', '140 years', '120 years'] },
+    it: { question: 'Quanti anni visse Giobbe dopo la prova?', options: ['70 anni', '100 anni', '140 anni', '120 anni'] },
+    es: { question: '¿Cuántos años vivió Job después de su prueba?', options: ['70 años', '100 años', '140 años', '120 años'] },
+    pt: { question: 'Quantos anos Jó viveu após sua provação?', options: ['70 anos', '100 anos', '140 anos', '120 anos'] },
+    fr: { question: 'Combien d\'années Job a-t-il vécu après son épreuve?', options: ['70 ans', '100 ans', '140 ans', '120 ans'] },
+  },
+  wis10: {
+    en: { question: 'What was the name of Job\'s friend from Teman?', options: ['Bildad', 'Zophar', 'Eliphaz', 'Elihu'] },
+    it: { question: 'Come si chiamava uno degli amici di Giobbe proveniente da Teman?', options: ['Bildad', 'Sofar', 'Elifaz', 'Eliu'] },
+    es: { question: '¿Cómo se llamaba el amigo de Job de Temán?', options: ['Bildad', 'Zofar', 'Elifaz', 'Eliú'] },
+    pt: { question: 'Qual era o nome do amigo de Jó de Temã?', options: ['Bildade', 'Zofar', 'Elifaz', 'Eliú'] },
+    fr: { question: 'Quel était le nom de l\'ami de Job venant de Théman?', options: ['Bildad', 'Tsophar', 'Éliphaz', 'Élihu'] },
+  },
+
+  // Salmi
+  wis11: {
+    en: { question: 'Who wrote most of the Psalms?', options: ['Moses', 'Solomon', 'David', 'Asaph'] },
+    it: { question: 'Chi scrisse la maggior parte dei Salmi?', options: ['Mosè', 'Salomone', 'Davide', 'Asaf'] },
+    es: { question: '¿Quién escribió la mayoría de los Salmos?', options: ['Moisés', 'Salomón', 'David', 'Asaf'] },
+    pt: { question: 'Quem escreveu a maioria dos Salmos?', options: ['Moisés', 'Salomão', 'Davi', 'Asafe'] },
+    fr: { question: 'Qui a écrit la plupart des Psaumes?', options: ['Moïse', 'Salomon', 'David', 'Asaph'] },
+  },
+  wis12: {
+    en: { question: 'How many Psalms are in the book of Psalms?', options: ['100', '119', '150', '200'] },
+    it: { question: 'Quanti Salmi ci sono nel libro dei Salmi?', options: ['100', '119', '150', '200'] },
+    es: { question: '¿Cuántos Salmos hay en el libro de los Salmos?', options: ['100', '119', '150', '200'] },
+    pt: { question: 'Quantos Salmos há no livro dos Salmos?', options: ['100', '119', '150', '200'] },
+    fr: { question: 'Combien de Psaumes y a-t-il dans le livre des Psaumes?', options: ['100', '119', '150', '200'] },
+  },
+  wis13: {
+    en: { question: 'Which Psalm begins with "The LORD is my shepherd"?', options: ['Psalm 1', 'Psalm 23', 'Psalm 51', 'Psalm 100'] },
+    it: { question: 'Quale Salmo inizia con "Il SIGNORE è il mio pastore"?', options: ['Salmo 1', 'Salmo 23', 'Salmo 51', 'Salmo 100'] },
+    es: { question: '¿Qué Salmo comienza con "El SEÑOR es mi pastor"?', options: ['Salmo 1', 'Salmo 23', 'Salmo 51', 'Salmo 100'] },
+    pt: { question: 'Qual Salmo começa com "O SENHOR é o meu pastor"?', options: ['Salmo 1', 'Salmo 23', 'Salmo 51', 'Salmo 100'] },
+    fr: { question: 'Quel Psaume commence par "L\'Éternel est mon berger"?', options: ['Psaume 1', 'Psaume 23', 'Psaume 51', 'Psaume 100'] },
+  },
+  wis14: {
+    en: { question: 'Which is the longest Psalm in the Bible?', options: ['Psalm 23', 'Psalm 100', 'Psalm 119', 'Psalm 150'] },
+    it: { question: 'Quale Salmo è il più lungo della Bibbia?', options: ['Salmo 23', 'Salmo 100', 'Salmo 119', 'Salmo 150'] },
+    es: { question: '¿Cuál es el Salmo más largo de la Biblia?', options: ['Salmo 23', 'Salmo 100', 'Salmo 119', 'Salmo 150'] },
+    pt: { question: 'Qual é o Salmo mais longo da Bíblia?', options: ['Salmo 23', 'Salmo 100', 'Salmo 119', 'Salmo 150'] },
+    fr: { question: 'Quel est le Psaume le plus long de la Bible?', options: ['Psaume 23', 'Psaume 100', 'Psaume 119', 'Psaume 150'] },
+  },
+  wis15: {
+    en: { question: 'Which Psalm begins with "Blessed is the man who does not walk in the counsel of the wicked"?', options: ['Psalm 1', 'Psalm 23', 'Psalm 51', 'Psalm 91'] },
+    it: { question: 'Quale Salmo inizia con "Beato l\'uomo che non cammina secondo il consiglio degli empi"?', options: ['Salmo 1', 'Salmo 23', 'Salmo 51', 'Salmo 91'] },
+    es: { question: '¿Qué Salmo comienza con "Bienaventurado el hombre que no anda según el consejo de los impíos"?', options: ['Salmo 1', 'Salmo 23', 'Salmo 51', 'Salmo 91'] },
+    pt: { question: 'Qual Salmo começa com "Bem-aventurado o homem que não anda segundo o conselho dos ímpios"?', options: ['Salmo 1', 'Salmo 23', 'Salmo 51', 'Salmo 91'] },
+    fr: { question: 'Quel Psaume commence par "Heureux l\'homme qui ne marche pas selon le conseil des méchants"?', options: ['Psaume 1', 'Psaume 23', 'Psaume 51', 'Psaume 91'] },
+  },
+  wis16: {
+    en: { question: 'Which Psalm is known as David\'s penitential Psalm?', options: ['Psalm 23', 'Psalm 32', 'Psalm 51', 'Psalm 100'] },
+    it: { question: 'Quale Salmo è noto come il Salmo di pentimento di Davide?', options: ['Salmo 23', 'Salmo 32', 'Salmo 51', 'Salmo 100'] },
+    es: { question: '¿Qué Salmo es conocido como el Salmo de arrepentimiento de David?', options: ['Salmo 23', 'Salmo 32', 'Salmo 51', 'Salmo 100'] },
+    pt: { question: 'Qual Salmo é conhecido como o Salmo de arrependimento de Davi?', options: ['Salmo 23', 'Salmo 32', 'Salmo 51', 'Salmo 100'] },
+    fr: { question: 'Quel Psaume est connu comme le Psaume de repentance de David?', options: ['Psaume 23', 'Psaume 32', 'Psaume 51', 'Psaume 100'] },
+  },
+  wis17: {
+    en: { question: 'In Psalm 23, what does God prepare before us?', options: ['An altar', 'A table', 'A throne', 'A bed'] },
+    it: { question: 'Nel Salmo 23, cosa prepara Dio davanti a noi?', options: ['Un altare', 'Una tavola', 'Un trono', 'Un letto'] },
+    es: { question: 'En el Salmo 23, ¿qué prepara Dios delante de nosotros?', options: ['Un altar', 'Una mesa', 'Un trono', 'Una cama'] },
+    pt: { question: 'No Salmo 23, o que Deus prepara diante de nós?', options: ['Um altar', 'Uma mesa', 'Um trono', 'Uma cama'] },
+    fr: { question: 'Dans le Psaume 23, que prépare Dieu devant nous?', options: ['Un autel', 'Une table', 'Un trône', 'Un lit'] },
+  },
+  wis18: {
+    en: { question: 'Which Psalm says "This is the day that the LORD has made"?', options: ['Psalm 100', 'Psalm 118', 'Psalm 121', 'Psalm 150'] },
+    it: { question: 'Quale Salmo dice "Questo è il giorno che il SIGNORE ha fatto"?', options: ['Salmo 100', 'Salmo 118', 'Salmo 121', 'Salmo 150'] },
+    es: { question: '¿Qué Salmo dice "Este es el día que hizo el SEÑOR"?', options: ['Salmo 100', 'Salmo 118', 'Salmo 121', 'Salmo 150'] },
+    pt: { question: 'Qual Salmo diz "Este é o dia que o SENHOR fez"?', options: ['Salmo 100', 'Salmo 118', 'Salmo 121', 'Salmo 150'] },
+    fr: { question: 'Quel Psaume dit "C\'est ici le jour que l\'Éternel a fait"?', options: ['Psaume 100', 'Psaume 118', 'Psaume 121', 'Psaume 150'] },
+  },
+  wis19: {
+    en: { question: 'In Psalm 91, where is the believer said to dwell?', options: ['In the temple', 'In the shelter of the Most High', 'In the wilderness', 'In the holy city'] },
+    it: { question: 'Nel Salmo 91, dove si dice che il credente abita?', options: ['Nel tempio', 'Nel rifugio dell\'Altissimo', 'Nel deserto', 'Nella città santa'] },
+    es: { question: 'En el Salmo 91, ¿dónde se dice que habita el creyente?', options: ['En el templo', 'Al abrigo del Altísimo', 'En el desierto', 'En la ciudad santa'] },
+    pt: { question: 'No Salmo 91, onde se diz que o crente habita?', options: ['No templo', 'No abrigo do Altíssimo', 'No deserto', 'Na cidade santa'] },
+    fr: { question: 'Dans le Psaume 91, où est-il dit que le croyant demeure?', options: ['Dans le temple', 'À l\'abri du Très-Haut', 'Dans le désert', 'Dans la ville sainte'] },
+  },
+  wis20: {
+    en: { question: 'Which Psalm begins with "Why do the nations rage"?', options: ['Psalm 1', 'Psalm 2', 'Psalm 22', 'Psalm 110'] },
+    it: { question: 'Quale Salmo inizia con "Perché le nazioni si agitano"?', options: ['Salmo 1', 'Salmo 2', 'Salmo 22', 'Salmo 110'] },
+    es: { question: '¿Qué Salmo comienza con "¿Por qué se amotinan las naciones"?', options: ['Salmo 1', 'Salmo 2', 'Salmo 22', 'Salmo 110'] },
+    pt: { question: 'Qual Salmo começa com "Por que se enfurecem as nações"?', options: ['Salmo 1', 'Salmo 2', 'Salmo 22', 'Salmo 110'] },
+    fr: { question: 'Quel Psaume commence par "Pourquoi les nations s\'agitent-elles"?', options: ['Psaume 1', 'Psaume 2', 'Psaume 22', 'Psaume 110'] },
+  },
+
+  // Proverbi
+  wis21: {
+    en: { question: 'Who wrote most of the Proverbs?', options: ['David', 'Solomon', 'Moses', 'Samuel'] },
+    it: { question: 'Chi scrisse la maggior parte dei Proverbi?', options: ['Davide', 'Salomone', 'Mosè', 'Samuele'] },
+    es: { question: '¿Quién escribió la mayoría de los Proverbios?', options: ['David', 'Salomón', 'Moisés', 'Samuel'] },
+    pt: { question: 'Quem escreveu a maioria dos Provérbios?', options: ['Davi', 'Salomão', 'Moisés', 'Samuel'] },
+    fr: { question: 'Qui a écrit la plupart des Proverbes?', options: ['David', 'Salomon', 'Moïse', 'Samuel'] },
+  },
+  wis22: {
+    en: { question: 'According to Proverbs 1:7, what is the beginning of knowledge?', options: ['Study', 'Wisdom', 'The fear of the LORD', 'Experience'] },
+    it: { question: 'Secondo Proverbi 1:7, qual è il principio della conoscenza?', options: ['Lo studio', 'La sapienza', 'Il timore del SIGNORE', 'L\'esperienza'] },
+    es: { question: 'Según Proverbios 1:7, ¿cuál es el principio del conocimiento?', options: ['El estudio', 'La sabiduría', 'El temor del SEÑOR', 'La experiencia'] },
+    pt: { question: 'Segundo Provérbios 1:7, qual é o princípio do conhecimento?', options: ['O estudo', 'A sabedoria', 'O temor do SENHOR', 'A experiência'] },
+    fr: { question: 'Selon Proverbes 1:7, quel est le commencement de la connaissance?', options: ['L\'étude', 'La sagesse', 'La crainte de l\'Éternel', 'L\'expérience'] },
+  },
+  wis23: {
+    en: { question: 'In Proverbs, which animal is praised for its diligence?', options: ['The bee', 'The ant', 'The eagle', 'The lion'] },
+    it: { question: 'In Proverbi, quale animale viene lodato per la sua operosità?', options: ['L\'ape', 'La formica', 'L\'aquila', 'Il leone'] },
+    es: { question: 'En Proverbios, ¿qué animal es elogiado por su diligencia?', options: ['La abeja', 'La hormiga', 'El águila', 'El león'] },
+    pt: { question: 'Em Provérbios, qual animal é elogiado por sua diligência?', options: ['A abelha', 'A formiga', 'A águia', 'O leão'] },
+    fr: { question: 'Dans les Proverbes, quel animal est loué pour sa diligence?', options: ['L\'abeille', 'La fourmi', 'L\'aigle', 'Le lion'] },
+  },
+  wis24: {
+    en: { question: 'According to Proverbs 31, who is more precious than jewels?', options: ['Wisdom', 'The virtuous woman', 'Peace', 'Faith'] },
+    it: { question: 'Secondo Proverbi 31, chi è più preziosa delle perle?', options: ['La sapienza', 'La donna virtuosa', 'La pace', 'La fede'] },
+    es: { question: 'Según Proverbios 31, ¿quién es más preciosa que las piedras preciosas?', options: ['La sabiduría', 'La mujer virtuosa', 'La paz', 'La fe'] },
+    pt: { question: 'Segundo Provérbios 31, quem vale mais do que pérolas?', options: ['A sabedoria', 'A mulher virtuosa', 'A paz', 'A fé'] },
+    fr: { question: 'Selon Proverbes 31, qui a plus de valeur que les perles?', options: ['La sagesse', 'La femme vertueuse', 'La paix', 'La foi'] },
+  },
+  wis25: {
+    en: { question: 'What, according to Proverbs 15:1, turns away wrath?', options: ['Silence', 'A soft answer', 'Prayer', 'Patience'] },
+    it: { question: 'Che cosa, secondo Proverbi 15:1, calma il furore?', options: ['Il silenzio', 'La risposta dolce', 'La preghiera', 'La pazienza'] },
+    es: { question: '¿Qué, según Proverbios 15:1, calma la ira?', options: ['El silencio', 'La respuesta suave', 'La oración', 'La paciencia'] },
+    pt: { question: 'O que, segundo Provérbios 15:1, desvia a ira?', options: ['O silêncio', 'A resposta branda', 'A oração', 'A paciência'] },
+    fr: { question: 'Que, selon Proverbes 15:1, détourne la fureur?', options: ['Le silence', 'Une réponse douce', 'La prière', 'La patience'] },
+  },
+  wis26: {
+    en: { question: 'According to Proverbs 22:6, what should be done with a child?', options: ['Leave him free', 'Train him in the way', 'Always protect him', 'Give him riches'] },
+    it: { question: 'Secondo Proverbi 22:6, cosa bisogna fare con il fanciullo?', options: ['Lasciarlo libero', 'Insegnargli la via', 'Proteggerlo sempre', 'Dargli ricchezze'] },
+    es: { question: 'Según Proverbios 22:6, ¿qué se debe hacer con el niño?', options: ['Dejarlo libre', 'Instruirle en el camino', 'Protegerlo siempre', 'Darle riquezas'] },
+    pt: { question: 'Segundo Provérbios 22:6, o que deve ser feito com a criança?', options: ['Deixá-la livre', 'Instruí-la no caminho', 'Protegê-la sempre', 'Dar-lhe riquezas'] },
+    fr: { question: 'Selon Proverbes 22:6, que faut-il faire avec l\'enfant?', options: ['Le laisser libre', 'L\'instruire dans la voie', 'Le protéger toujours', 'Lui donner des richesses'] },
+  },
+  wis27: {
+    en: { question: 'What should we not do, according to Proverbs 3:5?', options: ['Trust God', 'Lean on our own understanding', 'Seek wisdom', 'Fear the LORD'] },
+    it: { question: 'Cosa non bisogna fare, secondo Proverbi 3:5?', options: ['Fidarsi di Dio', 'Appoggiarsi al proprio discernimento', 'Cercare la sapienza', 'Temere il SIGNORE'] },
+    es: { question: '¿Qué no debemos hacer, según Proverbios 3:5?', options: ['Confiar en Dios', 'Apoyarnos en nuestra propia prudencia', 'Buscar la sabiduría', 'Temer al SEÑOR'] },
+    pt: { question: 'O que não devemos fazer, segundo Provérbios 3:5?', options: ['Confiar em Deus', 'Apoiar-nos em nosso próprio entendimento', 'Buscar a sabedoria', 'Temer o SENHOR'] },
+    fr: { question: 'Que ne faut-il pas faire, selon Proverbes 3:5?', options: ['Faire confiance à Dieu', 'S\'appuyer sur sa propre intelligence', 'Chercher la sagesse', 'Craindre l\'Éternel'] },
+  },
+  wis28: {
+    en: { question: 'According to Proverbs, what does he who finds a wife find?', options: ['Problems', 'A good thing', 'Wisdom', 'Wealth'] },
+    it: { question: 'Secondo Proverbi, cosa fa chi trova una moglie?', options: ['Trova problemi', 'Trova un bene', 'Trova saggezza', 'Trova ricchezza'] },
+    es: { question: 'Según Proverbios, ¿qué encuentra el que halla esposa?', options: ['Problemas', 'Un bien', 'Sabiduría', 'Riqueza'] },
+    pt: { question: 'Segundo Provérbios, o que encontra quem acha uma esposa?', options: ['Problemas', 'Um bem', 'Sabedoria', 'Riqueza'] },
+    fr: { question: 'Selon les Proverbes, que trouve celui qui trouve une femme?', options: ['Des problèmes', 'Un bien', 'La sagesse', 'La richesse'] },
+  },
+  wis29: {
+    en: { question: 'Who are the authors mentioned in the last chapters of Proverbs besides Solomon?', options: ['David and Asaph', 'Agur and Lemuel', 'Moses and Aaron', 'Jethro and Job'] },
+    it: { question: 'Chi sono gli autori citati negli ultimi capitoli di Proverbi oltre a Salomone?', options: ['Davide e Asaf', 'Agur e Lemuel', 'Mosè e Aronne', 'Ietro e Giobbe'] },
+    es: { question: '¿Quiénes son los autores mencionados en los últimos capítulos de Proverbios además de Salomón?', options: ['David y Asaf', 'Agur y Lemuel', 'Moisés y Aarón', 'Jetro y Job'] },
+    pt: { question: 'Quem são os autores mencionados nos últimos capítulos de Provérbios além de Salomão?', options: ['Davi e Asafe', 'Agur e Lemuel', 'Moisés e Arão', 'Jetro e Jó'] },
+    fr: { question: 'Qui sont les auteurs mentionnés dans les derniers chapitres des Proverbes en plus de Salomon?', options: ['David et Asaph', 'Agur et Lemuel', 'Moïse et Aaron', 'Jéthro et Job'] },
+  },
+  wis30: {
+    en: { question: 'According to Proverbs 16:18, what goes before destruction?', options: ['Ignorance', 'Pride', 'Laziness', 'Anger'] },
+    it: { question: 'Secondo Proverbi 16:18, cosa precede la rovina?', options: ['L\'ignoranza', 'L\'orgoglio', 'La pigrizia', 'L\'ira'] },
+    es: { question: 'Según Proverbios 16:18, ¿qué precede a la destrucción?', options: ['La ignorancia', 'El orgullo', 'La pereza', 'La ira'] },
+    pt: { question: 'Segundo Provérbios 16:18, o que precede a ruína?', options: ['A ignorância', 'O orgulho', 'A preguiça', 'A ira'] },
+    fr: { question: 'Selon Proverbes 16:18, qu\'est-ce qui précède la ruine?', options: ['L\'ignorance', 'L\'orgueil', 'La paresse', 'La colère'] },
+  },
+
+  // Ecclesiaste
+  wis31: {
+    en: { question: 'Who is traditionally considered the author of Ecclesiastes?', options: ['David', 'Solomon', 'Moses', 'Isaiah'] },
+    it: { question: 'Chi è tradizionalmente considerato l\'autore dell\'Ecclesiaste?', options: ['Davide', 'Salomone', 'Mosè', 'Isaia'] },
+    es: { question: '¿Quién es tradicionalmente considerado el autor del Eclesiastés?', options: ['David', 'Salomón', 'Moisés', 'Isaías'] },
+    pt: { question: 'Quem é tradicionalmente considerado o autor de Eclesiastes?', options: ['Davi', 'Salomão', 'Moisés', 'Isaías'] },
+    fr: { question: 'Qui est traditionnellement considéré comme l\'auteur de l\'Ecclésiaste?', options: ['David', 'Salomon', 'Moïse', 'Ésaïe'] },
+  },
+  wis32: {
+    en: { question: 'What is the famous opening phrase of Ecclesiastes?', options: ['In the beginning', 'Blessed is the man', 'Vanity of vanities', 'The LORD is my shepherd'] },
+    it: { question: 'Qual è la famosa frase di apertura dell\'Ecclesiaste?', options: ['In principio', 'Beato l\'uomo', 'Vanità delle vanità', 'Il SIGNORE è il mio pastore'] },
+    es: { question: '¿Cuál es la famosa frase de apertura del Eclesiastés?', options: ['En el principio', 'Bienaventurado el hombre', 'Vanidad de vanidades', 'El SEÑOR es mi pastor'] },
+    pt: { question: 'Qual é a famosa frase de abertura de Eclesiastes?', options: ['No princípio', 'Bem-aventurado o homem', 'Vaidade de vaidades', 'O SENHOR é o meu pastor'] },
+    fr: { question: 'Quelle est la célèbre phrase d\'ouverture de l\'Ecclésiaste?', options: ['Au commencement', 'Heureux l\'homme', 'Vanité des vanités', 'L\'Éternel est mon berger'] },
+  },
+  wis33: {
+    en: { question: 'According to Ecclesiastes 3, for everything there is...?', options: ['A price', 'A time', 'A reason', 'An end'] },
+    it: { question: 'Secondo Ecclesiaste 3, per ogni cosa c\'è...?', options: ['Un prezzo', 'Un tempo', 'Una ragione', 'Una fine'] },
+    es: { question: 'Según Eclesiastés 3, para todo hay...?', options: ['Un precio', 'Un tiempo', 'Una razón', 'Un fin'] },
+    pt: { question: 'Segundo Eclesiastes 3, para tudo há...?', options: ['Um preço', 'Um tempo', 'Uma razão', 'Um fim'] },
+    fr: { question: 'Selon Ecclésiaste 3, il y a un temps pour...?', options: ['Un prix', 'Un temps', 'Une raison', 'Une fin'] },
+  },
+  wis34: {
+    en: { question: 'What does Ecclesiastes say about a threefold cord?', options: ['It is weak', 'It is not easily broken', 'It is useless', 'It is too strong'] },
+    it: { question: 'Cosa dice l\'Ecclesiaste riguardo a un cordone a tre capi?', options: ['È debole', 'Non si rompe facilmente', 'È inutile', 'È troppo forte'] },
+    es: { question: '¿Qué dice Eclesiastés sobre un cordón de tres hilos?', options: ['Es débil', 'No se rompe fácilmente', 'Es inútil', 'Es demasiado fuerte'] },
+    pt: { question: 'O que diz Eclesiastes sobre um cordão de três dobras?', options: ['É fraco', 'Não se rompe facilmente', 'É inútil', 'É muito forte'] },
+    fr: { question: 'Que dit l\'Ecclésiaste à propos d\'une corde à trois brins?', options: ['Elle est faible', 'Elle ne se rompt pas facilement', 'Elle est inutile', 'Elle est trop forte'] },
+  },
+  wis35: {
+    en: { question: 'According to Ecclesiastes, what should be remembered in the days of youth?', options: ['The parents', 'The Creator', 'The commandments', 'The law'] },
+    it: { question: 'Secondo Ecclesiaste, cosa bisogna ricordare nei giorni della gioventù?', options: ['I genitori', 'Il Creatore', 'I comandamenti', 'La legge'] },
+    es: { question: 'Según Eclesiastés, ¿qué hay que recordar en los días de la juventud?', options: ['Los padres', 'El Creador', 'Los mandamientos', 'La ley'] },
+    pt: { question: 'Segundo Eclesiastes, o que deve ser lembrado nos dias da juventude?', options: ['Os pais', 'O Criador', 'Os mandamentos', 'A lei'] },
+    fr: { question: 'Selon l\'Ecclésiaste, de quoi faut-il se souvenir dans les jours de sa jeunesse?', options: ['Des parents', 'Du Créateur', 'Des commandements', 'De la loi'] },
+  },
+  wis36: {
+    en: { question: 'What is the final conclusion of Ecclesiastes?', options: ['Seek wealth', 'Fear God and keep his commandments', 'Enjoy life', 'Avoid evil'] },
+    it: { question: 'Qual è la conclusione finale dell\'Ecclesiaste?', options: ['Cerca la ricchezza', 'Temi Dio e osserva i suoi comandamenti', 'Goditi la vita', 'Evita il male'] },
+    es: { question: '¿Cuál es la conclusión final de Eclesiastés?', options: ['Busca la riqueza', 'Teme a Dios y guarda sus mandamientos', 'Disfruta la vida', 'Evita el mal'] },
+    pt: { question: 'Qual é a conclusão final de Eclesiastes?', options: ['Buscar riqueza', 'Temer a Deus e guardar seus mandamentos', 'Aproveitar a vida', 'Evitar o mal'] },
+    fr: { question: 'Quelle est la conclusion finale de l\'Ecclésiaste?', options: ['Rechercher la richesse', 'Craindre Dieu et garder ses commandements', 'Profiter de la vie', 'Éviter le mal'] },
+  },
+  wis37: {
+    en: { question: 'What does Ecclesiastes say about money?', options: ['It is the root of all evil', 'He who loves money is never satisfied', 'It is a blessing', 'It is not important'] },
+    it: { question: 'Cosa dice l\'Ecclesiaste riguardo al denaro?', options: ['È la radice di ogni male', 'Chi ama il denaro non è mai sazio', 'È una benedizione', 'Non è importante'] },
+    es: { question: '¿Qué dice Eclesiastés sobre el dinero?', options: ['Es la raíz de todo mal', 'El que ama el dinero nunca se sacia', 'Es una bendición', 'No es importante'] },
+    pt: { question: 'O que diz Eclesiastes sobre o dinheiro?', options: ['É a raiz de todo mal', 'Quem ama o dinheiro nunca se satisfaz', 'É uma bênção', 'Não é importante'] },
+    fr: { question: 'Que dit l\'Ecclésiaste à propos de l\'argent?', options: ['C\'est la racine de tous les maux', 'Celui qui aime l\'argent n\'est jamais rassasié', 'C\'est une bénédiction', 'Ce n\'est pas important'] },
+  },
+  wis38: {
+    en: { question: 'According to Ecclesiastes 7:1, what is better than fine perfume?', options: ['Gold', 'Wisdom', 'A good name', 'Strength'] },
+    it: { question: 'Secondo Ecclesiaste 7:1, cosa è meglio di un olio profumato?', options: ['L\'oro', 'La saggezza', 'Un buon nome', 'La forza'] },
+    es: { question: 'Según Eclesiastés 7:1, ¿qué es mejor que el buen perfume?', options: ['El oro', 'La sabiduría', 'Un buen nombre', 'La fuerza'] },
+    pt: { question: 'Segundo Eclesiastes 7:1, o que é melhor do que o melhor perfume?', options: ['O ouro', 'A sabedoria', 'Um bom nome', 'A força'] },
+    fr: { question: 'Selon Ecclésiaste 7:1, qu\'est-ce qui est meilleur que le bon parfum?', options: ['L\'or', 'La sagesse', 'Un bon nom', 'La force'] },
+  },
+  wis39: {
+    en: { question: 'What does Ecclesiastes compare to dust returning to the earth?', options: ['The body', 'Wealth', 'Fame', 'Youth'] },
+    it: { question: 'Cosa paragona l\'Ecclesiaste alla polvere che torna alla terra?', options: ['Il corpo', 'La ricchezza', 'La fama', 'La gioventù'] },
+    es: { question: '¿Qué compara Eclesiastés con el polvo que vuelve a la tierra?', options: ['El cuerpo', 'La riqueza', 'La fama', 'La juventud'] },
+    pt: { question: 'O que Eclesiastes compara ao pó que volta à terra?', options: ['O corpo', 'A riqueza', 'A fama', 'A juventude'] },
+    fr: { question: 'Que compare l\'Ecclésiaste à la poussière qui retourne à la terre?', options: ['Le corps', 'La richesse', 'La renommée', 'La jeunesse'] },
+  },
+  wis40: {
+    en: { question: 'What is the author of Ecclesiastes called in Hebrew?', options: ['Hakham', 'Qoheleth', 'Rabbi', 'Nabi'] },
+    it: { question: 'Come viene chiamato l\'autore dell\'Ecclesiaste in ebraico?', options: ['Hakham', 'Qoelet', 'Rabbi', 'Nabi'] },
+    es: { question: '¿Cómo se llama al autor del Eclesiastés en hebreo?', options: ['Hakham', 'Qohélet', 'Rabí', 'Nabi'] },
+    pt: { question: 'Como é chamado o autor de Eclesiastes em hebraico?', options: ['Hakham', 'Qoheleth', 'Rabi', 'Nabi'] },
+    fr: { question: 'Comment l\'auteur de l\'Ecclésiaste est-il appelé en hébreu?', options: ['Hakham', 'Qohéleth', 'Rabbi', 'Nabi'] },
+  },
+
+  // Cantico dei Cantici
+  wis41: {
+    en: { question: 'Who is the traditional author of the Song of Solomon?', options: ['David', 'Solomon', 'Asaph', 'Ethan'] },
+    it: { question: 'Chi è l\'autore tradizionale del Cantico dei Cantici?', options: ['Davide', 'Salomone', 'Asaf', 'Ethan'] },
+    es: { question: '¿Quién es el autor tradicional del Cantar de los Cantares?', options: ['David', 'Salomón', 'Asaf', 'Etán'] },
+    pt: { question: 'Quem é o autor tradicional de Cântico dos Cânticos?', options: ['Davi', 'Salomão', 'Asafe', 'Etã'] },
+    fr: { question: 'Qui est l\'auteur traditionnel du Cantique des Cantiques?', options: ['David', 'Salomon', 'Asaph', 'Éthan'] },
+  },
+  wis42: {
+    en: { question: 'What is the beloved woman called in the Song of Solomon?', options: ['Princess', 'Shulammite', 'Queen', 'Bride'] },
+    it: { question: 'Come viene chiamata la donna amata nel Cantico?', options: ['Principessa', 'Sulamita', 'Regina', 'Sposa'] },
+    es: { question: '¿Cómo se llama la mujer amada en el Cantar?', options: ['Princesa', 'Sulamita', 'Reina', 'Novia'] },
+    pt: { question: 'Como é chamada a mulher amada no Cântico?', options: ['Princesa', 'Sulamita', 'Rainha', 'Noiva'] },
+    fr: { question: 'Comment s\'appelle la femme aimée dans le Cantique?', options: ['Princesse', 'Sulamite', 'Reine', 'Épouse'] },
+  },
+  wis43: {
+    en: { question: 'What is love compared to in Song of Solomon 8:6?', options: ['Water', 'Death', 'Fire', 'Wind'] },
+    it: { question: 'A cosa viene paragonato l\'amore nel Cantico 8:6?', options: ['All\'acqua', 'Alla morte', 'Al fuoco', 'Al vento'] },
+    es: { question: '¿A qué se compara el amor en Cantar 8:6?', options: ['Al agua', 'A la muerte', 'Al fuego', 'Al viento'] },
+    pt: { question: 'A que é comparado o amor em Cântico 8:6?', options: ['À água', 'À morte', 'Ao fogo', 'Ao vento'] },
+    fr: { question: 'À quoi l\'amour est-il comparé dans Cantique 8:6?', options: ['À l\'eau', 'À la mort', 'Au feu', 'Au vent'] },
+  },
+  wis44: {
+    en: { question: 'Which flower is often mentioned in the Song of Solomon?', options: ['The rose', 'The lily', 'The tulip', 'The orchid'] },
+    it: { question: 'Quale fiore viene menzionato spesso nel Cantico dei Cantici?', options: ['La rosa', 'Il giglio', 'Il tulipano', 'L\'orchidea'] },
+    es: { question: '¿Qué flor se menciona a menudo en el Cantar de los Cantares?', options: ['La rosa', 'El lirio', 'El tulipán', 'La orquídea'] },
+    pt: { question: 'Qual flor é frequentemente mencionada no Cântico dos Cânticos?', options: ['A rosa', 'O lírio', 'A tulipa', 'A orquídea'] },
+    fr: { question: 'Quelle fleur est souvent mentionnée dans le Cantique des Cantiques?', options: ['La rose', 'Le lys', 'La tulipe', 'L\'orchidée'] },
+  },
+  wis45: {
+    en: { question: 'According to the Song, what must be caught in the vineyards?', options: ['Grapes', 'Foxes', 'Birds', 'Thieves'] },
+    it: { question: 'Secondo il Cantico, cosa bisogna catturare nelle vigne?', options: ['Le uve', 'Le volpi', 'Gli uccelli', 'I ladri'] },
+    es: { question: 'Según el Cantar, ¿qué hay que atrapar en las viñas?', options: ['Las uvas', 'Las zorras', 'Los pájaros', 'Los ladrones'] },
+    pt: { question: 'Segundo o Cântico, o que deve ser capturado nas vinhas?', options: ['As uvas', 'As raposas', 'Os pássaros', 'Os ladrões'] },
+    fr: { question: 'Selon le Cantique, que faut-il attraper dans les vignes?', options: ['Les raisins', 'Les renards', 'Les oiseaux', 'Les voleurs'] },
+  },
+  wis46: {
+    en: { question: 'How is the garden of the beloved described in the Song?', options: ['Arid', 'Enclosed', 'Open', 'Abandoned'] },
+    it: { question: 'Come viene descritto il giardino dell\'amata nel Cantico?', options: ['Arido', 'Recintato', 'Aperto', 'Abbandonato'] },
+    es: { question: '¿Cómo se describe el jardín de la amada en el Cantar?', options: ['Árido', 'Cercado', 'Abierto', 'Abandonado'] },
+    pt: { question: 'Como é descrito o jardim da amada no Cântico?', options: ['Árido', 'Fechado', 'Aberto', 'Abandonado'] },
+    fr: { question: 'Comment le jardin de la bien-aimée est-il décrit dans le Cantique?', options: ['Aride', 'Clos', 'Ouvert', 'Abandonné'] },
+  },
+  wis47: {
+    en: { question: 'Which fruit tree is frequently mentioned in the Song of Solomon?', options: ['The olive tree', 'The vine', 'The apple tree', 'The fig tree'] },
+    it: { question: 'Quale albero da frutto viene menzionato frequentemente nel Cantico?', options: ['L\'ulivo', 'La vite', 'Il melo', 'Il fico'] },
+    es: { question: '¿Qué árbol frutal se menciona con frecuencia en el Cantar?', options: ['El olivo', 'La vid', 'El manzano', 'La higuera'] },
+    pt: { question: 'Qual árvore frutífera é frequentemente mencionada no Cântico?', options: ['A oliveira', 'A videira', 'A macieira', 'A figueira'] },
+    fr: { question: 'Quel arbre fruitier est fréquemment mentionné dans le Cantique?', options: ['L\'olivier', 'La vigne', 'Le pommier', 'Le figuier'] },
+  },
+  wis48: {
+    en: { question: 'What does the Song say about love and waters?', options: ['Waters extinguish love', 'Many waters cannot quench love', 'Love is like waters', 'Waters purify love'] },
+    it: { question: 'Cosa dice il Cantico riguardo all\'amore e le acque?', options: ['Le acque spengono l\'amore', 'Le grandi acque non possono spegnere l\'amore', 'L\'amore è come le acque', 'Le acque purificano l\'amore'] },
+    es: { question: '¿Qué dice el Cantar sobre el amor y las aguas?', options: ['Las aguas apagan el amor', 'Las muchas aguas no pueden apagar el amor', 'El amor es como las aguas', 'Las aguas purifican el amor'] },
+    pt: { question: 'O que diz o Cântico sobre o amor e as águas?', options: ['As águas apagam o amor', 'As muitas águas não podem apagar o amor', 'O amor é como as águas', 'As águas purificam o amor'] },
+    fr: { question: 'Que dit le Cantique à propos de l\'amour et des eaux?', options: ['Les eaux éteignent l\'amour', 'Les grandes eaux ne peuvent éteindre l\'amour', 'L\'amour est comme les eaux', 'Les eaux purifient l\'amour'] },
+  },
+  wis49: {
+    en: { question: 'To which city is the beloved\'s beauty compared?', options: ['Jerusalem', 'Babylon', 'Damascus', 'Tirzah'] },
+    it: { question: 'A quale città viene paragonata la bellezza dell\'amata?', options: ['Gerusalemme', 'Babilonia', 'Damasco', 'Tirza'] },
+    es: { question: '¿A qué ciudad se compara la belleza de la amada?', options: ['Jerusalén', 'Babilonia', 'Damasco', 'Tirsa'] },
+    pt: { question: 'A qual cidade é comparada a beleza da amada?', options: ['Jerusalém', 'Babilônia', 'Damasco', 'Tirza'] },
+    fr: { question: 'À quelle ville la beauté de la bien-aimée est-elle comparée?', options: ['Jérusalem', 'Babylone', 'Damas', 'Thirtsa'] },
+  },
+  wis50: {
+    en: { question: 'Which season is celebrated in Song of Solomon 2:11-12?', options: ['Summer', 'Autumn', 'Winter is past', 'Spring'] },
+    it: { question: 'Quale stagione viene celebrata nel Cantico 2:11-12?', options: ['L\'estate', 'L\'autunno', 'L\'inverno finito', 'La primavera'] },
+    es: { question: '¿Qué estación se celebra en Cantar 2:11-12?', options: ['El verano', 'El otoño', 'El invierno ha pasado', 'La primavera'] },
+    pt: { question: 'Qual estação é celebrada em Cântico 2:11-12?', options: ['O verão', 'O outono', 'O inverno passou', 'A primavera'] },
+    fr: { question: 'Quelle saison est célébrée dans Cantique 2:11-12?', options: ['L\'été', 'L\'automne', 'L\'hiver est passé', 'Le printemps'] },
+  },
+};
