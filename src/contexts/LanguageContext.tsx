@@ -170,7 +170,18 @@ const translations: Translations = {
   diamond: { en: 'Diamond', it: 'Diamante', es: 'Diamante', pt: 'Diamante', fr: 'Diamant' },
   badgeTier: { en: 'Badge', it: 'Distintivo', es: 'Insignia', pt: 'Distintivo', fr: 'Badge' },
 
-  // New badge descriptions
+  // Badge category names
+  generalBadges: { en: 'General', it: 'Generali', es: 'Generales', pt: 'Gerais', fr: 'Général' },
+  speedBadges: { en: 'Speed', it: 'Velocità', es: 'Velocidad', pt: 'Velocidade', fr: 'Vitesse' },
+  streakBadges: { en: 'Streak', it: 'Serie', es: 'Racha', pt: 'Sequência', fr: 'Série' },
+  masteryBadges: { en: 'Mastery', it: 'Maestria', es: 'Maestría', pt: 'Maestria', fr: 'Maîtrise' },
+
+  // Stats
+  currentStreak: { en: 'Day Streak', it: 'Giorni di Fila', es: 'Días Seguidos', pt: 'Dias Seguidos', fr: 'Jours Consécutifs' },
+  perfectScores: { en: 'Perfect Scores', it: 'Punteggi Perfetti', es: 'Puntuaciones Perfectas', pt: 'Pontuações Perfeitas', fr: 'Scores Parfaits' },
+  settings: { en: 'Settings', it: 'Impostazioni', es: 'Configuración', pt: 'Configurações', fr: 'Paramètres' },
+
+  // New badge names
   speedDemon: { en: 'Speed Demon', it: 'Demone della Velocità', es: 'Demonio de la Velocidad', pt: 'Demônio da Velocidade', fr: 'Démon de la Vitesse' },
   lightningFast: { en: 'Lightning Fast', it: 'Veloce come un Fulmine', es: 'Rápido como un Rayo', pt: 'Rápido como um Raio', fr: 'Rapide comme l\'Éclair' },
   timeMaster: { en: 'Time Master', it: 'Maestro del Tempo', es: 'Maestro del Tiempo', pt: 'Mestre do Tempo', fr: 'Maître du Temps' },
@@ -182,6 +193,19 @@ const translations: Translations = {
   perfect10: { en: '10 Perfect Scores', it: '10 Punteggi Perfetti', es: '10 Puntuaciones Perfectas', pt: '10 Pontuações Perfeitas', fr: '10 Scores Parfaits' },
   perfect25: { en: '25 Perfect Scores', it: '25 Punteggi Perfetti', es: '25 Puntuaciones Perfectas', pt: '25 Pontuações Perfeitas', fr: '25 Scores Parfaits' },
   scriptureScholar: { en: 'Scripture Scholar', it: 'Studioso delle Scritture', es: 'Erudito de las Escrituras', pt: 'Estudioso das Escrituras', fr: 'Érudit des Écritures' },
+
+  // Badge descriptions
+  speedDemonDesc: { en: 'Complete a quiz in under 60 seconds', it: 'Completa un quiz in meno di 60 secondi', es: 'Completa un quiz en menos de 60 segundos', pt: 'Complete um quiz em menos de 60 segundos', fr: 'Terminez un quiz en moins de 60 secondes' },
+  lightningFastDesc: { en: 'Complete a quiz in under 30 seconds', it: 'Completa un quiz in meno di 30 secondi', es: 'Completa un quiz en menos de 30 segundos', pt: 'Complete um quiz em menos de 30 segundos', fr: 'Terminez un quiz en moins de 30 secondes' },
+  timeMasterDesc: { en: 'Complete 10 challenge mode quizzes', it: 'Completa 10 quiz in modalità sfida', es: 'Completa 10 quizzes en modo desafío', pt: 'Complete 10 quizzes no modo desafio', fr: 'Terminez 10 quiz en mode défi' },
+  streak3Desc: { en: 'Maintain a 3-day streak', it: 'Mantieni una serie di 3 giorni', es: 'Mantén una racha de 3 días', pt: 'Mantenha uma sequência de 3 dias', fr: 'Maintenez une série de 3 jours' },
+  streak7Desc: { en: 'Maintain a 7-day streak', it: 'Mantieni una serie di 7 giorni', es: 'Mantén una racha de 7 días', pt: 'Mantenha uma sequência de 7 dias', fr: 'Maintenez une série de 7 jours' },
+  streak30Desc: { en: 'Maintain a 30-day streak', it: 'Mantieni una serie di 30 giorni', es: 'Mantén una racha de 30 días', pt: 'Mantenha uma sequência de 30 dias', fr: 'Maintenez une série de 30 jours' },
+  streak100Desc: { en: 'Maintain a 100-day streak', it: 'Mantieni una serie di 100 giorni', es: 'Mantén una racha de 100 días', pt: 'Mantenha uma sequência de 100 dias', fr: 'Maintenez une série de 100 jours' },
+  perfect5Desc: { en: 'Get 5 perfect scores', it: 'Ottieni 5 punteggi perfetti', es: 'Obtén 5 puntuaciones perfectas', pt: 'Obtenha 5 pontuações perfeitas', fr: 'Obtenez 5 scores parfaits' },
+  perfect10Desc: { en: 'Get 10 perfect scores', it: 'Ottieni 10 punteggi perfetti', es: 'Obtén 10 puntuaciones perfectas', pt: 'Obtenha 10 pontuações perfeitas', fr: 'Obtenez 10 scores parfaits' },
+  perfect25Desc: { en: 'Get 25 perfect scores', it: 'Ottieni 25 punteggi perfetti', es: 'Obtén 25 puntuaciones perfectas', pt: 'Obtenha 25 pontuações perfeitas', fr: 'Obtenez 25 scores parfaits' },
+  scriptureScholarDesc: { en: 'Complete 100 quizzes', it: 'Completa 100 quiz', es: 'Completa 100 quizzes', pt: 'Complete 100 quizzes', fr: 'Terminez 100 quiz' },
 
   // Notifications
   notifications: { en: 'Notifications', it: 'Notifiche', es: 'Notificaciones', pt: 'Notificações', fr: 'Notifications' },
