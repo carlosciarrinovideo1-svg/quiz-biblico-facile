@@ -57,6 +57,7 @@ const translations: Translations = {
   biblicalCharacters: { en: 'Biblical Characters', it: 'Personaggi Biblici', es: 'Personajes Bíblicos', pt: 'Personagens Bíblicos', fr: 'Personnages Bibliques' },
   historicalBooks: { en: 'Historical Books', it: 'Libri Storici', es: 'Libros Históricos', pt: 'Livros Históricos', fr: 'Livres Historiques' },
   wisdomBooks: { en: 'Wisdom Books', it: 'Libri Sapienziali', es: 'Libros Sapienciales', pt: 'Livros Sapienciais', fr: 'Livres de Sagesse' },
+  majorProphets: { en: 'Major Prophets', it: 'Profeti Maggiori', es: 'Profetas Mayores', pt: 'Profetas Maiores', fr: 'Grands Prophètes' },
   fullQuiz: { en: 'Complete 100 Questions', it: '100 Domande Complete', es: '100 Preguntas Completas', pt: '100 Perguntas Completas', fr: '100 Questions Complètes' },
   randomQuiz: { en: 'Random 100 Questions', it: '100 Domande Casuali', es: '100 Preguntas Aleatorias', pt: '100 Perguntas Aleatórias', fr: '100 Questions Aléatoires' },
   questionsCount: { en: 'questions', it: 'domande', es: 'preguntas', pt: 'perguntas', fr: 'questions' },
@@ -78,6 +79,7 @@ const translations: Translations = {
   biblicalCharactersDesc: { en: 'Famous people from the Bible', it: 'Personaggi famosi della Bibbia', es: 'Personajes famosos de la Biblia', pt: 'Personagens famosos da Bíblia', fr: 'Personnages célèbres de la Bible' },
   historicalBooksDesc: { en: 'Joshua, Judges, Ruth, Samuel, Kings', it: 'Giosuè, Giudici, Rut, Samuele, Re', es: 'Josué, Jueces, Rut, Samuel, Reyes', pt: 'Josué, Juízes, Rute, Samuel, Reis', fr: 'Josué, Juges, Ruth, Samuel, Rois' },
   wisdomBooksDesc: { en: 'Job, Psalms, Proverbs, Ecclesiastes, Song of Solomon', it: 'Giobbe, Salmi, Proverbi, Ecclesiaste, Cantico', es: 'Job, Salmos, Proverbios, Eclesiastés, Cantar', pt: 'Jó, Salmos, Provérbios, Eclesiastes, Cântico', fr: 'Job, Psaumes, Proverbes, Ecclésiaste, Cantique' },
+  majorProphetsDesc: { en: 'Isaiah, Jeremiah, Ezekiel, Daniel', it: 'Isaia, Geremia, Ezechiele, Daniele', es: 'Isaías, Jeremías, Ezequiel, Daniel', pt: 'Isaías, Jeremias, Ezequiel, Daniel', fr: 'Ésaïe, Jérémie, Ézéchiel, Daniel' },
   fullQuizDesc: { en: 'Complete challenge with all questions', it: 'Sfida completa con tutte le domande', es: 'Desafío completo con todas las preguntas', pt: 'Desafio completo com todas as perguntas', fr: 'Défi complet avec toutes les questions' },
   randomQuizDesc: { en: 'Random selection from all categories', it: 'Selezione casuale da tutte le categorie', es: 'Selección aleatoria de todas las categorías', pt: 'Seleção aleatória de todas as categorias', fr: 'Sélection aléatoire de toutes les catégories' },
 
