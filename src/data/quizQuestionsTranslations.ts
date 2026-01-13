@@ -1086,6 +1086,9 @@ export const questionTranslations: QuestionTranslations = {
   }
 };
 
+import { wisdomBooksTranslations } from './translations/wisdomBooksTranslations';
+import { majorProphetsTranslations } from './translations/majorProphetsTranslations';
+
 // Merged translations including all categories
 const allTranslations: QuestionTranslations = {
   ...questionTranslations,
@@ -1094,7 +1097,9 @@ const allTranslations: QuestionTranslations = {
   ...biblicalCharactersTranslations,
   ...gospelsTranslations,
   ...prophetsTranslations,
-  ...pentateuchTranslations
+  ...pentateuchTranslations,
+  ...wisdomBooksTranslations,
+  ...majorProphetsTranslations
 };
 
 export function getTranslatedQuestion(

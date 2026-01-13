@@ -7,6 +7,7 @@ import { pentateuchQuestions } from './questions/pentateuchQuestions';
 import { paulineQuestions } from './questions/paulineQuestions';
 import { historicalBooksQuestions } from './questions/historicalBooksQuestions';
 import { wisdomBooksQuestions } from './questions/wisdomBooksQuestions';
+import { majorProphetsQuestions } from './questions/majorProphetsQuestions';
 import { QuizQuestion } from './types';
 
 export type { QuizQuestion } from './types';
