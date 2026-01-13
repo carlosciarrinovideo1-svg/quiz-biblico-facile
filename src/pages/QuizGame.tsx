@@ -26,6 +26,9 @@ import bgProphets from '@/assets/bg-prophets.jpg';
 import bgPauline from '@/assets/bg-pauline.jpg';
 import bgOldTestament from '@/assets/bg-oldtestament.jpg';
 import bgNewTestament from '@/assets/bg-newtestament.jpg';
+import bgHistorical from '@/assets/bg-historical.jpg';
+import bgWisdom from '@/assets/bg-wisdom.jpg';
+import bgMajorProphets from '@/assets/bg-major-prophets.jpg';
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -36,6 +39,9 @@ const TIMER_DURATION = 30; // seconds per question in challenge mode
 // Map categories to background images
 const categoryBackgrounds: Record<string, string> = {
   pentateuch: bgPentateuch,
+  historicalBooks: bgHistorical,
+  wisdomBooks: bgWisdom,
+  majorProphets: bgMajorProphets,
   minorProphets: bgProphets,
   oldTestament: bgOldTestament,
   fourGospels: bgGospels,

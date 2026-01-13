@@ -228,6 +228,9 @@ export function getQuestionsByCategory(category: string): QuizQuestion[] {
   if (category === 'wisdomBooks') {
     return wisdomBooksQuestions;
   }
+  if (category === 'majorProphets') {
+    return majorProphetsQuestions;
+  }
   if (category === 'paulineLetters') {
     return paulineQuestions;
   }
