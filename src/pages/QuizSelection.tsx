@@ -4,6 +4,7 @@ import { HelpCircle, BookOpen, Users, Scroll, Cross, Mail, FileText, Shuffle, Za
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import CategoryLeaderboard from '@/components/CategoryLeaderboard';
 
 // Import background images
 import bgPentateuch from '@/assets/bg-pentateuch.jpg';
@@ -231,6 +232,11 @@ const QuizSelection: React.FC = () => {
               </Link>
             ))}
           </div>
+        </section>
+
+        {/* Leaderboard */}
+        <section>
+          <CategoryLeaderboard />
         </section>
 
         {/* Scoring Info */}
