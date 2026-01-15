@@ -218,7 +218,7 @@ export function getQuestionsByCategory(category: string): QuizQuestion[] {
     return biblicalCharactersQuestions;
   }
   if (category === 'minorProphets') {
-    return prophetsQuestions;
+    return minorProphetsQuestions;
   }
   if (category === 'pentateuch') {
     return [...allMergedQuestions.filter(q => q.category === 'pentateuch'), ...pentateuchQuestions];
