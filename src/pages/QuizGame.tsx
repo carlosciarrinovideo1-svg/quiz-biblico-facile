@@ -29,6 +29,7 @@ import bgNewTestament from '@/assets/bg-newtestament.jpg';
 import bgHistorical from '@/assets/bg-historical.jpg';
 import bgWisdom from '@/assets/bg-wisdom.jpg';
 import bgMajorProphets from '@/assets/bg-major-prophets.jpg';
+import bgMinorProphets from '@/assets/bg-minor-prophets.jpg';
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -42,7 +43,7 @@ const categoryBackgrounds: Record<string, string> = {
   historicalBooks: bgHistorical,
   wisdomBooks: bgWisdom,
   majorProphets: bgMajorProphets,
-  minorProphets: bgProphets,
+  minorProphets: bgMinorProphets,
   oldTestament: bgOldTestament,
   fourGospels: bgGospels,
   paulineLetters: bgPauline,

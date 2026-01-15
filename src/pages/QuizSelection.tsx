@@ -19,6 +19,7 @@ import bgQuizDefault from '@/assets/bg-quiz-default.jpg';
 import bgHistorical from '@/assets/bg-historical.jpg';
 import bgWisdom from '@/assets/bg-wisdom.jpg';
 import bgMajorProphets from '@/assets/bg-major-prophets.jpg';
+import bgMinorProphets from '@/assets/bg-minor-prophets.jpg';
 
 const QuizSelection: React.FC = () => {
   const { t } = useLanguage();
@@ -55,9 +56,9 @@ const QuizSelection: React.FC = () => {
     {
       id: 'minorProphets',
       icon: Users,
-      questions: 100,
+      questions: 50,
       descriptionKey: 'minorProphetsDesc',
-      bgImage: bgProphets,
+      bgImage: bgMinorProphets,
     },
     {
       id: 'oldTestament',
