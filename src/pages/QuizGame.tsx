@@ -12,7 +12,7 @@ import { Progress } from '@/components/ui/progress';
 import { Switch } from '@/components/ui/switch';
 import { toast } from 'sonner';
 import ShareButton from '@/components/ShareButton';
-import Leaderboard from '@/components/Leaderboard';
+import CategoryLeaderboard from '@/components/CategoryLeaderboard';
 import { useSoundEffects } from '@/hooks/useSoundEffects';
 
 // Import background images
@@ -318,7 +318,7 @@ const QuizGame: React.FC = () => {
             </CardContent>
           </Card>
           
-          {challengeMode && <Leaderboard />}
+          {challengeMode && <CategoryLeaderboard />}
         </div>
       </div>
     );

@@ -119,6 +119,9 @@ const translations: Translations = {
   leaderboard: { en: 'Challenge Leaderboard', it: 'Classifica Sfide', es: 'Tabla de Clasificación', pt: 'Classificação de Desafios', fr: 'Classement Défis' },
   noLeaderboardScores: { en: 'Complete a challenge mode quiz to see your scores!', it: 'Completa un quiz in modalità sfida per vedere i tuoi punteggi!', es: '¡Completa un quiz en modo desafío para ver tus puntuaciones!', pt: 'Complete um quiz no modo desafio para ver suas pontuações!', fr: 'Complétez un quiz en mode défi pour voir vos scores!' },
   bestTime: { en: 'Best Time', it: 'Miglior Tempo', es: 'Mejor Tiempo', pt: 'Melhor Tempo', fr: 'Meilleur Temps' },
+  bestByCategory: { en: 'Best by Category', it: 'Migliori per Categoria', es: 'Mejores por Categoría', pt: 'Melhores por Categoria', fr: 'Meilleurs par Catégorie' },
+  recentBest: { en: 'Recent Best', it: 'Migliori Recenti', es: 'Mejores Recientes', pt: 'Melhores Recentes', fr: 'Meilleurs Récents' },
+  attempts: { en: 'attempts', it: 'tentativi', es: 'intentos', pt: 'tentativas', fr: 'tentatives' },
   
   // Sound effects
   soundEffects: { en: 'Sound Effects', it: 'Effetti Sonori', es: 'Efectos de Sonido', pt: 'Efeitos Sonoros', fr: 'Effets Sonores' },
