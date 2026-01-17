@@ -237,6 +237,21 @@ const translations: Translations = {
   bibleStudyReminderEnabled: { en: 'Bible study reminder enabled', it: 'Promemoria studio biblico abilitato', es: 'Recordatorio de estudio bíblico habilitado', pt: 'Lembrete de estudo bíblico ativado', fr: 'Rappel d\'étude biblique activé' },
   bibleStudyReminderDisabled: { en: 'Bible study reminder disabled', it: 'Promemoria studio biblico disabilitato', es: 'Recordatorio de estudio bíblico deshabilitado', pt: 'Lembrete de estudo bíblico desativado', fr: 'Rappel d\'étude biblique désactivé' },
 
+  // Category Accuracy Stats
+  noStatsYet: { en: 'No statistics yet', it: 'Nessuna statistica ancora', es: 'Sin estadísticas aún', pt: 'Sem estatísticas ainda', fr: 'Pas encore de statistiques' },
+  completeQuizzesToSeeStats: { en: 'Complete quizzes to see your accuracy statistics', it: 'Completa dei quiz per vedere le tue statistiche di accuratezza', es: 'Completa cuestionarios para ver tus estadísticas de precisión', pt: 'Complete quizzes para ver suas estatísticas de precisão', fr: 'Complétez des quiz pour voir vos statistiques de précision' },
+  overallAccuracy: { en: 'Overall Accuracy', it: 'Accuratezza Totale', es: 'Precisión Total', pt: 'Precisão Total', fr: 'Précision Globale' },
+  correctAnswers: { en: 'Correct Answers', it: 'Risposte Corrette', es: 'Respuestas Correctas', pt: 'Respostas Corretas', fr: 'Réponses Correctes' },
+  wrongAnswers: { en: 'Wrong Answers', it: 'Risposte Sbagliate', es: 'Respuestas Incorrectas', pt: 'Respostas Erradas', fr: 'Mauvaises Réponses' },
+  categoriesPlayed: { en: 'Categories Played', it: 'Categorie Giocate', es: 'Categorías Jugadas', pt: 'Categorias Jogadas', fr: 'Catégories Jouées' },
+  accuracyByCategory: { en: 'Accuracy by Category', it: 'Accuratezza per Categoria', es: 'Precisión por Categoría', pt: 'Precisão por Categoria', fr: 'Précision par Catégorie' },
+  bestScore: { en: 'Best', it: 'Migliore', es: 'Mejor', pt: 'Melhor', fr: 'Meilleur' },
+  worstScore: { en: 'Worst', it: 'Peggiore', es: 'Peor', pt: 'Pior', fr: 'Pire' },
+  avgTime: { en: 'Avg Time', it: 'Tempo Medio', es: 'Tiempo Medio', pt: 'Tempo Médio', fr: 'Temps Moyen' },
+  questionsCorrect: { en: 'correct', it: 'corrette', es: 'correctas', pt: 'corretas', fr: 'correctes' },
+  recentTrend: { en: 'Recent', it: 'Recente', es: 'Reciente', pt: 'Recente', fr: 'Récent' },
+  accuracyStats: { en: 'Accuracy Stats', it: 'Statistiche Accuratezza', es: 'Estadísticas de Precisión', pt: 'Estatísticas de Precisão', fr: 'Statistiques de Précision' },
+
   // Share
   share: { en: 'Share', it: 'Condividi', es: 'Compartir', pt: 'Compartilhar', fr: 'Partager' },
   shareNative: { en: 'Share...', it: 'Condividi...', es: 'Compartir...', pt: 'Compartilhar...', fr: 'Partager...' },
