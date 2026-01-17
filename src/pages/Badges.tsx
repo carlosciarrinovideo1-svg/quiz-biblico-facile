@@ -1,11 +1,12 @@
 import React from 'react';
-import { Award, Trophy, Star, Book, Target, Gem, Zap, Clock, Flame, Sparkles, Crown, Settings } from 'lucide-react';
+import { Award, Trophy, Star, Book, Target, Gem, Zap, Clock, Flame, Sparkles, Crown, Settings, BarChart3 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGame } from '@/contexts/GameContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import NotificationSettings from '@/components/NotificationSettings';
+import CategoryAccuracyStats from '@/components/CategoryAccuracyStats';
 
 import bgCharacters from '@/assets/bg-characters.jpg';
 
@@ -200,14 +201,18 @@ const Badges: React.FC = () => {
           </Card>
         </div>
 
-        {/* Tabs for badge categories and settings */}
+        {/* Tabs for badge categories, stats and settings */}
         <Tabs defaultValue="all" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-7">
             <TabsTrigger value="all">{t('allBadges')}</TabsTrigger>
             <TabsTrigger value="general">{t('generalBadges')}</TabsTrigger>
             <TabsTrigger value="speed">{t('speedBadges')}</TabsTrigger>
             <TabsTrigger value="streak">{t('streakBadges')}</TabsTrigger>
             <TabsTrigger value="mastery">{t('masteryBadges')}</TabsTrigger>
+            <TabsTrigger value="stats" className="flex items-center gap-1">
+              <BarChart3 className="h-4 w-4" />
+              <span className="hidden sm:inline">{t('accuracyStats')}</span>
+            </TabsTrigger>
             <TabsTrigger value="settings" className="flex items-center gap-1">
               <Settings className="h-4 w-4" />
               <span className="hidden sm:inline">{t('settings')}</span>
@@ -235,6 +240,10 @@ const Badges: React.FC = () => {
 
           <TabsContent value="mastery" className="mt-6">
             {renderBadgeSection(masteryBadges, 'masteryBadges')}
+          </TabsContent>
+
+          <TabsContent value="stats" className="mt-6">
+            <CategoryAccuracyStats />
           </TabsContent>
 
           <TabsContent value="settings" className="mt-6 space-y-6">
