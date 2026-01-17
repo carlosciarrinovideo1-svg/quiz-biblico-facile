@@ -126,6 +126,12 @@ const translations: Translations = {
   // Sound effects
   soundEffects: { en: 'Sound Effects', it: 'Effetti Sonori', es: 'Efectos de Sonido', pt: 'Efeitos Sonoros', fr: 'Effets Sonores' },
   
+  // Verification Mode
+  verificationMode: { en: 'Verification Mode', it: 'Modalità Verifica', es: 'Modo Verificación', pt: 'Modo Verificação', fr: 'Mode Vérification' },
+  showReference: { en: 'Show Biblical Reference', it: 'Mostra Riferimento Biblico', es: 'Mostrar Referencia Bíblica', pt: 'Mostrar Referência Bíblica', fr: 'Afficher la Référence Biblique' },
+  verifyInBible: { en: 'Verify in Bible', it: 'Verifica nella Bibbia', es: 'Verificar en la Biblia', pt: 'Verificar na Bíblia', fr: 'Vérifier dans la Bible' },
+  verificationHint: { en: 'Click to open the biblical passage and verify the answer', it: 'Clicca per aprire il passaggio biblico e verificare la risposta', es: 'Haz clic para abrir el pasaje bíblico y verificar la respuesta', pt: 'Clique para abrir a passagem bíblica e verificar a resposta', fr: 'Cliquez pour ouvrir le passage biblique et vérifier la réponse' },
+  
   // Accessibility
   selectLanguage: { en: 'Select language', it: 'Seleziona lingua', es: 'Seleccionar idioma', pt: 'Selecionar idioma', fr: 'Sélectionner la langue' },
 

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, BookOpen, Timer, Zap, Volume2, VolumeX } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, XCircle, Trophy, RotateCcw, Sparkles, BookOpen, Timer, Zap, Volume2, VolumeX, BookMarked, ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGame } from '@/contexts/GameContext';
 import { getQuestionsByCategory } from '@/data/quizQuestions';
@@ -71,6 +71,8 @@ const QuizGame: React.FC = () => {
   const [consecutiveCorrect, setConsecutiveCorrect] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [studyMode, setStudyMode] = useState(false);
+  const [verificationMode, setVerificationMode] = useState(false);
+  const [showReference, setShowReference] = useState(false);
   const [challengeMode, setChallengeMode] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(() => {
     const saved = localStorage.getItem('bible-app-sound-enabled');
@@ -240,6 +242,19 @@ const QuizGame: React.FC = () => {
     setIsComplete(false);
     setTimeLeft(TIMER_DURATION);
     setTotalTimeUsed(0);
+    setShowReference(false);
+  };
+
+  // Reset showReference when moving to next question
+  const handleNextWithReset = () => {
+    setShowReference(false);
+    handleNext();
+  };
+
+  // Generate Bible Gateway URL for reference
+  const getBibleGatewayUrl = (reference: string) => {
+    const encodedRef = encodeURIComponent(reference);
+    return `https://www.biblegateway.com/passage/?search=${encodedRef}&version=NR2006`;
   };
 
   const getTimerColor = () => {
@@ -346,6 +361,10 @@ const QuizGame: React.FC = () => {
               <BookOpen className="h-4 w-4 text-muted-foreground" />
               <Switch checked={studyMode} onCheckedChange={setStudyMode} />
             </div>
+            <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm rounded-lg px-3 py-1" title={t('verificationMode') || 'Verification Mode'}>
+              <BookMarked className={`h-4 w-4 ${verificationMode ? 'text-primary' : 'text-muted-foreground'}`} />
+              <Switch checked={verificationMode} onCheckedChange={setVerificationMode} />
+            </div>
             <div className="flex items-center gap-2 bg-background/50 backdrop-blur-sm rounded-lg px-3 py-1" title={t('challengeMode') || 'Challenge Mode'}>
               <Zap className={`h-4 w-4 ${challengeMode ? 'text-warning' : 'text-muted-foreground'}`} />
               <Switch checked={challengeMode} onCheckedChange={setChallengeMode} />
@@ -378,6 +397,38 @@ const QuizGame: React.FC = () => {
         <Card className="glass-card animate-scale-in border-2 border-border/50">
           <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
             <CardTitle className="font-serif text-xl leading-relaxed">{currentQuestion.question}</CardTitle>
+            {/* Verification Mode: Show reference before answering */}
+            {verificationMode && !isAnswered && (
+              <div className="mt-3 flex flex-col gap-2">
+                {!showReference ? (
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => setShowReference(true)}
+                    className="w-fit bg-primary/10 border-primary/30 hover:bg-primary/20"
+                  >
+                    <BookMarked className="h-4 w-4 mr-2" />
+                    {t('showReference')}
+                  </Button>
+                ) : (
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 p-3 rounded-lg bg-primary/10 border border-primary/30">
+                    <div className="flex items-center gap-2">
+                      <BookMarked className="h-4 w-4 text-primary" />
+                      <span className="font-semibold text-primary">{currentQuestion.reference}</span>
+                    </div>
+                    <a
+                      href={getBibleGatewayUrl(currentQuestion.reference)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm text-primary hover:underline"
+                    >
+                      {t('verifyInBible')}
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
           </CardHeader>
           <CardContent className="space-y-3 pt-4">
             {currentQuestion.options.map((option, index) => {
@@ -409,8 +460,29 @@ const QuizGame: React.FC = () => {
               ) : (
                 <div><p className="font-bold text-lg">{t('incorrect')} -1</p><p className="text-sm mt-1 font-medium">{t('correctAnswer')}: {currentQuestion.options[currentQuestion.correctIndex]}</p></div>
               )}
-              <p className="text-xs mt-2 opacity-80 font-medium">{t('reference')}: {currentQuestion.reference}</p>
             </div>
+
+            {/* Enhanced Reference Card - Always visible after answering */}
+            <Card className="bg-primary/10 border-2 border-primary/30">
+              <CardContent className="p-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <BookMarked className="h-5 w-5 text-primary" />
+                    <span className="font-bold text-primary">{t('reference')}: {currentQuestion.reference}</span>
+                  </div>
+                  <a
+                    href={getBibleGatewayUrl(currentQuestion.reference)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors w-fit"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    {t('verifyInBible')}
+                  </a>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">{t('verificationHint')}</p>
+              </CardContent>
+            </Card>
             
             {studyMode && currentQuestion.explanation && (
               <Card className="bg-accent/20 border-2 border-accent">
@@ -424,7 +496,7 @@ const QuizGame: React.FC = () => {
               </Card>
             )}
 
-            <Button onClick={handleNext} variant="hero" className="w-full" size="lg">
+            <Button onClick={handleNextWithReset} variant="hero" className="w-full" size="lg">
               {currentIndex + 1 >= Math.min(questions.length, 20) ? t('finishQuiz') : t('nextQuestion')}
             </Button>
           </div>
