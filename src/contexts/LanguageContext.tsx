@@ -251,6 +251,10 @@ const translations: Translations = {
   questionsCorrect: { en: 'correct', it: 'corrette', es: 'correctas', pt: 'corretas', fr: 'correctes' },
   recentTrend: { en: 'Recent', it: 'Recente', es: 'Reciente', pt: 'Recente', fr: 'Récent' },
   accuracyStats: { en: 'Accuracy Stats', it: 'Statistiche Accuratezza', es: 'Estadísticas de Precisión', pt: 'Estatísticas de Precisão', fr: 'Statistiques de Précision' },
+  accuracyTrends: { en: 'Accuracy Trends Over Time', it: 'Andamento Accuratezza nel Tempo', es: 'Tendencias de Precisión en el Tiempo', pt: 'Tendências de Precisão ao Longo do Tempo', fr: 'Tendances de Précision dans le Temps' },
+  attemptNumber: { en: 'Attempt #', it: 'Tentativo #', es: 'Intento #', pt: 'Tentativa #', fr: 'Tentative #' },
+  attempt: { en: 'Attempt', it: 'Tentativo', es: 'Intento', pt: 'Tentativa', fr: 'Tentative' },
+  all: { en: 'All', it: 'Tutti', es: 'Todos', pt: 'Todos', fr: 'Tous' },
 
   // Share
   share: { en: 'Share', it: 'Condividi', es: 'Compartir', pt: 'Compartilhar', fr: 'Partager' },

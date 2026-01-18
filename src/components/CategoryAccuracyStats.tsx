@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
-import { BarChart3, Target, TrendingUp, TrendingDown, Minus, CheckCircle, XCircle } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { BarChart3, Target, TrendingUp, TrendingDown, Minus, CheckCircle, XCircle, LineChart } from 'lucide-react';
 import { useGame } from '@/contexts/GameContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
 interface CategoryStats {
   category: string;
@@ -16,11 +17,14 @@ interface CategoryStats {
   averageTime: number;
   trend: 'up' | 'down' | 'stable';
   recentAccuracy: number;
+  history: { attempt: number; accuracy: number; date: string }[];
 }
 
 const CategoryAccuracyStats: React.FC = () => {
   const { state } = useGame();
   const { t } = useLanguage();
+
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const categoryStats = useMemo((): CategoryStats[] => {
     const statsMap = new Map<string, {
@@ -30,6 +34,7 @@ const CategoryAccuracyStats: React.FC = () => {
       scores: number[];
       times: number[];
       recentScores: number[];
+      history: { attempt: number; accuracy: number; date: string }[];
     }>();
 
     // Process all challenge scores
@@ -41,6 +46,7 @@ const CategoryAccuracyStats: React.FC = () => {
         scores: [],
         times: [],
         recentScores: [],
+        history: [],
       };
 
       existing.attempts += 1;
@@ -48,6 +54,11 @@ const CategoryAccuracyStats: React.FC = () => {
       existing.total += score.maxScore;
       existing.scores.push(score.percentage);
       existing.times.push(score.timeUsed);
+      existing.history.push({
+        attempt: existing.attempts,
+        accuracy: score.percentage,
+        date: score.date ? new Date(score.date).toLocaleDateString() : `#${existing.attempts}`,
+      });
 
       // Keep track of last 5 attempts for trend
       if (index >= state.challengeScores.filter(s => s.category === score.category).length - 5) {
@@ -66,12 +77,18 @@ const CategoryAccuracyStats: React.FC = () => {
         scores: [],
         times: [],
         recentScores: [],
+        history: [],
       };
 
       existing.attempts += 1;
       existing.correct += result.score;
       existing.total += result.maxScore;
       existing.scores.push(result.percentage);
+      existing.history.push({
+        attempt: existing.attempts,
+        accuracy: result.percentage,
+        date: result.date ? new Date(result.date).toLocaleDateString() : `#${existing.attempts}`,
+      });
 
       // Keep track of last 5 attempts for trend
       const categoryResults = state.quizResults.filter(r => r.quizType === result.quizType);
@@ -115,6 +132,7 @@ const CategoryAccuracyStats: React.FC = () => {
           averageTime,
           trend,
           recentAccuracy,
+          history: data.history,
         };
       })
       .sort((a, b) => b.accuracy - a.accuracy);
@@ -162,6 +180,35 @@ const CategoryAccuracyStats: React.FC = () => {
         return <Minus className="h-4 w-4 text-muted-foreground" />;
     }
   };
+
+  const CHART_COLORS = [
+    'hsl(var(--primary))',
+    'hsl(var(--success))',
+    'hsl(var(--warning))',
+    'hsl(var(--destructive))',
+    'hsl(210, 70%, 50%)',
+    'hsl(280, 70%, 50%)',
+    'hsl(180, 70%, 50%)',
+    'hsl(30, 70%, 50%)',
+  ];
+
+  // Prepare combined chart data for all categories
+  const combinedChartData = useMemo(() => {
+    const maxAttempts = Math.max(...categoryStats.map(cat => cat.history.length), 0);
+    const data: { attempt: number; [key: string]: number }[] = [];
+    
+    for (let i = 0; i < maxAttempts; i++) {
+      const point: { attempt: number; [key: string]: number } = { attempt: i + 1 };
+      categoryStats.forEach(cat => {
+        if (cat.history[i]) {
+          point[cat.category] = cat.history[i].accuracy;
+        }
+      });
+      data.push(point);
+    }
+    
+    return data;
+  }, [categoryStats]);
 
   if (categoryStats.length === 0) {
     return (
@@ -217,9 +264,97 @@ const CategoryAccuracyStats: React.FC = () => {
               {overallStats.categoriesCount}
             </span>
             <span className="text-sm text-muted-foreground">{t('categoriesPlayed')}</span>
-          </CardContent>
+        </CardContent>
         </Card>
       </div>
+
+      {/* Accuracy Trend Charts */}
+      {combinedChartData.length > 1 && (
+        <Card className="glass-card">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 font-serif">
+              <LineChart className="h-5 w-5 text-primary" />
+              {t('accuracyTrends')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="h-80">
+              <ResponsiveContainer width="100%" height="100%">
+                <RechartsLineChart data={combinedChartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+                  <XAxis 
+                    dataKey="attempt" 
+                    label={{ value: t('attemptNumber'), position: 'insideBottom', offset: -5 }}
+                    className="text-xs fill-muted-foreground"
+                  />
+                  <YAxis 
+                    domain={[0, 100]} 
+                    label={{ value: '%', angle: -90, position: 'insideLeft' }}
+                    className="text-xs fill-muted-foreground"
+                  />
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: 'hsl(var(--card))', 
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '8px',
+                    }}
+                    labelFormatter={(value) => `${t('attempt')} ${value}`}
+                    formatter={(value: number, name: string) => [
+                      `${value.toFixed(1)}%`,
+                      t(name) || name.replace(/([A-Z])/g, ' $1').trim()
+                    ]}
+                  />
+                  <Legend 
+                    formatter={(value) => t(value) || value.replace(/([A-Z])/g, ' $1').trim()}
+                  />
+                  {categoryStats.map((cat, index) => (
+                    <Line
+                      key={cat.category}
+                      type="monotone"
+                      dataKey={cat.category}
+                      stroke={CHART_COLORS[index % CHART_COLORS.length]}
+                      strokeWidth={selectedCategory === cat.category ? 3 : 2}
+                      dot={{ fill: CHART_COLORS[index % CHART_COLORS.length], strokeWidth: 2, r: 4 }}
+                      activeDot={{ r: 6 }}
+                      opacity={selectedCategory && selectedCategory !== cat.category ? 0.3 : 1}
+                      connectNulls
+                    />
+                  ))}
+                </RechartsLineChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-4 justify-center">
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className={`px-3 py-1.5 text-sm rounded-full transition-colors ${
+                  selectedCategory === null 
+                    ? 'bg-primary text-primary-foreground' 
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                }`}
+              >
+                {t('all')}
+              </button>
+              {categoryStats.map((cat, index) => (
+                <button
+                  key={cat.category}
+                  onClick={() => setSelectedCategory(cat.category === selectedCategory ? null : cat.category)}
+                  className={`px-3 py-1.5 text-sm rounded-full transition-colors flex items-center gap-2 ${
+                    selectedCategory === cat.category 
+                      ? 'bg-primary text-primary-foreground' 
+                      : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                  }`}
+                >
+                  <span 
+                    className="w-3 h-3 rounded-full" 
+                    style={{ backgroundColor: CHART_COLORS[index % CHART_COLORS.length] }} 
+                  />
+                  {t(cat.category) || cat.category.replace(/([A-Z])/g, ' $1').trim()}
+                </button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Category Breakdown */}
       <Card className="glass-card">
