@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import NotificationSettings from '@/components/NotificationSettings';
 import CategoryAccuracyStats from '@/components/CategoryAccuracyStats';
+import GoalsTracker from '@/components/GoalsTracker';
 
 import bgCharacters from '@/assets/bg-characters.jpg';
 
@@ -202,8 +203,12 @@ const Badges: React.FC = () => {
         </div>
 
         {/* Tabs for badge categories, stats and settings */}
-        <Tabs defaultValue="all" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-7">
+        <Tabs defaultValue="goals" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8">
+            <TabsTrigger value="goals" className="flex items-center gap-1">
+              <Target className="h-4 w-4" />
+              <span className="hidden sm:inline">{t('goals')}</span>
+            </TabsTrigger>
             <TabsTrigger value="all">{t('allBadges')}</TabsTrigger>
             <TabsTrigger value="general">{t('generalBadges')}</TabsTrigger>
             <TabsTrigger value="speed">{t('speedBadges')}</TabsTrigger>
@@ -218,6 +223,10 @@ const Badges: React.FC = () => {
               <span className="hidden sm:inline">{t('settings')}</span>
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="goals" className="mt-6">
+            <GoalsTracker />
+          </TabsContent>
 
           <TabsContent value="all" className="mt-6 space-y-8">
             {renderBadgeSection(generalBadges, 'generalBadges')}

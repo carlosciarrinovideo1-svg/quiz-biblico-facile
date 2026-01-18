@@ -256,7 +256,37 @@ const translations: Translations = {
   attempt: { en: 'Attempt', it: 'Tentativo', es: 'Intento', pt: 'Tentativa', fr: 'Tentative' },
   all: { en: 'All', it: 'Tutti', es: 'Todos', pt: 'Todos', fr: 'Tous' },
 
-  // Share
+  // Goals Tracking
+  dailyGoals: { en: 'Daily Goals', it: 'Obiettivi Giornalieri', es: 'Objetivos Diarios', pt: 'Metas Diárias', fr: 'Objectifs Quotidiens' },
+  weeklyGoals: { en: 'Weekly Goals', it: 'Obiettivi Settimanali', es: 'Objetivos Semanales', pt: 'Metas Semanais', fr: 'Objectifs Hebdomadaires' },
+  goalsCompleted: { en: 'Goals Completed', it: 'Obiettivi Completati', es: 'Objetivos Completados', pt: 'Metas Completadas', fr: 'Objectifs Accomplis' },
+  pointsEarned: { en: 'Points Earned', it: 'Punti Guadagnati', es: 'Puntos Ganados', pt: 'Pontos Ganhos', fr: 'Points Gagnés' },
+  complete: { en: 'complete', it: 'completato', es: 'completado', pt: 'completo', fr: 'terminé' },
+  points: { en: 'pts', it: 'pts', es: 'pts', pt: 'pts', fr: 'pts' },
+  potentialRewards: { en: 'Potential Rewards', it: 'Ricompense Potenziali', es: 'Recompensas Potenciales', pt: 'Recompensas Potenciais', fr: 'Récompenses Potentielles' },
+  completeAllGoals: { en: 'Complete all goals to earn maximum points', it: 'Completa tutti gli obiettivi per guadagnare i punti massimi', es: 'Completa todos los objetivos para ganar puntos máximos', pt: 'Complete todas as metas para ganhar pontos máximos', fr: 'Complétez tous les objectifs pour gagner un maximum de points' },
+  goals: { en: 'Goals', it: 'Obiettivi', es: 'Objetivos', pt: 'Metas', fr: 'Objectifs' },
+  
+  // Daily Goals
+  dailyQuizGoal: { en: 'Complete 3 Quizzes', it: 'Completa 3 Quiz', es: 'Completa 3 Cuestionarios', pt: 'Complete 3 Quizzes', fr: 'Terminez 3 Quiz' },
+  dailyQuizGoalDesc: { en: 'Take 3 quizzes today to stay sharp', it: 'Fai 3 quiz oggi per mantenerti allenato', es: 'Haz 3 cuestionarios hoy para mantenerte activo', pt: 'Faça 3 quizzes hoje para se manter afiado', fr: 'Faites 3 quiz aujourd\'hui pour rester vif' },
+  dailyStreakGoal: { en: 'Maintain Streak', it: 'Mantieni la Serie', es: 'Mantén la Racha', pt: 'Mantenha a Sequência', fr: 'Maintenez la Série' },
+  dailyStreakGoalDesc: { en: 'Play at least once today', it: 'Gioca almeno una volta oggi', es: 'Juega al menos una vez hoy', pt: 'Jogue pelo menos uma vez hoje', fr: 'Jouez au moins une fois aujourd\'hui' },
+  dailyCorrectGoal: { en: 'Answer 20 Correctly', it: 'Rispondi 20 Correttamente', es: 'Responde 20 Correctamente', pt: 'Responda 20 Corretamente', fr: 'Répondez à 20 Correctement' },
+  dailyCorrectGoalDesc: { en: 'Get 20 correct answers today', it: 'Dai 20 risposte corrette oggi', es: 'Obtén 20 respuestas correctas hoy', pt: 'Acerte 20 respostas hoje', fr: 'Obtenez 20 bonnes réponses aujourd\'hui' },
+  dailyPerfectGoal: { en: 'Get a Perfect Score', it: 'Ottieni un Punteggio Perfetto', es: 'Obtén una Puntuación Perfecta', pt: 'Obtenha uma Pontuação Perfeita', fr: 'Obtenez un Score Parfait' },
+  dailyPerfectGoalDesc: { en: 'Score 100% on any quiz', it: 'Ottieni 100% in qualsiasi quiz', es: 'Obtén 100% en cualquier cuestionario', pt: 'Marque 100% em qualquer quiz', fr: 'Obtenez 100% sur n\'importe quel quiz' },
+  
+  // Weekly Goals
+  weeklyQuizGoal: { en: 'Complete 15 Quizzes', it: 'Completa 15 Quiz', es: 'Completa 15 Cuestionarios', pt: 'Complete 15 Quizzes', fr: 'Terminez 15 Quiz' },
+  weeklyQuizGoalDesc: { en: 'Take 15 quizzes this week', it: 'Fai 15 quiz questa settimana', es: 'Haz 15 cuestionarios esta semana', pt: 'Faça 15 quizzes esta semana', fr: 'Faites 15 quiz cette semaine' },
+  weeklyCorrectGoal: { en: 'Answer 100 Correctly', it: 'Rispondi 100 Correttamente', es: 'Responde 100 Correctamente', pt: 'Responda 100 Corretamente', fr: 'Répondez à 100 Correctement' },
+  weeklyCorrectGoalDesc: { en: 'Get 100 correct answers this week', it: 'Dai 100 risposte corrette questa settimana', es: 'Obtén 100 respuestas correctas esta semana', pt: 'Acerte 100 respostas esta semana', fr: 'Obtenez 100 bonnes réponses cette semaine' },
+  weeklyPerfectGoal: { en: 'Get 5 Perfect Scores', it: 'Ottieni 5 Punteggi Perfetti', es: 'Obtén 5 Puntuaciones Perfectas', pt: 'Obtenha 5 Pontuações Perfeitas', fr: 'Obtenez 5 Scores Parfaits' },
+  weeklyPerfectGoalDesc: { en: 'Score 100% on 5 quizzes', it: 'Ottieni 100% in 5 quiz', es: 'Obtén 100% en 5 cuestionarios', pt: 'Marque 100% em 5 quizzes', fr: 'Obtenez 100% sur 5 quiz' },
+  weeklyStreakGoal: { en: '7-Day Streak', it: 'Serie di 7 Giorni', es: 'Racha de 7 Días', pt: 'Sequência de 7 Dias', fr: 'Série de 7 Jours' },
+  weeklyStreakGoalDesc: { en: 'Play every day for a week', it: 'Gioca ogni giorno per una settimana', es: 'Juega todos los días durante una semana', pt: 'Jogue todos os dias por uma semana', fr: 'Jouez tous les jours pendant une semaine' },
+
   share: { en: 'Share', it: 'Condividi', es: 'Compartir', pt: 'Compartilhar', fr: 'Partager' },
   shareNative: { en: 'Share...', it: 'Condividi...', es: 'Compartir...', pt: 'Compartilhar...', fr: 'Partager...' },
   copyLink: { en: 'Copy Link', it: 'Copia Link', es: 'Copiar Enlace', pt: 'Copiar Link', fr: 'Copier le Lien' },
