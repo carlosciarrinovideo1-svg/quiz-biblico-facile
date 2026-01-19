@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, BellOff, Clock, BookOpen, Zap } from 'lucide-react';
+import { Bell, BellOff, Clock, BookOpen, Zap, Target } from 'lucide-react';
 import { z } from 'zod';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { usePushNotifications } from '@/hooks/usePushNotifications';
@@ -20,6 +20,11 @@ const NotificationSettingsSchema = z.object({
     hour: z.number().int().min(0).max(23),
     minute: z.number().int().min(0).max(59),
   }),
+  goalReminderEnabled: z.boolean(),
+  goalReminderTime: z.object({
+    hour: z.number().int().min(0).max(23),
+    minute: z.number().int().min(0).max(59),
+  }),
 });
 
 type NotificationSettingsType = z.infer<typeof NotificationSettingsSchema>;
@@ -28,6 +33,8 @@ const defaultSettings: NotificationSettingsType = {
   dailyChallengeEnabled: false,
   bibleStudyEnabled: false,
   bibleStudyTime: { hour: 9, minute: 0 },
+  goalReminderEnabled: false,
+  goalReminderTime: { hour: 18, minute: 0 },
 };
 
 const loadSettings = (): NotificationSettingsType => {
@@ -57,6 +64,7 @@ const NotificationSettings: React.FC = () => {
     requestPermission, 
     scheduleDailyChallenge,
     scheduleBibleStudyReminder,
+    scheduleGoalReminder,
   } = usePushNotifications();
 
   const [settings, setSettings] = useState<NotificationSettingsType>(loadSettings);
@@ -120,6 +128,35 @@ const NotificationSettings: React.FC = () => {
     
     if (settings.bibleStudyEnabled) {
       scheduleBibleStudyReminder(hour, minute);
+    }
+  };
+
+  const handleGoalReminderToggle = (enabled: boolean) => {
+    const newSettings = { ...settings, goalReminderEnabled: enabled };
+    setSettings(newSettings);
+    saveSettings(newSettings);
+    
+    if (enabled) {
+      scheduleGoalReminder(settings.goalReminderTime.hour, settings.goalReminderTime.minute);
+      toast.success(t('goalReminderEnabled'));
+    } else {
+      toast.info(t('goalReminderDisabled'));
+    }
+  };
+
+  const handleGoalTimeChange = (value: string) => {
+    const [hour, minute] = value.split(':').map(Number);
+    if (isNaN(hour) || isNaN(minute)) return;
+    
+    const newSettings = { 
+      ...settings, 
+      goalReminderTime: { hour, minute } 
+    };
+    setSettings(newSettings);
+    saveSettings(newSettings);
+    
+    if (settings.goalReminderEnabled) {
+      scheduleGoalReminder(hour, minute);
     }
   };
 
@@ -215,6 +252,48 @@ const NotificationSettings: React.FC = () => {
                   <Select
                     value={`${settings.bibleStudyTime.hour.toString().padStart(2, '0')}:${settings.bibleStudyTime.minute.toString().padStart(2, '0')}`}
                     onValueChange={handleTimeChange}
+                  >
+                    <SelectTrigger className="w-32">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {timeOptions.map((time) => (
+                        <SelectItem key={time} value={time}>
+                          {time}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+            </div>
+
+            {/* Goal Reminder */}
+            <div className="space-y-4 rounded-lg border p-4">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="rounded-lg bg-primary/10 p-2">
+                    <Target className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <Label className="font-medium">{t('goalReminder')}</Label>
+                    <p className="text-sm text-muted-foreground">
+                      {t('goalReminderDesc')}
+                    </p>
+                  </div>
+                </div>
+                <Switch
+                  checked={settings.goalReminderEnabled}
+                  onCheckedChange={handleGoalReminderToggle}
+                />
+              </div>
+
+              {settings.goalReminderEnabled && (
+                <div className="flex items-center gap-3 pl-11">
+                  <Clock className="h-4 w-4 text-muted-foreground" />
+                  <Select
+                    value={`${settings.goalReminderTime.hour.toString().padStart(2, '0')}:${settings.goalReminderTime.minute.toString().padStart(2, '0')}`}
+                    onValueChange={handleGoalTimeChange}
                   >
                     <SelectTrigger className="w-32">
                       <SelectValue />

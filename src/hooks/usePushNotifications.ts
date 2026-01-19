@@ -16,6 +16,7 @@ interface UsePushNotificationsReturn {
   showNotification: (options: NotificationOptions) => void;
   scheduleDailyChallenge: () => void;
   scheduleBibleStudyReminder: (hour: number, minute: number) => void;
+  scheduleGoalReminder: (hour: number, minute: number) => void;
   cancelAllNotifications: () => void;
 }
 
@@ -29,7 +30,13 @@ const NotificationSettingsSchema = z.object({
     hour: z.number().int().min(0).max(23),
     minute: z.number().int().min(0).max(59),
   }),
+  goalReminderEnabled: z.boolean(),
+  goalReminderTime: z.object({
+    hour: z.number().int().min(0).max(23),
+    minute: z.number().int().min(0).max(59),
+  }),
   lastDailyChallengeDate: z.string().optional(),
+  lastGoalReminderDate: z.string().optional(),
 });
 
 type NotificationSettings = z.infer<typeof NotificationSettingsSchema>;
@@ -38,6 +45,8 @@ const defaultSettings: NotificationSettings = {
   dailyChallengeEnabled: false,
   bibleStudyEnabled: false,
   bibleStudyTime: { hour: 9, minute: 0 },
+  goalReminderEnabled: false,
+  goalReminderTime: { hour: 18, minute: 0 },
 };
 
 const getSettings = (): NotificationSettings => {
@@ -127,6 +136,20 @@ export const usePushNotifications = (): UsePushNotificationsReturn => {
           });
         }
       }
+
+      // Goal reminder notification
+      if (settings.goalReminderEnabled && settings.lastGoalReminderDate !== today) {
+        const { hour, minute } = settings.goalReminderTime;
+        if (now.getHours() === hour && now.getMinutes() === minute) {
+          showNotificationInternal({
+            title: '🎯 Obiettivi Giornalieri',
+            body: 'Non dimenticare di completare i tuoi obiettivi giornalieri! Guadagna punti e mantieni la serie!',
+            tag: 'goal-reminder',
+            requireInteraction: true
+          });
+          saveSettings({ ...settings, lastGoalReminderDate: today });
+        }
+      }
     };
 
     // Check immediately and then every minute
@@ -170,6 +193,18 @@ export const usePushNotifications = (): UsePushNotificationsReturn => {
     });
   }, []);
 
+  const scheduleGoalReminder = useCallback((hour: number, minute: number) => {
+    // Validate hour and minute
+    if (hour < 0 || hour > 23 || minute < 0 || minute > 59) return;
+    
+    const settings = getSettings();
+    saveSettings({
+      ...settings,
+      goalReminderEnabled: true,
+      goalReminderTime: { hour, minute }
+    });
+  }, []);
+
   const cancelAllNotifications = useCallback(() => {
     saveSettings(defaultSettings);
   }, []);
@@ -181,6 +216,7 @@ export const usePushNotifications = (): UsePushNotificationsReturn => {
     showNotification,
     scheduleDailyChallenge,
     scheduleBibleStudyReminder,
+    scheduleGoalReminder,
     cancelAllNotifications,
   };
 };
