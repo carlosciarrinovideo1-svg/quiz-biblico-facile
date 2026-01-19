@@ -236,6 +236,12 @@ const translations: Translations = {
   dailyChallengeDisabled: { en: 'Daily challenge notifications disabled', it: 'Notifiche sfida giornaliera disabilitate', es: 'Notificaciones de desafío diario deshabilitadas', pt: 'Notificações de desafio diário desativadas', fr: 'Notifications de défi quotidien désactivées' },
   bibleStudyReminderEnabled: { en: 'Bible study reminder enabled', it: 'Promemoria studio biblico abilitato', es: 'Recordatorio de estudio bíblico habilitado', pt: 'Lembrete de estudo bíblico ativado', fr: 'Rappel d\'étude biblique activé' },
   bibleStudyReminderDisabled: { en: 'Bible study reminder disabled', it: 'Promemoria studio biblico disabilitato', es: 'Recordatorio de estudio bíblico deshabilitado', pt: 'Lembrete de estudo bíblico desativado', fr: 'Rappel d\'étude biblique désactivé' },
+  
+  // Goal Reminder Notifications
+  goalReminder: { en: 'Goal Reminder', it: 'Promemoria Obiettivi', es: 'Recordatorio de Objetivos', pt: 'Lembrete de Metas', fr: 'Rappel d\'Objectifs' },
+  goalReminderDesc: { en: 'Get reminded to complete your daily goals', it: 'Ricevi promemoria per completare i tuoi obiettivi giornalieri', es: 'Recibe recordatorios para completar tus objetivos diarios', pt: 'Receba lembretes para completar suas metas diárias', fr: 'Recevez des rappels pour compléter vos objectifs quotidiens' },
+  goalReminderEnabled: { en: 'Goal reminder enabled', it: 'Promemoria obiettivi abilitato', es: 'Recordatorio de objetivos habilitado', pt: 'Lembrete de metas ativado', fr: 'Rappel d\'objectifs activé' },
+  goalReminderDisabled: { en: 'Goal reminder disabled', it: 'Promemoria obiettivi disabilitato', es: 'Recordatorio de objetivos deshabilitado', pt: 'Lembrete de metas desativado', fr: 'Rappel d\'objectifs désactivé' },
 
   // Category Accuracy Stats
   noStatsYet: { en: 'No statistics yet', it: 'Nessuna statistica ancora', es: 'Sin estadísticas aún', pt: 'Sem estatísticas ainda', fr: 'Pas encore de statistiques' },
