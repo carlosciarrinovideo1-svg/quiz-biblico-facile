@@ -4,6 +4,7 @@ import { useGame } from '@/contexts/GameContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import LevelSystem from '@/components/LevelSystem';
 
 interface Goal {
   id: string;
@@ -234,6 +235,9 @@ const GoalsTracker: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Level System */}
+      <LevelSystem />
+
       {/* Summary Cards */}
       <div className="grid gap-4 sm:grid-cols-3">
         <Card className="glass-card">
